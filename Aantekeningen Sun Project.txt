@@ -1,0 +1,48 @@
+Database - betalen, klantinformatie, bestemmingen
+
+
+Boeking: klantID, bestemming, prijs, betaalconfirmatie. (klant kan andere gegevens invullen, veldjes zijn beschikbaar)
+
+Klant: KlantID, E-mail, Wachtwoord, Wachtwoord confirmatie, Telefoonnummer, Postcode, Huisnummer, Straatnaam
+Klantnaam(Voornaam, Tussenvoegels, Achternaam)
+
+Bestemming: Locatie, Prijs, Verblijftijd, Personen, Reviews?(Naam, Score, Tekst, Datum)
+
+
+
+
+Home: Aanbevolen, Acties, Corona-informatie
+
+Inlogsysteem: E-mail, Wachtwoord, Inlogknop
+
+Registreren: E-mail, Wachtwoord, Wachtwoord confirmatie, Telefoonnummer, Postcode, Huisnummer, Straatnaam
+Klantnaam(Voornaam, Tussenvoegels, Achternaam)
+
+Boeken: Nadat je op card geklikt hebt: Prijs(Actie), Afbeelding, hoeveelheid personen(actueel prijs veranderen), Verblijftijd, Filter
+
+Contact: (Footer) Telefoonnummer, Locatie bedrijf,
+E-mail, (Form waar je vragen in kan stellen)(Textvak met e-mail en textvak met vraag of opmerking)
+
+Nav: Home, Boeken, Contact, Inloggen(Registreren)
+
+Footer: Socials
+
+
+
+Admin-account:
+
+Moet afbeelding en prijs van bestemming kunnen aanpassen
+
+
+
+Klant moet kunnen:
+
+Registreren
+Inloggen
+Boeken
+
+
+PHP
+Bootstrap
+GitHub
+mysql
