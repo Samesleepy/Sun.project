@@ -65,13 +65,54 @@
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                     <button type="submit" name="submit" class="btn btn-primary btn-block">Create Account</button>
                   </div>
                </div>
                <p class="text-center">Heb je al een account?<a href="">Log In</a> </p>
             </form>
+
+            <?php
+            $host = "localhost";
+            $username = "root";
+            $password = "";
+            $databaseName = "sunproject";
+
+            //connect to database
+            $conn = mysqli_connect($host, $username, $password, $databaseName);
+
+            if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+            }
+            //echo "Connected Successfully. </br>";
+
+            if(isset($_POST['submit'])) {
+              $voornaam = $_POST['voornaam'];
+              $tussenvoegsel = $_POST['tussenvoegsel'];
+              $achternaam = $_POST['achternaam'];
+              $email = $_POST['email'];
+              $telefoonnummer = $_POST['telefoonnummer'];
+              $wachtwoord = $_POST['wachtwoord'];
+              $postcode = $_POST['postcode'];
+              $straatnaam = $_POST['straatnaam'];
+              $huisnummer = $_POST['huisnummer'];
+
+            $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
+            VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+
+            //echo $sql;
+            if(mysqli_query($conn, $sql)){
+          echo "Success";
+      } else{
+          echo "ERROR $sql. " . mysqli_error($conn);
+      }
+          }
+
+
+             ?>
          </div>
       </div>
-      </div>
+
+
+
    </body>
 </html>
