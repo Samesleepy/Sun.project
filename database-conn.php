@@ -9,9 +9,9 @@ function Debug($v){
 }
 
 $host = "localhost";
-$username =
-$password =
-$databaseName =
+$username = "root";
+$password = "";
+$databaseName = "Sunproject";
 
 //connect to database
 $conn = mysqli_connect($host, $username, $password, $databaseName);
