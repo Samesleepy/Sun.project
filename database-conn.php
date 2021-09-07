@@ -11,7 +11,7 @@ function Debug($v){
 $host = "localhost";
 $username = "root";
 $password = "";
-$databaseName = "Sunproject";
+$databaseName = "sunproject";
 
 //connect to database
 $conn = mysqli_connect($host, $username, $password, $databaseName);
