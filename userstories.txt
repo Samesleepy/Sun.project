@@ -1,0 +1,10 @@
+als user wil ik:
+
+kunnen registreren, zodat ik kan inloggen, zodat ik kan boeken en betalen
+
+na het registreren en inloggen:
+
+bestemmingen bekijken en meer details lezen
+aanbevolen zien
+
+
