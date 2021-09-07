@@ -1,4 +1,4 @@
-Database - betalen, klantinformatie, bestemmingen
+Database - Boeking, Klant, Bestemming
 
 
 Boeking: klantID, bestemming, prijs, betaalconfirmatie. (klant kan andere gegevens invullen, veldjes zijn beschikbaar)
@@ -6,7 +6,9 @@ Boeking: klantID, bestemming, prijs, betaalconfirmatie. (klant kan andere gegeve
 Klant: KlantID, E-mail, Wachtwoord, Wachtwoord confirmatie, Telefoonnummer, Postcode, Huisnummer, Straatnaam
 Klantnaam(Voornaam, Tussenvoegels, Achternaam)
 
-Bestemming: Locatie, Prijs, Verblijftijd, Personen, Reviews?(Naam, Score, Tekst, Datum)
+Bestemming: Locatie, Prijs, Verblijftijd, Personen
+
+Reviews: Naam, Score, Tekst, Datum
 
 
 
