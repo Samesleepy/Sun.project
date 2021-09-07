@@ -8,7 +8,7 @@ function Debug($v){
   die();
 }
 
-$host =
+$host = "localhost";
 $username =
 $password =
 $databaseName =
