@@ -1,11 +1,21 @@
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title></title>
+      <title>Registreer</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
    </head>
    <body>
+     <script>function checkpass() {
+       if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
+              document.getElementById('submit').disabled = false;
+      }else{
+        document.getElementById('submit').disabled = true;
+      }
+    }
+      </script>
       <div class="card bg-light">
          <div class="card-body mx-auto" style="max-width: 800px;">
             <div class="jumbotron text-center">
@@ -39,12 +49,12 @@
                <div class="row">
                   <div class="col">
                      <div class="form-group input-group">
-                        <input name="wachtwoord" class="form-control" placeholder="Wachtwoord" type="password" required>
+                        <input id="wachtwoord" name="wachtwoord" class="form-control" placeholder="Wachtwoord" type="password" required onchange='checkpass();'>
                      </div>
                   </div>
                   <div class="col">
                      <div class="form-group input-group">
-                        <input class="form-control" placeholder="Herhaal wachtwoord" type="password" required>
+                        <input id="wachtwoordh" name="wachtwoordh" class="form-control" placeholder="Herhaal wachtwoord" type="password" required onchange='checkpass();'>
                      </div>
                   </div>
                </div>
@@ -65,7 +75,7 @@
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button type="submit" name="submit" class="btn btn-primary btn-block">Create Account</button>
+                     <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block">Create Account</button>
                   </div>
                </div>
                <p class="text-center">Heb je al een account?<a href="">Log In</a> </p>
@@ -84,7 +94,6 @@
               die("Connection failed: " . mysqli_connect_error());
             }
             //echo "Connected Successfully. </br>";
-
             if(isset($_POST['submit'])) {
               $voornaam = $_POST['voornaam'];
               $tussenvoegsel = $_POST['tussenvoegsel'];
@@ -96,23 +105,19 @@
               $straatnaam = $_POST['straatnaam'];
               $huisnummer = $_POST['huisnummer'];
 
-            $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
-            VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+              $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
+              VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
 
-            //echo $sql;
-            if(mysqli_query($conn, $sql)){
-          echo "Success";
-      } else{
-          echo "ERROR $sql. " . mysqli_error($conn);
-      }
+              //echo $sql;
+              if(mysqli_query($conn, $sql)){
+                echo "Success";
+              }else{
+                echo "ERROR $sql. " . mysqli_error($conn);
+              }
           }
-
 
              ?>
          </div>
       </div>
-
-
-
    </body>
 </html>
