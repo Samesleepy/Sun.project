@@ -95,20 +95,28 @@
             }
             //echo "Connected Successfully. </br>";
             if(isset($_POST['submit'])) {
-              $voornaam = $_POST['voornaam'];
-              $tussenvoegsel = $_POST['tussenvoegsel'];
-              $achternaam = $_POST['achternaam'];
-              $email = $_POST['email'];
-              $telefoonnummer = $_POST['telefoonnummer'];
-              $wachtwoord = $_POST['wachtwoord'];
-              $postcode = $_POST['postcode'];
-              $straatnaam = $_POST['straatnaam'];
-              $huisnummer = $_POST['huisnummer'];
+              $voornaam = mysqli_real_escape_string($conn, $_POST['voornaam']);
+              $tussenvoegsel = mysqli_real_escape_string($conn, $_POST['tussenvoegsel']);
+              $achternaam = mysqli_real_escape_string($conn, $_POST['achternaam']);
+              $email = mysqli_real_escape_string($conn, $_POST['email']);
+              $telefoonnummer = mysqli_real_escape_string($conn, $_POST['telefoonnummer']);
+              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
+              $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
+              $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
+              $straatnaam = mysqli_real_escape_string($conn, $_POST['straatnaam']);
+              $huisnummer = mysqli_real_escape_string($conn, $_POST['huisnummer']);
 
               $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
-              VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+              VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
 
-              //echo $sql;
+
+              echo  $_POST['straatnaam'];
+              echo "<br/>";
+              echo $straatnaam;
+              echo "</br>";
+
+              var_dump($hashed_wachtwoord);
+
               if(mysqli_query($conn, $sql)){
                 echo "Success";
               }else{
