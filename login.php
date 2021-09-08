@@ -44,17 +44,18 @@
       echo "Connected Successfully. </br>";
 
       if(isset($_POST['submit'])){
-              $email = $_POST['email'];
-              $wachtwoord = $_POST['wachtwoord'];
-              $sql = "SELECT COUNT(*) FROM `klant` WHERE `Email`='".$email."' AND `Wachtwoord`='".$wachtwoord."'";
+              $email = mysqli_real_escape_string($conn, $_POST['email']);
+              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
+              $sql = "SELECT COUNT(*) as cntUser FROM `klant` WHERE `Email`='".$email."' AND `Wachtwoord`='".$wachtwoord."'";
               $result = mysqli_query($conn,$sql);
               $row = mysqli_fetch_array($result);
-//mysqli_fetch_array
-              $count = $row;
+
+              $count = $row['cntUser'];
 
               if($count > 0){
                   //$_SESSION['email'] = $email;
                   echo "JE BENT INGELOGD";
+                  print_r($count);
               }else{
                   echo "VERKEERDE INFO";
               }
