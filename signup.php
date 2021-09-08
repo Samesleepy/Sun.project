@@ -110,10 +110,10 @@
               VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
 
 
-              echo  $_POST['straatnaam'];
-              echo "<br/>";
-              echo $straatnaam;
-              echo "</br>";
+              // echo  $_POST['straatnaam'];
+              // echo "<br/>";
+              // echo $straatnaam;
+              // echo "</br>";
 
               var_dump($hashed_wachtwoord);
 
