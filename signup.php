@@ -97,7 +97,7 @@
             //echo "Connected Successfully. </br>";
 
             function CheckDuplicateEmail($email, $conn){
-              $email = $_POST['email'];
+              //$email = mysqli_real_escape_string($conn, $_POST['email']);
               $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
               $result = mysqli_fetch_array(mysqli_query($conn, $sql));
               if($result[0] != 0){
@@ -109,8 +109,8 @@
             }
             if(isset($_POST['submit'])) {
               $voornaam = mysqli_real_escape_string($conn, $_POST['voornaam']);
-              $tussenvoegsel = mysqli_real_escape_string($conn, $_POST['tussenvoegsel']);
               $achternaam = mysqli_real_escape_string($conn, $_POST['achternaam']);
+              $tussenvoegsel = mysqli_real_escape_string($conn, $_POST['tussenvoegsel']);
               $email = mysqli_real_escape_string($conn, $_POST['email']);
               $telefoonnummer = mysqli_real_escape_string($conn, $_POST['telefoonnummer']);
               $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
@@ -118,17 +118,18 @@
               $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
               $straatnaam = mysqli_real_escape_string($conn, $_POST['straatnaam']);
               $huisnummer = mysqli_real_escape_string($conn, $_POST['huisnummer']);
+
               if(CheckDuplicateEmail($email, $conn)){
 
                 $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
-                VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+                VALUES ('$voornaam','$achternaam' , '$tussenvoegsel','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
 
 
-              if(mysqli_query($conn, $sql)){
-                echo "Account geregistreerd!";
-              }else{
-                echo "ERROR"; //$sql. " . mysqli_error($conn);
-              }
+                if(mysqli_query($conn, $sql)){
+                  echo "Account geregistreerd!";
+                }else{
+                  echo "ERROR"; //$sql. " . mysqli_error($conn);
+                }
               }else{
                 echo "Email is al in gebruik!";
               }

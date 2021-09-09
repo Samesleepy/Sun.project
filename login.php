@@ -45,7 +45,7 @@ session_start();
       if (!$conn) {
         die("Connection failed");
       }
-      echo "Connected Successfully. </br>";
+      //echo "Connected Successfully. </br>";
 
       if(isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -56,8 +56,17 @@ session_start();
           $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
           $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
             if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
-              echo "U bent nu ingelogd!";
-              //$_SESSION['uname'] = $uname;
+              $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
+              $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
+              $_SESSION['email'] = $email;
+              $_SESSION['Voornaam'] = $resultinfo['Voornaam'];
+
+              echo "Welkom: " . $resultinfo['Voornaam'] . " " ;
+              if($resultinfo['Tussenvoegsel'] != ""){
+                echo " " . $resultinfo['Tussenvoegsel'] . " ";
+              }
+              echo $resultinfo['Achternaam'] . "!";
+              //print_r($resultinfo);
             }else{
               echo "Wachtwoord is fout";
           }
