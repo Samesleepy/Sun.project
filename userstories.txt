@@ -1,10 +1,11 @@
 als user wil ik:
-
 kunnen registreren, zodat ik kan inloggen, zodat ik kan boeken en betalen
 
 na het registreren en inloggen:
+bestemmingen bekijken en meer details lezen aanbevolen zien
 
-bestemmingen bekijken en meer details lezen
-aanbevolen zien
+na bestemmingen bekijken:
+bestemmingen kunnen boeken en contact wille opleggen met het bedrijf voor meer informatie van de locatie.
 
-
+Na de bestemming boeken:
+Kunnen betalen
