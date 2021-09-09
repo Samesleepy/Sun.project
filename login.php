@@ -1,3 +1,7 @@
+<?php
+session_start();
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
@@ -39,22 +43,26 @@
       $conn = mysqli_connect($host, $username, $password, $databaseName);
 
       if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+        die("Connection failed");
       }
       echo "Connected Successfully. </br>";
 
       if(isset($_POST['submit'])){
-              $email = mysqli_real_escape_string($conn, $_POST['email']);
-              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
-              $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
-              $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
-              if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
-
-                    echo "JE BENT INGELOGD";
-            }else{echo "Email of wachtwoord is fout";}
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $sqlemail = "select COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";
+        $resultemail = mysqli_fetch_array(mysqli_query($conn, $sqlemail));
+        if($resultemail[0] > 0){
+          $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
+          $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
+          $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
+            if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
+              echo "U bent nu ingelogd!";
+            }else{
+              echo "Wachtwoord is fout";
           }
+        }else{
+        echo "Email is fout";}
+      }
         ?>
-
-
    </body>
 </html>

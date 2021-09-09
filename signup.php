@@ -11,10 +11,10 @@
      <script>function checkpass() {
        if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
               document.getElementById('submit').disabled = false;
-      }else{
+       }else{
         document.getElementById('submit').disabled = true;
-      }
-    }
+       }
+     }
       </script>
       <div class="card bg-light">
          <div class="card-body mx-auto" style="max-width: 800px;">
@@ -75,7 +75,7 @@
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block">Create Account</button>
+                     <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block">Maak Account</button>
                   </div>
                </div>
                <p class="text-center">Heb je al een account?<a href="">Log In</a> </p>
@@ -91,7 +91,7 @@
             $conn = mysqli_connect($host, $username, $password, $databaseName);
 
             if (!$conn) {
-              die("Connection failed: " . mysqli_connect_error());
+              die("Connection failed"); //: " . mysqli_connect_error());
             }
             //echo "Connected Successfully. </br>";
             if(isset($_POST['submit'])) {
@@ -109,20 +109,12 @@
               $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
               VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
 
-
-              // echo  $_POST['straatnaam'];
-              // echo "<br/>";
-              // echo $straatnaam;
-              // echo "</br>";
-
-              var_dump($hashed_wachtwoord);
-
               if(mysqli_query($conn, $sql)){
-                echo "Success";
+                echo "Account geregistreerd!";
               }else{
-                echo "ERROR $sql. " . mysqli_error($conn);
+                echo "ERROR"; //$sql. " . mysqli_error($conn);
               }
-          }
+            }
 
              ?>
          </div>
