@@ -6,7 +6,7 @@ session_start();
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title></title>
+      <title>Login</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
    </head>
    <body>
@@ -49,7 +49,7 @@ session_start();
 
       if(isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $sqlemail = "select COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";
+        $sqlemail = "SELECT COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";
         $resultemail = mysqli_fetch_array(mysqli_query($conn, $sqlemail));
         if($resultemail[0] > 0){
           $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
@@ -57,6 +57,7 @@ session_start();
           $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
             if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
               echo "U bent nu ingelogd!";
+              //$_SESSION['uname'] = $uname;
             }else{
               echo "Wachtwoord is fout";
           }

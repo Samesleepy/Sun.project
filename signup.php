@@ -93,7 +93,20 @@
             if (!$conn) {
               die("Connection failed"); //: " . mysqli_connect_error());
             }
+
             //echo "Connected Successfully. </br>";
+
+            function CheckDuplicateEmail($email, $conn){
+              $email = $_POST['email'];
+              $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
+              $result = mysqli_fetch_array(mysqli_query($conn, $sql));
+              if($result[0] != 0){
+                return False;
+              }else{
+                return True;
+              }
+
+            }
             if(isset($_POST['submit'])) {
               $voornaam = mysqli_real_escape_string($conn, $_POST['voornaam']);
               $tussenvoegsel = mysqli_real_escape_string($conn, $_POST['tussenvoegsel']);
@@ -105,14 +118,19 @@
               $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
               $straatnaam = mysqli_real_escape_string($conn, $_POST['straatnaam']);
               $huisnummer = mysqli_real_escape_string($conn, $_POST['huisnummer']);
+              if(CheckDuplicateEmail($email, $conn)){
 
-              $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
-              VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+                $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
+                VALUES ('$voornaam', '$tussenvoegsel', '$achternaam','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+
 
               if(mysqli_query($conn, $sql)){
                 echo "Account geregistreerd!";
               }else{
                 echo "ERROR"; //$sql. " . mysqli_error($conn);
+              }
+              }else{
+                echo "Email is al in gebruik!";
               }
             }
 
