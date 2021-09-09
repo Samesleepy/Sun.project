@@ -47,28 +47,10 @@
               $email = mysqli_real_escape_string($conn, $_POST['email']);
               $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
               $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
-              //$resultpass = mysqli_query($conn,$sqlhashedpass);
-              //$resultp = mysqli_fetch_assoc($resultpass);
               $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
-              //echo $resultp['Wachtwoord'];
-              //echo "</br>";
               if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
-                //echo "SUCCESSS SEdaefa";
-                //echo "</br>";
-              //$sql = "SELECT COUNT(*) as cntUser FROM `klant` WHERE `Email`='".$email."' AND `Wachtwoord`='".$wachtwoord."'";
-                $sql = "SELECT COUNT(*) as cntUser FROM `klant` WHERE `Email`='".$email."'";
-                $result = mysqli_query($conn,$sql);
-                $row = mysqli_fetch_array($result);
 
-                $count = $row['cntUser'];
-
-                  if($count > 0){
-                  //$_SESSION['email'] = $email;
                     echo "JE BENT INGELOGD";
-                  //print_r($count);
-              //}else{
-              //    echo "VERKEERDE INFO";
-              }
             }else{echo "Email of wachtwoord is fout";}
           }
         ?>
