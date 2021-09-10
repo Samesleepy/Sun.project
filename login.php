@@ -1,5 +1,6 @@
 <?php
-session_start();
+//session_start();
+include_once 'header.php';
  ?>
 
 <!DOCTYPE html>
@@ -61,7 +62,7 @@ session_start();
 
               foreach ($resultinfo as $klantinfo) {
                 $_SESSION = $klantinfo;
-                echo $klantinfo . "</br>";
+                //echo $klantinfo . "</br>";
               }
 
               // $_SESSION['KlantID'] = $resultinfo['KlantID'];

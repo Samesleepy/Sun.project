@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="website.php">Home</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">Bestemmingen</a>
@@ -40,7 +40,8 @@
                <li class="nav-item ml-auto">
                   <a class="navbar-text" aria-current="page">
                   <?php
-                  if(isset($_SESSION['Voornaam'])){
+                  //print_r($_SESSION);
+                  if(isset($_SESSION)){
                      echo $_SESSION['Voornaam'] . " " ;
                      if($_SESSION['Tussenvoegsel'] != ""){
                        echo " " . $_SESSION['Tussenvoegsel'] . " ";
