@@ -58,8 +58,31 @@ session_start();
             if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
               $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
               $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
-              $_SESSION['email'] = $email;
-              $_SESSION['Voornaam'] = $resultinfo['Voornaam'];
+
+              // $i = 0;
+              // while ($i < 9) {
+              //   $_SESSION[$i] =  $resultinfo[$i];
+              //   $i++;
+              // }
+
+              foreach ($resultinfo as $klantinfo) {
+                $_SESSION = $klantinfo;
+                echo $klantinfo . "</br>";
+              }
+
+              // $_SESSION['KlantID'] = $resultinfo['KlantID'];
+              // $_SESSION['Voornaam'] = $resultinfo['Voornaam'];
+              // $_SESSION['Tussenvoegsel'] = $resultinfo['Tussenvoegsel'];
+              // $_SESSION['Achternaam'] = $resultinfo['Achternaam'];
+              // $_SESSION['Email'] = $resultinfo['Email'];
+              // $_SESSION['Telefoonnummer'] = $resultinfo['Telefoonnummer'];
+              // $_SESSION['Postcode'] = $resultinfo['Postcode'];
+              // $_SESSION['Straatnaam'] = $resultinfo['Straatnaam'];
+              // $_SESSION['Huisnummer'] = $resultinfo['Huisnummer'];
+
+              // foreach ($_SESSION as $value) {
+              //   echo $value;
+              // }
 
               echo "Welkom: " . $resultinfo['Voornaam'] . " " ;
               if($resultinfo['Tussenvoegsel'] != ""){

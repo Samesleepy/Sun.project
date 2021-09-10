@@ -61,6 +61,9 @@
                <div class="form-group input-group">
                   <input name="postcode" class="form-control" placeholder="Postcode" type="text" required>
                </div>
+               <div class="form-group input-group">
+                  <input name="woonplaats" class="form-control" placeholder="Woonplaats" type="text" required>
+               </div>
                <div class="row">
                   <div class="col">
                      <div class="form-group input-group">
@@ -115,14 +118,15 @@
               $telefoonnummer = mysqli_real_escape_string($conn, $_POST['telefoonnummer']);
               $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
               $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
+              $woonplaats = mysqli_real_escape_string($conn, $_POST['woonplaats']);
               $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
               $straatnaam = mysqli_real_escape_string($conn, $_POST['straatnaam']);
               $huisnummer = mysqli_real_escape_string($conn, $_POST['huisnummer']);
 
               if(CheckDuplicateEmail($email, $conn)){
 
-                $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Postcode`, `Straatnaam`, `Huisnummer`)
-                VALUES ('$voornaam','$achternaam' , '$tussenvoegsel','$email','$hashed_wachtwoord','$telefoonnummer','$postcode','$straatnaam','$huisnummer')";
+                $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
+                VALUES ('$voornaam','$achternaam' , '$tussenvoegsel','$email','$hashed_wachtwoord','$telefoonnummer','$woonplaats','$postcode','$straatnaam','$huisnummer')";
 
 
                 if(mysqli_query($conn, $sql)){
