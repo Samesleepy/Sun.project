@@ -40,11 +40,13 @@
                <li class="nav-item ml-auto">
                   <a class="navbar-text" aria-current="page">
                   <?php
+                  if(isset($_SESSION['Voornaam'])){
                      echo $_SESSION['Voornaam'] . " " ;
                      if($_SESSION['Tussenvoegsel'] != ""){
                        echo " " . $_SESSION['Tussenvoegsel'] . " ";
                      }
                      echo $_SESSION['Achternaam'];
+                   }
                      //print_r($_SESSION);
                      ?>
                   </a>
