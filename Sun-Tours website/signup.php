@@ -5,7 +5,7 @@
    <head>
       <meta charset="utf-8">
       <title>Registreer</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
    </head>
    <body>
      <script>function checkpass() {
