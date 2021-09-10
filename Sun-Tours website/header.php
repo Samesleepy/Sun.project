@@ -11,7 +11,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container">
             <a class="navbar-brand" href="#">
-            <img src="https://suntours.hr/wp-content/uploads/2018/10/Logo_Retina_200px_Mobile.png" class="sun" alt="Suntours">
+            <img src="Pics\Sun-Tours-logo.png" class="sun" alt="Suntours">
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
