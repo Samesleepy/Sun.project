@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2021 at 09:28 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Gegenereerd op: 07 sep 2021 om 10:16
+-- Serverversie: 10.4.6-MariaDB
+-- PHP-versie: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,33 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bestemming`
+-- Tabelstructuur voor tabel `bestemming`
 --
 
 CREATE TABLE `bestemming` (
   `Locatie` varchar(50) NOT NULL,
   `Prijs` decimal(2,0) NOT NULL,
-  `Plaatje` blob NOT NULL
+  `Verblijftijd` int(3) NOT NULL,
+  `Personen` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `boeking`
+-- Tabelstructuur voor tabel `boeking`
 --
 
 CREATE TABLE `boeking` (
   `KlantID` int(10) NOT NULL,
   `Bestemming` varchar(50) NOT NULL,
-  `Prijs` decimal(2,0) NOT NULL,
-  `Personen` int(3) NOT NULL,
-  `Duur` int(3) NOT NULL
+  `Prijs` decimal(2,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `klant`
+-- Tabelstructuur voor tabel `klant`
 --
 
 CREATE TABLE `klant` (
@@ -59,9 +59,8 @@ CREATE TABLE `klant` (
   `Achternaam` varchar(50) NOT NULL,
   `Tussenvoegsel` varchar(20) NOT NULL,
   `Email` varchar(70) NOT NULL,
-  `Wachtwoord` varchar(96) NOT NULL,
+  `Wachtwoord` varchar(50) NOT NULL,
   `Telefoonnummer` int(10) NOT NULL,
-  `Woonplaats` varchar(50) NOT NULL,
   `Postcode` varchar(7) NOT NULL,
   `Straatnaam` varchar(60) NOT NULL,
   `Huisnummer` int(5) NOT NULL
@@ -70,7 +69,7 @@ CREATE TABLE `klant` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `review`
+-- Tabelstructuur voor tabel `review`
 --
 
 CREATE TABLE `review` (
@@ -79,27 +78,6 @@ CREATE TABLE `review` (
   `Opmerking` tinytext NOT NULL,
   `Datum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `klant`
---
-ALTER TABLE `klant`
-  ADD PRIMARY KEY (`KlantID`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `klant`
---
-ALTER TABLE `klant`
-  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
