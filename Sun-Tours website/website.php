@@ -1,4 +1,4 @@
-<?php include 'header.php';?>
+<?php include_once 'header.php';?>
 <html lang="nl" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -36,4 +36,4 @@
     </body>
 </html>
 
-<?php include 'footer.php';?>
+<?php include_once 'footer.php';?>
