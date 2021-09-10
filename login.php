@@ -59,12 +59,6 @@ session_start();
               $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
               $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
 
-              // $i = 0;
-              // while ($i < 9) {
-              //   $_SESSION[$i] =  $resultinfo[$i];
-              //   $i++;
-              // }
-
               foreach ($resultinfo as $klantinfo) {
                 $_SESSION = $klantinfo;
                 echo $klantinfo . "</br>";
@@ -76,13 +70,10 @@ session_start();
               // $_SESSION['Achternaam'] = $resultinfo['Achternaam'];
               // $_SESSION['Email'] = $resultinfo['Email'];
               // $_SESSION['Telefoonnummer'] = $resultinfo['Telefoonnummer'];
+              // $_SESSION['Woonplaats'] = $resultinfo['Woonplaats'];
               // $_SESSION['Postcode'] = $resultinfo['Postcode'];
               // $_SESSION['Straatnaam'] = $resultinfo['Straatnaam'];
               // $_SESSION['Huisnummer'] = $resultinfo['Huisnummer'];
-
-              // foreach ($_SESSION as $value) {
-              //   echo $value;
-              // }
 
               echo "Welkom: " . $resultinfo['Voornaam'] . " " ;
               if($resultinfo['Tussenvoegsel'] != ""){
