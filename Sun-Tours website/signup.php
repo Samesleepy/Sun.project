@@ -85,17 +85,17 @@
             </form>
 
             <?php
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $databaseName = "sunproject";
-
-            //connect to database
-            $conn = mysqli_connect($host, $username, $password, $databaseName);
-
-            if (!$conn) {
-              die("Connection failed"); //: " . mysqli_connect_error());
-            }
+            // $host = "localhost";
+            // $username = "root";
+            // $password = "";
+            // $databaseName = "sunproject";
+            //
+            // //connect to database
+            // $conn = mysqli_connect($host, $username, $password, $databaseName);
+            //
+            // if (!$conn) {
+            //   die("Connection failed"); //: " . mysqli_connect_error());
+            // }
 
             //echo "Connected Successfully. </br>";
 

@@ -1,4 +1,17 @@
-<?php session_start(); ?>
+<?php session_start();
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$databaseName = "sunproject";
+
+//connect to database
+$conn = mysqli_connect($host, $username, $password, $databaseName);
+
+if (!$conn) {
+ die("Connection failed"); //: " . mysqli_connect_error());
+}
+ ?>
 
 <html lang="nl" dir="ltr">
    <head>
