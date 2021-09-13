@@ -19,7 +19,7 @@
                   <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Bestemmingen</a>
+                  <a class="nav-link active" aria-current="page" href="bestemmingen.php">Bestemmingen</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">Coronamaatregelen</a>
