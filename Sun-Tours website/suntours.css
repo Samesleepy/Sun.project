@@ -41,3 +41,6 @@ opacity: 1;
 .nav-item me-auto{
   float: right;
 }
+.card{
+  float:left;
+}
