@@ -25,7 +25,6 @@
 
     ?>
 
-    <!DOCTYPE html>
     <html lang="en" dir="ltr">
        <head>
           <meta charset="utf-8">
@@ -40,7 +39,7 @@
              <?php  echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen[$i]['Plaatje']).'"/>'; ?>
              <div class="card-body">
                 <h5 class="card-title"><?php echo $Bestemmingen[$i]['Locatie'] ?></h5>
-                <p class="card-text"><?php echo $Bestemmingen[$i]['Prijs'] . " " . "Euro" ?></p>
+                <p class="card-text"><?php echo $Bestemmingen[$i]['Prijs'] . " " . "Euro p.p." ?></p>
              </div>
           </div>
           <?php }
