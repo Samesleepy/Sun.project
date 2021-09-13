@@ -3,7 +3,6 @@
 include_once 'header.php';
  ?>
 
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
@@ -60,11 +59,11 @@ include_once 'header.php';
               $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
               $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
 
-              foreach ($resultinfo as $klantinfo) {
-                $_SESSION = $klantinfo;
+              foreach ($resultinfo as $key => $klantinfo) {
+                $_SESSION[$key] = $klantinfo;
                 //echo $klantinfo . "</br>";
               }
-
+              //
               // $_SESSION['KlantID'] = $resultinfo['KlantID'];
               // $_SESSION['Voornaam'] = $resultinfo['Voornaam'];
               // $_SESSION['Tussenvoegsel'] = $resultinfo['Tussenvoegsel'];

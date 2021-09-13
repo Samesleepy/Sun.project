@@ -41,7 +41,7 @@
                   <a class="navbar-text" aria-current="page">
                   <?php
                   //print_r($_SESSION);
-                  if(isset($_SESSION)){
+                  if(isset($_SESSION['Voornaam'])){
                      echo $_SESSION['Voornaam'] . " " ;
                      if($_SESSION['Tussenvoegsel'] != ""){
                        echo " " . $_SESSION['Tussenvoegsel'] . " ";
