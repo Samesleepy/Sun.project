@@ -1,6 +1,5 @@
 <?php include_once 'header.php';?>
 
-
 <?php
      $host = "localhost";
      $username = "root";
@@ -23,12 +22,8 @@
       'Plaatje' => $fetch['Plaatje']
      );
     }
-    //print_r($result);
-
-    //$result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
     ?>
-
 
     <!DOCTYPE html>
     <html lang="en" dir="ltr">
@@ -41,7 +36,8 @@
           <?php for ($i=0; $i < count($Bestemmingen); $i++) {
             //foreach ($Bestemming as $value) {
              ?>
-          <div class="card" style = " width: 18.9055rem; float: left; margin-right: 10px; margin-left: 4px; margin-top: 10px" >
+          <!-- <div class="card" style = " width: 18.9055rem; float: left; margin-right: 10px; margin-left: 4px; margin-top: 10px" > -->
+            <div class="card">
              <?php  echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen[$i]['Plaatje']).'"/>'; ?>
              <div class="card-body">
                 <h5 class="card-title"><?php echo $Bestemmingen[$i]['Locatie'] ?></h5>

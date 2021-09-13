@@ -5,7 +5,8 @@
       <meta charset="utf-8">
       <title>Suntours</title>
       <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-      <link  rel="stylesheet" href="suntours.css" type ="text/css"/>
+      <!-- <link  rel="stylesheet" href="suntours.css" type ="text/css"/> -->
+      <link rel="stylesheet" href="test.css"/>
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

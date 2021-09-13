@@ -1,12 +1,16 @@
+.h1{
+  background-color: Red;
+}
+
 .sun{
   margin-left: -145;
   width: 175px;
   height: 55px;
 }
-footer{
+/* .footer{
   margin-top:50%;
   background-color: rgb(323,52,85);
-}
+} */
 .d-flex{
   margin-left:200px;
 }
@@ -25,10 +29,11 @@ footer{
   text-align: center;
 }
 .test{
-  width: 288px;
+  width: 500px;
   height: 233px;
   float:left;
   margin-left:5%;
+  background-color: Red;
 }
 .test .overlay{
 opacity: 1;
@@ -38,9 +43,10 @@ opacity: 1;
   transition: 2s;
 }
 
-.nav-item me-auto{
+/* .nav-item me-auto{
   float: right;
-}
+} */
 .card{
   float:left;
+  width: 18.9055rem;
 }
