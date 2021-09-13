@@ -30,18 +30,17 @@
        <head>
           <meta charset="utf-8">
           <title>Bestemmingen</title>
-          <link  rel="stylesheet" href="suntours.css" type ="text/css"/>
+          <link  rel="stylesheet" href="test.css" type ="text/css"/>
        </head>
        <body>
           <?php for ($i=0; $i < count($Bestemmingen); $i++) {
             //foreach ($Bestemming as $value) {
              ?>
-          <!-- <div class="card" style = " width: 18.9055rem; float: left; margin-right: 10px; margin-left: 4px; margin-top: 10px" > -->
             <div class="card" id="bestemmingen">
              <?php  echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen[$i]['Plaatje']).'"/>'; ?>
              <div class="card-body">
                 <h5 class="card-title"><?php echo $Bestemmingen[$i]['Locatie'] ?></h5>
-                <p class="card-text"><?php echo $Bestemmingen[$i]['Prijs'] ?></p>
+                <p class="card-text"><?php echo $Bestemmingen[$i]['Prijs'] . " " . "Euro" ?></p>
              </div>
           </div>
           <?php }

@@ -1,7 +1,25 @@
 #bestemmingen{
   width: 18.9055rem;
-   float: left;
-    margin-right: 10px;
-     margin-left: 4px;
-      margin-top: 10px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 4px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  height: 300px;
 }
+
+#bestemmingen:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.sun{
+  margin-left: -145;
+  width: 175px;
+  height: 55px;
+}
+
+.twitter{
+  margin-right: 50%
+}
+.instagram{
+  margin-right: 40%
