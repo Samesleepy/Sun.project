@@ -34,19 +34,6 @@ include_once 'header.php';
       </div>
       <?php
 
-      // $host = "localhost";
-      // $username = "root";
-      // $password = "";
-      // $databaseName = "sunproject";
-      //
-      // //connect to database
-      // $conn = mysqli_connect($host, $username, $password, $databaseName);
-      //
-      // if (!$conn) {
-      //   die("Connection failed");
-      // }
-      //echo "Connected Successfully. </br>";
-
       if(isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $sqlemail = "SELECT COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";

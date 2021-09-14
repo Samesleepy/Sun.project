@@ -85,19 +85,6 @@
             </form>
 
             <?php
-            // $host = "localhost";
-            // $username = "root";
-            // $password = "";
-            // $databaseName = "sunproject";
-            //
-            // //connect to database
-            // $conn = mysqli_connect($host, $username, $password, $databaseName);
-            //
-            // if (!$conn) {
-            //   die("Connection failed"); //: " . mysqli_connect_error());
-            // }
-
-            //echo "Connected Successfully. </br>";
 
             function CheckDuplicateEmail($email, $conn){
               //$email = mysqli_real_escape_string($conn, $_POST['email']);
