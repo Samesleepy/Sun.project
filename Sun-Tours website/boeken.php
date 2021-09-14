@@ -16,7 +16,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT ";
+$query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = $id";
+    $result = mysqli_query($conn, $query);
+    while($fetch = mysqli_fetch_assoc($result)){
+    $Bestemmingen[] = array(
+      'Locatie' => $fetch['Locatie'],
+      'Prijs' => $fetch['Prijs'],
+      'Plaatje' => $fetch['Plaatje']
+     );
+    }
+    echo $bestemming['Locatie'];
 
 // echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>';
 
