@@ -1,7 +1,4 @@
 <?php include_once 'header.php';
-ob_start();
-//include 'bestemmingen.php';
-ob_end_clean();
 
 $id = $_GET['id'];
 
@@ -16,7 +13,6 @@ $query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = '"
      );
     }
 
-// echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>';
 $conn->close();
 ?>
 
@@ -37,14 +33,14 @@ $conn->close();
             <input name="personen" class="form-control" placeholder="Personen" type="text" required>
         </div>
         <div class="form-group input-group">
-            <label>Vertrekdatum</label><input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required>
+            <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>Vertrekdatum</label>
         </div>
         <div class="form-group input-group">
             <input name="duur" class="form-control" placeholder="Duur" type="text" required><label>Dagen</label>
         </div>
-        <br><label>Prijs</label><?php echo " " . $id; ?><br>
+        <br><label>Prijs</label><?php echo " " . $Bestemmingen['Prijs']; ?><br>
 
-        <input type="submit" value="Koop">
+        <input type="submit" value="Kopen" class="btn btn-primary btn-block">
     </form>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
 </body>
