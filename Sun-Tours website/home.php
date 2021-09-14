@@ -8,33 +8,30 @@
   <body>
     <h1>Home Page</h1>
 
-<div class="container">
- <div class="test">
-    <div class="card border-dark mb-3" style="max-width: 18rem;">
-      <a href="#">
-        <img src="https://www.vakantiediscounter.nl/tools/content/images/NL/319/520.jpg" class="card-img-top" alt="..."></a>
-        <div class="overlay">een mooie vakantie plek</div>
-      </div>
-      </div>
-
-    <div class="test">
-      <div class="card border-dark mb-3" style="max-width: 18rem;">
-        <a  href="#">
-          <img src="https://www.vakantiediscounter.nl/tools/content/images/NL/319/520.jpg" class="card-img-top" alt="..."></a>
-          <div class="overlay">een mooie vakantie plek</div>
+    <a href="#" class="card" id="homepage">
+        <img src="https://www.vakantiediscounter.nl/tools/content/images/NL/319/520.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">iets</h5>
+          <p class="card-text">informatie</p>
         </div>
-      </div>
+       </a>
 
-      <div class="test">
-        <div class="card border-dark mb-3" style="max-width: 18rem;">
-          <a  href="#">
-            <img src="https://www.vakantiediscounter.nl/tools/content/images/NL/319/520.jpg" class="card-img-top" alt="..."></a>
-            <div class="overlay">een mooie vakantie plek</div>
-          </div>
-       </div>
+       <a href="#" class="card" id="homepage">
+           <img src="https://www.vakantiediscounter.nl/tools/content/images/NL/319/520.jpg" class="card-img-top" alt="...">
+           <div class="card-body">
+             <h5 class="card-title">iets</h5>
+             <p class="card-text">informatie</p>
+           </div>
+          </a>
 
-     </div>
-    </body>
-</html>
+          <a href="#" class="card" id="homepage">
+              <img src="https://www.vakantiediscounter.nl/tools/content/images/NL/319/520.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">iets</h5>
+                <p class="card-text">informatie</p>
+              </div>
+             </a>
+          </body>
+        </html>
 
 <?php include_once 'footer.php';?>
