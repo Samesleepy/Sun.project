@@ -1,22 +1,12 @@
 <?php include_once 'header.php';
 ob_start();
-include 'bestemmingen.php';
+//include 'bestemmingen.php';
 ob_end_clean();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sunproject";
-
 $id = $_GET['id'];
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
-$query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = $id";
+
+$query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = '".$id."'";
     $result = mysqli_query($conn, $query);
     while($fetch = mysqli_fetch_assoc($result)){
     $Bestemmingen[] = array(
@@ -25,10 +15,14 @@ $query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = $i
       'Plaatje' => $fetch['Plaatje']
      );
     }
-    echo $bestemming['Locatie'];
+    if(isset($Bestemmingen)){
+      echo "HAAAAA";
+      //print_r($Bestemmingen);
+    }else{
+      echo "OPESSSAWE";
+    }
 
 // echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>';
-
 $conn->close();
 ?>
 
@@ -43,7 +37,7 @@ $conn->close();
 </head>
 <body>
     <form id="boekform" action="boeken.php" method="post">
-        <?php echo $bestemming['Locatie']; ?><br><br>
+        <?php echo $Bestemmingen[0]['Locatie']; ?><br><br>
 
         <div class="form-group input-group">
             <input name="personen" class="form-control" placeholder="Personen" type="text" required>
@@ -58,7 +52,7 @@ $conn->close();
 
         <input type="submit" value="Koop">
     </form>
-    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>';?></content>
+    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen[0]['Plaatje']).'"/>';?></content>
 </body>
 </html>
 
