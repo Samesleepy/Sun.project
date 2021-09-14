@@ -1,17 +1,6 @@
 <?php include_once 'header.php';?>
 
 <?php
-    //  $host = "localhost";
-    //  $username = "root";
-    //  $password = "";
-    //  $databaseName = "sunproject";
-    //
-    //  //connect to database
-    //  $conn = mysqli_connect($host, $username, $password, $databaseName);
-    //
-    // if (!$conn) {
-    //   die("Connection failed"); //: " . mysqli_connect_error());
-    // }
 
     $sql = "SELECT `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`";
     $result = mysqli_query($conn, $sql);

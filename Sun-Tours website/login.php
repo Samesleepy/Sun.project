@@ -35,16 +35,16 @@ include_once 'header.php';
       <?php
 
       if(isset($_POST['submit'])){
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $sqlemail = "SELECT COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";
-        $resultemail = mysqli_fetch_array(mysqli_query($conn, $sqlemail));
-        if($resultemail[0] > 0){
-          $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
-          $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
-          $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
-            if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
-              $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
-              $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
+          $email = mysqli_real_escape_string($conn, $_POST['email']);
+          $sqlemail = "SELECT COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";
+          $resultemail = mysqli_fetch_array(mysqli_query($conn, $sqlemail));
+          if($resultemail[0] > 0){
+              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
+              $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
+              $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
+              if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
+                  $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
+                  $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
 
               foreach ($resultinfo as $key => $klantinfo) {
                 $_SESSION[$key] = $klantinfo;
