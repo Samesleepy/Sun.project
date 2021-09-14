@@ -1,32 +1,40 @@
-#bestemmingen{
+#bestemmingen,#homepage{
   width: 18.9055rem;
   float: left;
   margin-right: 10px;
   margin-left: 4px;
   margin-top: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
   height: 300px;
-  color: black;
 }
 
-#bestemmingen:hover {
+#bestemmingen:hover,#homepage:hover  {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform:scale(1.1);
+  transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
+}
+#navbarNav a:hover{
+  background-color: green;
+  color:yellow;
+}
+#homepage{
+    text-decoration: none;
+    color: inherit;
 }
 .sun{
   margin-left: -145;
   width: 175px;
   height: 55px;
 }
+.instagram ,.twitter{
+  width:50px;
+  height:50px;
+}
 
-.twitter{
-  margin-right: 50%
-}
-.instagram{
-  margin-right: 40%
-}
 .card img {
-  float: left;
+  float:left;
   width:  100%;
   height: 200px;
   object-fit: cover;
