@@ -9,17 +9,11 @@ $id = $_GET['id'];
 $query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = '".$id."'";
     $result = mysqli_query($conn, $query);
     while($fetch = mysqli_fetch_assoc($result)){
-    $Bestemmingen[] = array(
+    $Bestemmingen = array(
       'Locatie' => $fetch['Locatie'],
       'Prijs' => $fetch['Prijs'],
       'Plaatje' => $fetch['Plaatje']
      );
-    }
-    if(isset($Bestemmingen)){
-      echo "HAAAAA";
-      //print_r($Bestemmingen);
-    }else{
-      echo "OPESSSAWE";
     }
 
 // echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>';
@@ -37,7 +31,7 @@ $conn->close();
 </head>
 <body>
     <form id="boekform" action="boeken.php" method="post">
-        <?php echo $Bestemmingen[0]['Locatie']; ?><br><br>
+        <?php echo $Bestemmingen['Locatie']; ?><br><br>
 
         <div class="form-group input-group">
             <input name="personen" class="form-control" placeholder="Personen" type="text" required>
@@ -52,7 +46,7 @@ $conn->close();
 
         <input type="submit" value="Koop">
     </form>
-    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen[0]['Plaatje']).'"/>';?></content>
+    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
 </body>
 </html>
 
