@@ -1,6 +1,4 @@
-<?php include_once 'header.php';?>
-
-<?php
+<?php include_once 'header.php';
 
     $stmt = $conn->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`");
     $stmt->execute();
