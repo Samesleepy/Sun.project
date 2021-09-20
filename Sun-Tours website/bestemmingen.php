@@ -2,7 +2,6 @@
 
 <?php
 
-    //$sql = "SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`";
     $stmt = $conn->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -15,7 +14,7 @@
           <link  rel="stylesheet" href="test.css" type ="text/css"/>
        </head>
        <body>
-         <?php //for ($i=0; $i < count($Bestemmingen); $i++) {
+         <?php
             foreach ($Bestemmingen as $bestemming) {
              ?>
             <a href="boeken.php?id=<?php echo $bestemming['ID']; ?>">
@@ -28,7 +27,7 @@
                </div>
             </a>
          <?php }
-        //}  ?>
+         ?>
        </body>
     </html>
 
