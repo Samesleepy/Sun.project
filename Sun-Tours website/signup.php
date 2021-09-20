@@ -1,9 +1,6 @@
 <?php include_once 'header.php' ?>
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
    <head>
-      <meta charset="utf-8">
       <title>Registreer</title>
       <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
    </head>
@@ -87,10 +84,11 @@
             <?php
 
             function CheckDuplicateEmail($email, $conn){
-              //$email = mysqli_real_escape_string($conn, $_POST['email']);
               $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
-              $result = mysqli_fetch_array(mysqli_query($conn, $sql));
-              if($result[0] != 0){
+              $result = $conn->query($sql);
+              $count = $result->fetchColumn();
+
+              if($count != 0){
                 return False;
               }else{
                 return True;
@@ -98,29 +96,32 @@
 
             }
             if(isset($_POST['submit'])) {
-              $voornaam = mysqli_real_escape_string($conn, $_POST['voornaam']);
-              $achternaam = mysqli_real_escape_string($conn, $_POST['achternaam']);
-              $tussenvoegsel = mysqli_real_escape_string($conn, $_POST['tussenvoegsel']);
-              $email = mysqli_real_escape_string($conn, $_POST['email']);
-              $telefoonnummer = mysqli_real_escape_string($conn, $_POST['telefoonnummer']);
-              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
+
+              $voornaam = $_POST['voornaam'];
+              $achternaam = $_POST['achternaam'];
+              $tussenvoegsel = $_POST['tussenvoegsel'];
+              $email = $_POST['email'];
+              $telefoonnummer = $_POST['telefoonnummer'];
+              $wachtwoord = $_POST['wachtwoord'];
               $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
-              $woonplaats = mysqli_real_escape_string($conn, $_POST['woonplaats']);
-              $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
-              $straatnaam = mysqli_real_escape_string($conn, $_POST['straatnaam']);
-              $huisnummer = mysqli_real_escape_string($conn, $_POST['huisnummer']);
+              $woonplaats = $_POST['woonplaats'];
+              $postcode = $_POST['postcode'];
+              $straatnaam = $_POST['straatnaam'];
+              $huisnummer = $_POST['huisnummer'];
 
               if(CheckDuplicateEmail($email, $conn)){
 
-                $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
-                VALUES ('$voornaam','$achternaam' , '$tussenvoegsel','$email','$hashed_wachtwoord','$telefoonnummer','$woonplaats','$postcode','$straatnaam','$huisnummer')";
+                $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
+                VALUES (?,?,?,?,?,?,?,?,?,?)";
 
+                $stmt= $conn->prepare($sql);
+                $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer, $woonplaats, $postcode, $straatnaam, $huisnummer]);
 
-                if(mysqli_query($conn, $sql)){
-                  echo "Account geregistreerd!";
-                }else{
-                  echo "ERROR"; //$sql. " . mysqli_error($conn);
-                }
+                // if(mysqli_query($conn, $sql)){
+                //   echo "Account geregistreerd!";
+                // }else{
+                //   echo "ERROR"; //$sql. " . mysqli_error($conn);
+                // }
               }else{
                 echo "Email is al in gebruik!";
               }

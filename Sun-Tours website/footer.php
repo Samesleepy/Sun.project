@@ -1,11 +1,4 @@
 
-<html lang="nl" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-    <link  rel="stylesheet" href="suntours.css" type ="text/css"/> -->
-  </head>
 <body>
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="footer-img">

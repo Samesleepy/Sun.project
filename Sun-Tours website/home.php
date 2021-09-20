@@ -1,7 +1,6 @@
 <?php include_once 'header.php';?>
-<html lang="nl" dir="ltr">
+
   <head>
-    <meta charset="utf-8">
     <title>Suntours</title>
     <!-- <link  rel="stylesheet" href="suntours.css" type ="text/css"/> -->
   </head>

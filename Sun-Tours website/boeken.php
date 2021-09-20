@@ -1,15 +1,11 @@
 <?php include_once 'header.php';
 $id = $_GET['id'];
 
-$query = "SELECT `Locatie`, `Prijs`, `Plaatje` FROM `bestemming` WHERE `ID` = '".$id."'";
-    $result = mysqli_query($conn, $query);
-    while($fetch = mysqli_fetch_assoc($result)){
-    $Bestemmingen = array(
-      'Locatie' => $fetch['Locatie'],
-      'Prijs' => $fetch['Prijs'],
-      'Plaatje' => $fetch['Plaatje']
-     );
-    }
+$stmt = $conn->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
+$stmt->execute();
+$result = $stmt->fetch();
+$Bestemmingen = $result;
+
 $prijs = false;
 if(isset($_POST['personen'])){
     $prijs = $_POST['personen'] * $_POST['duur'];
@@ -49,15 +45,10 @@ function updatePrijs(personen, prijspp, bool){
 }
 </script>
 <?php
-$conn->close();
+//$conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="test.css" type ="text/css"/>
     <title>Boeken</title>
 </head>

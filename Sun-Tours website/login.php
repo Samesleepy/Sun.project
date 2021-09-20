@@ -3,9 +3,7 @@
 include_once 'header.php';
  ?>
 
-<html lang="en" dir="ltr">
    <head>
-      <meta charset="utf-8">
       <title>Login</title>
       <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
    </head>
@@ -35,32 +33,24 @@ include_once 'header.php';
       <?php
 
       if(isset($_POST['submit'])){
-          $email = mysqli_real_escape_string($conn, $_POST['email']);
-          $sqlemail = "SELECT COUNT(*) FROM `Klant` WHERE `Email`='".$email."'";
-          $resultemail = mysqli_fetch_array(mysqli_query($conn, $sqlemail));
-          if($resultemail[0] > 0){
-              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
-              $sqlhashedpass = "SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'";
-              $resultpass = mysqli_fetch_assoc(mysqli_query($conn,$sqlhashedpass));
+          $email = $_POST['email'];
+          $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
+          $result = $conn->query($sql);
+          $count = $result->fetchColumn();
+          if($count > 0){
+              $wachtwoord = $_POST['wachtwoord'];
+              $stmt = $conn->prepare("SELECT `Wachtwoord` FROM `Klant` WHERE `Email`='".$email."'");
+              $stmt->execute();
+              $resultpass = $stmt->fetch();
               if(password_verify($wachtwoord, $resultpass['Wachtwoord'])){
-                  $sqlinfo = "SELECT * FROM `Klant` WHERE `Email`='".$email."'";
-                  $resultinfo = mysqli_fetch_assoc(mysqli_query($conn, $sqlinfo));
+                  $stmt = $conn->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
+                  $stmt->execute();
+                  $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
               foreach ($resultinfo as $key => $klantinfo) {
                 $_SESSION[$key] = $klantinfo;
                 //echo $klantinfo . "</br>";
               }
-              //
-              // $_SESSION['KlantID'] = $resultinfo['KlantID'];
-              // $_SESSION['Voornaam'] = $resultinfo['Voornaam'];
-              // $_SESSION['Tussenvoegsel'] = $resultinfo['Tussenvoegsel'];
-              // $_SESSION['Achternaam'] = $resultinfo['Achternaam'];
-              // $_SESSION['Email'] = $resultinfo['Email'];
-              // $_SESSION['Telefoonnummer'] = $resultinfo['Telefoonnummer'];
-              // $_SESSION['Woonplaats'] = $resultinfo['Woonplaats'];
-              // $_SESSION['Postcode'] = $resultinfo['Postcode'];
-              // $_SESSION['Straatnaam'] = $resultinfo['Straatnaam'];
-              // $_SESSION['Huisnummer'] = $resultinfo['Huisnummer'];
 
               echo "Welkom: " . $resultinfo['Voornaam'] . " " ;
               if($resultinfo['Tussenvoegsel'] != ""){

@@ -2,22 +2,15 @@
 
 <?php
 
-    $sql = "SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`";
-    $result = mysqli_query($conn, $sql);
-    while($fetch = mysqli_fetch_assoc($result)){
-    $Bestemmingen[] = array(
-      'ID' => $fetch['ID'],
-      'Locatie' => $fetch['Locatie'],
-      'Prijs' => $fetch['Prijs'],
-      'Plaatje' => $fetch['Plaatje']
-     );
-    }
+    //$sql = "SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`";
+    $stmt = $conn->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $Bestemmingen = $result;
 
     ?>
 
-    <html lang="en" dir="ltr">
        <head>
-          <meta charset="utf-8">
           <title>Bestemmingen</title>
           <link  rel="stylesheet" href="test.css" type ="text/css"/>
        </head>
