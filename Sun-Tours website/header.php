@@ -56,17 +56,27 @@ try {
                </div> -->
                <li class="nav-item ml-auto">
                   <a class="navbar-text" aria-current="page">
-                  <?php
-                  //print_r($_SESSION);
-                  if(isset($_SESSION['Voornaam'])){
-                     echo $_SESSION['Voornaam'] . " " ;
-                     if($_SESSION['Tussenvoegsel'] != ""){
-                       echo " " . $_SESSION['Tussenvoegsel'] . " ";
-                     }
-                     echo $_SESSION['Achternaam'];
-                   }
-                     //print_r($_SESSION);
-                     ?>
+                    <form method="post">
+                      <div class="form-group">
+                        <div class="text-center">
+                          <div id="logout">
+                            <?php                                                                                     if(isset($_SESSION['Voornaam'])){
+                              echo "<button type='submit' name='logout' class='btn btn-danger btn-block'>";
+                              echo $_SESSION['Voornaam'] . " " ;
+                                if($_SESSION['Tussenvoegsel'] != ""){
+                                  echo " " . $_SESSION['Tussenvoegsel'] . " ";
+                                }
+                                echo $_SESSION['Achternaam'];
+
+                                if(isset($_POST['logout'])){
+                                  session_destroy();
+                                }
+                              }  ?>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                   </a>
                </li>
             </div>
