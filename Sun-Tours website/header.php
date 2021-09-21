@@ -35,16 +35,16 @@ try {
                   <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="bestemmingen.php">Bestemmingen</a>
+                  <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="covid.php">Coronamaatregelen</a>
+                  <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="signup.php">Registreren</a>
+                  <a class="nav-link active" aria-current="page" href="signup.php">Sign up</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="login.php">Inloggen</a>
+                  <a class="nav-link active" aria-current="page" href="login.php">Log in</a>
                </li>
              </ul>
                <!-- <div class="container-fluid">
@@ -62,7 +62,7 @@ try {
                         <div class="text-center">
                           <?php                                                                                     if(isset($_SESSION['Voornaam'])){
                               echo "<button type='submit' name='logout' class='btn btn-danger btn-block'>";
-                              echo "Uitloggen";
+                              echo "Log out";
 
                               if(isset($_POST['logout'])){
                                   session_destroy();
