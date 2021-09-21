@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 sep 2021 om 14:11
--- Serverversie: 10.4.6-MariaDB
--- PHP-versie: 7.3.8
+-- Generation Time: Sep 21, 2021 at 01:15 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `bestemming`
+-- Table structure for table `bestemming`
 --
 
 CREATE TABLE `bestemming` (
@@ -36,7 +35,7 @@ CREATE TABLE `bestemming` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `bestemming`
+-- Dumping data for table `bestemming`
 --
 
 INSERT INTO `bestemming` (`ID`, `Locatie`, `Prijs`, `Plaatje`) VALUES
@@ -49,13 +48,13 @@ INSERT INTO `bestemming` (`ID`, `Locatie`, `Prijs`, `Plaatje`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `boeking`
+-- Table structure for table `boeking`
 --
 
 CREATE TABLE `boeking` (
   `KlantID` int(10) NOT NULL,
   `Bestemming` varchar(50) NOT NULL,
-  `Prijs` decimal(2,0) NOT NULL,
+  `Prijs` decimal(10,2) NOT NULL,
   `Personen` int(3) NOT NULL,
   `Vertrekdatum` date NOT NULL,
   `Duur` int(3) NOT NULL
@@ -64,7 +63,7 @@ CREATE TABLE `boeking` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `klant`
+-- Table structure for table `klant`
 --
 
 CREATE TABLE `klant` (
@@ -75,6 +74,7 @@ CREATE TABLE `klant` (
   `Email` varchar(70) NOT NULL,
   `Wachtwoord` varchar(96) NOT NULL,
   `Telefoonnummer` varchar(10) NOT NULL,
+  `Land` varchar(70) NOT NULL,
   `Woonplaats` varchar(50) NOT NULL,
   `Postcode` varchar(7) NOT NULL,
   `Straatnaam` varchar(60) NOT NULL,
@@ -82,59 +82,67 @@ CREATE TABLE `klant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `klant`
+-- Dumping data for table `klant`
 --
 
-INSERT INTO `klant` (`KlantID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES
-(13, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$3FsPgKQG1ZuWbJQv/9k7JuL6TRWuO0QmUqfJaPeW/ZwyLu2V1V11i', '2147483647', 'grub', 'aswe', 'ae33', 4),
-(14, 'sam', 'gijsen', '', 'Sam.Gsen1@Student.GildeOpleidingen.nl', '$2y$10$vDdZbSY33Wk1MVHhd3acs.lyPlkj1BJEHLWfOfoCTFoLBrz8RLeAy', '0630423523', 'asdee', 'aswe', 'fade', 4),
-(15, 'Delon', 'Poels', '', 'depoge@gmail.com', '$2y$10$Qaaqe2ZxpLu/9SUusN8aDurvdApuDsMWtbOKNEhOur6gZMCfNxja6', '0683972134', 'Gennep', '6591EL', 'Loodsstraat', 24);
+INSERT INTO `klant` (`KlantID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Land`, `Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES
+(17, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$ivLszsvmBCyQN5CPf09v1OHXUPEvUuxGvZvxJTNYi4QXr2i0f/Kh.', '223232323', '', 'asdfs2', '44wee', '4', 4);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `review` (
-  `Naam` varchar(100) NOT NULL,
+  `BestemmingID` int(10) NOT NULL,
+  `Voornaam` varchar(50) NOT NULL,
+  `Achternaam` varchar(50) NOT NULL,
+  `Tussenvoegsel` varchar(50) NOT NULL,
   `Score` int(2) NOT NULL,
   `Opmerking` tinytext NOT NULL,
   `Datum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`BestemmingID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`, `Datum`) VALUES
+(4, 'Sam', 'Gijsen', '', 2, 'Weinig vissen, te veel plastic', '2021-09-21');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `bestemming`
+-- Indexes for table `bestemming`
 --
 ALTER TABLE `bestemming`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexen voor tabel `klant`
+-- Indexes for table `klant`
 --
 ALTER TABLE `klant`
   ADD PRIMARY KEY (`KlantID`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `bestemming`
+-- AUTO_INCREMENT for table `bestemming`
 --
 ALTER TABLE `bestemming`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT voor een tabel `klant`
+-- AUTO_INCREMENT for table `klant`
 --
 ALTER TABLE `klant`
-  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
