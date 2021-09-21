@@ -24,3 +24,5 @@ Add country in registration form.
 Review after holiday. 
 
 Average of review scores on card.
+
+Option to choose: Dutch or English
