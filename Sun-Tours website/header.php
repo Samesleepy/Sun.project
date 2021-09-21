@@ -47,6 +47,7 @@ try {
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="login.php">Inloggen</a>
                </li>
+             </ul>
                <!-- <div class="container-fluid">
                   <form class="d-flex">
                      <input class="form-control me-2" type="search" placeholder="Zoek" aria-label="Search">
@@ -54,31 +55,40 @@ try {
                   </form>
                 </ul>
                </div> -->
-               <li class="nav-item ml-auto">
+              <ul class="navbar-nav ms-auto">
+               <li class="nav-item">
                   <a class="navbar-text" aria-current="page">
                     <form method="post">
                       <div class="form-group">
                         <div class="text-center">
-                          <div id="logout">
-                            <?php                                                                                     if(isset($_SESSION['Voornaam'])){
+                          <?php                                                                                     if(isset($_SESSION['Voornaam'])){
                               echo "<button type='submit' name='logout' class='btn btn-danger btn-block'>";
-                              echo $_SESSION['Voornaam'] . " " ;
-                                if($_SESSION['Tussenvoegsel'] != ""){
-                                  echo " " . $_SESSION['Tussenvoegsel'] . " ";
-                                }
-                                echo $_SESSION['Achternaam'];
+                              echo "Uitloggen";
 
-                                if(isset($_POST['logout'])){
+                              if(isset($_POST['logout'])){
                                   session_destroy();
-                                }
-                              }  ?>
-                            </button>
-                          </div>
+                              }
+                          }  ?>
+                          </button>
                         </div>
                       </div>
                     </form>
                   </a>
                </li>
+               <li class="nav-item">
+                 <a class="navbar-text" aria-current="page">
+                   <?php
+                   if(isset($_SESSION['Voornaam'])){
+                     echo $_SESSION['Voornaam'] . " " ;
+                       if($_SESSION['Tussenvoegsel'] != ""){
+                         echo " " . $_SESSION['Tussenvoegsel'] . " ";
+                       }
+                      echo $_SESSION['Achternaam'];
+                   }
+                       ?>
+                </a>
+              </li>
+             </ul>
             </div>
          </div>
       </nav>
