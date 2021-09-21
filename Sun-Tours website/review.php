@@ -1,9 +1,8 @@
 <?php include_once 'header.php' ?>
    <head>
-      <title>Login</title>
-      <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
+      <!-- <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
       <link rel="stylesheet" href="test.css"/>
-      <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/> -->
    </head>
    <body>
       <div class="card bg-light">
@@ -72,7 +71,6 @@
 
                          </div>
                       </div>
-                    </div>
          <?php } ?>
          </div>
       </div>

@@ -56,6 +56,9 @@
                   </div>
                </div>
                <div class="form-group input-group">
+                  <input name="land" class="form-control" placeholder="Land" type="text" required>
+               </div>
+               <div class="form-group input-group">
                   <input name="postcode" class="form-control" placeholder="Postcode" type="text" required>
                </div>
                <div class="form-group input-group">
@@ -104,6 +107,7 @@
               $telefoonnummer = $_POST['telefoonnummer'];
               $wachtwoord = $_POST['wachtwoord'];
               $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
+              $land = $_POST['land'];
               $woonplaats = $_POST['woonplaats'];
               $postcode = $_POST['postcode'];
               $straatnaam = $_POST['straatnaam'];
@@ -111,11 +115,11 @@
 
               if(CheckDuplicateEmail($email, $conn)){
 
-                $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
-                VALUES (?,?,?,?,?,?,?,?,?,?)";
+                $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
                 $stmt= $conn->prepare($sql);
-                $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer, $woonplaats, $postcode, $straatnaam, $huisnummer]);
+                $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
 
                 // if(mysqli_query($conn, $sql)){
                 //   echo "Account geregistreerd!";
