@@ -40,6 +40,7 @@ function updatePrijs(personen, prijspp, bool){
             }
         }else{
             result2 = 0;
+            document.getElementById('totaal').innerHTML = "€" + result + ".00";
         }
     }
 }
