@@ -14,13 +14,13 @@ if(isset($_POST['personen'])){
 }
 if($prijs){
     $prijs = intval($prijs) * intval($Bestemmingen['Prijs']);
-    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");window.location.href = "home.php"}</script><?php
+    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php echo Boeken(); ?>;window.location.href = "home.php"}</script><?php
 }
 $prijspp = $Bestemmingen['Prijs'];
 ?>
 <script>
 function updatePrijs(personen, prijspp, bool){
-    if (bool == 0) {
+    if (!bool) {
         if (!personen == "") {
             result = personen * prijspp;
             document.getElementById('totaal').innerHTML = "€" + result + ".00";
@@ -29,7 +29,7 @@ function updatePrijs(personen, prijspp, bool){
             result = 0;
         }
     }
-    if (bool == 1) {
+    if (bool) {
         if (!personen == "") {
             if (result > 0) {
                 result2 = result * personen;
@@ -44,10 +44,24 @@ function updatePrijs(personen, prijspp, bool){
     }
 }
 </script>
-<?php
-//$conn->close();
-?>
 
+<?php
+function Boeken() {
+    global $Bestemmingen;
+    global $conn;
+    global $prijs;
+
+    $KlantID = $_SESSION['KlantID'];
+    $Bestemming = $Bestemmingen['Locatie'];
+    $Personen = $_POST['personen'];
+    $Vertrekdatum = $_POST['vertrekdatum'];
+    $Duur = $_POST['duur'];
+
+    $query = $conn->prepare("INSERT INTO `boeking` (`KlantID`, `Bestemming`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
+    VALUES ('$KlantID','$Bestemming','$prijs','$Personen','$Vertrekdatum','$Duur')");
+    $query->execute();
+}
+?>
 <head>
     <link  rel="stylesheet" href="test.css" type ="text/css"/>
     <title>Boeken</title>
@@ -69,7 +83,7 @@ function updatePrijs(personen, prijspp, bool){
 
         <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
 
-        <input type="submit" value="Naar betalen" class="btn btn-primary btn-block">
+        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
     </form>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
 </body>
