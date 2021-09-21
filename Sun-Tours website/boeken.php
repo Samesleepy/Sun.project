@@ -63,6 +63,7 @@ function Boeken() {
     $query->execute();
 }
 ?>
+<html>
 <head>
     <link  rel="stylesheet" href="test.css" type ="text/css"/>
     <title>Boeken</title>

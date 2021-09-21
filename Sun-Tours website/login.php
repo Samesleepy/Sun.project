@@ -2,7 +2,7 @@
 //session_start();
 include_once 'header.php';
  ?>
-
+ <html>
    <head>
       <title>Login</title>
       <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">

@@ -1,4 +1,4 @@
-
+<html>
 <body>
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="footer-img">

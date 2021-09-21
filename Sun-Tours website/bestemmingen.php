@@ -6,7 +6,7 @@
     $Bestemmingen = $result;
 
     ?>
-
+    <html>
        <head>
           <title>Bestemmingen</title>
           <link  rel="stylesheet" href="test.css" type ="text/css"/>
