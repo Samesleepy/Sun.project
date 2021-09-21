@@ -86,6 +86,7 @@ function Boeken() {
         <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
     </form>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
+    <?php include_once 'review.php'; ?>
 </body>
 </html>
 <?php include 'footer.php';?>
