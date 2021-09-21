@@ -63,6 +63,8 @@ include_once 'header.php';
           }
         }else{
         echo "Email is fout";}
+
+        header("Location: login.php");
       }
         ?>
    </body>
