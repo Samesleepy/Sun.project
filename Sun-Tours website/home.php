@@ -3,11 +3,14 @@
 <html>
   <head>
     <title>Suntours</title>
-    <!-- <link  rel="stylesheet" href="suntours.css" type ="text/css"/> -->
   </head>
   <body>
-    <h1>Home Page</h1>
-
+    <div class="intro">
+    <h3>Krijg goede deals voor hotels en vakantie bestemming.</h3>
+    <p>Van vakanties in de buurt tot vliegen naar Turkije.</p>
+    <h3>Get good deals for hotels and holliday locations.</h3>
+    <p> From hollidays nearby to flying to Turkey.</p>
+  </div>
           </body>
         </html>
 

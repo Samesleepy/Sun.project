@@ -21,7 +21,6 @@ try {
       <meta charset="utf-8">
       <title>Suntours</title>
       <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-      <!-- <link  rel="stylesheet" href="suntours.css" type ="text/css"/> -->
       <link rel="stylesheet" href="test.css"/>
    </head>
    <body>
@@ -49,14 +48,14 @@ try {
                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="login.php">Log in</a>
                </li>
-             </ul>
-               <!-- <div class="container-fluid">
-                  <form class="d-flex">
-                     <input class="form-control me-2" type="search" placeholder="Zoek" aria-label="Search">
-                     <button class="btn btn-outline-success" type="submit">Zoek</button>
-                  </form>
-                </ul>
-               </div> -->
+             <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Taal</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Nederlands</a></li>
+                <li><a class="dropdown-item" href="#">Engels</a></li>
+              </ul>
+            </li>
+            </ul>
               <ul class="navbar-nav ms-auto">
                <li class="nav-item">
                   <a class="navbar-text" aria-current="page">

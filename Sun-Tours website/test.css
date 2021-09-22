@@ -16,8 +16,7 @@
   color: inherit;
 }
 #navbarNav a:hover{
-  background-color: green;
-  color:red;
+  background-color: rgba(129,124,123,0.2);
 }
 #homepage{
   text-decoration: none;
@@ -47,4 +46,8 @@
   height: 100%;
   background-color: lightblue;
   float: left;
+}
+.intro{
+  background-color: rgba(229, 231, 233);
+  text-align: center;
 }
