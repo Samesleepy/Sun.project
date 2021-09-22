@@ -41,6 +41,9 @@ try {
                   <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
                </li>
                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
+               </li>
+               <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="signup.php">Sign up</a>
                </li>
                <li class="nav-item">

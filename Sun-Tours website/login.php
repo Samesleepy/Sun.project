@@ -58,13 +58,14 @@ include_once 'header.php';
               }
               echo $resultinfo['Achternaam'] . "!";
               //print_r($resultinfo);
+              header("Location: login.php");
             }else{
               echo "Wachtwoord is fout";
           }
         }else{
         echo "Email is fout";}
 
-        header("Location: login.php");
+
       }
         ?>
    </body>
