@@ -19,29 +19,20 @@ if($prijs){
 $prijspp = $Bestemmingen['Prijs'];
 ?>
 <script>
-function updatePrijs(personen, prijspp, bool){
-    if (!bool) {
-        if (!personen == "") {
-            result = personen * prijspp;
-            document.getElementById('totaal').innerHTML = "€" + result + ".00";
-        }else{
-            document.getElementById('totaal').innerHTML = "€0.00";
-            result = 0;
-        }
-    }
-    if (bool) {
-        if (!personen == "") {
-            if (result > 0) {
-                result2 = result * personen;
-                document.getElementById('totaal').innerHTML = "€" + result2 + ".00";
-            }else{
-                result2 = personen * prijspp;
-                document.getElementById('totaal').innerHTML = "€" + result2 + ".00";
-            }
-        }else{
-            result2 = 0;
-            document.getElementById('totaal').innerHTML = "€" + result + ".00";
-        }
+
+function updatePrijs(){
+    personen = document.getElementById('personenveld').value;
+    dagen = document.getElementById('dagenveld').value;
+    prijspp_str = document.getElementById('prijsPP').innerHTML;
+   
+    // prijspp = prijspp_str.substr(1);
+    prijspp = prijspp_str.substr(1,prijspp_str.length-5);
+    prijsint = parseInt(prijspp);
+    if(personen==""||dagen==""){
+        document.getElementById('totaal').innerHTML = "€0.00";
+    }else{
+        result = personen * dagen * prijsint;
+        document.getElementById('totaal').innerHTML = "€" + result + ".00";
     }
 }
 </script>
@@ -73,15 +64,15 @@ function Boeken() {
         <h2><?php echo $Bestemmingen['Locatie']; ?></h2><br><br>
 
         <div class="form-group input-group">
-            <input name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs(this.value, <?php echo $prijspp; ?>, 0)"  required>
+            <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
         </div>
         <div class="form-group input-group">
             <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
         </div>
         <div class="form-group input-group">
-            <input name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs(this.value, <?php echo $prijspp; ?>, 1)" required><label>&nbsp; Dagen</label>
+            <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
         </div>
-        <br><label>Prijs &nbsp;</label><?php echo "&euro;" . $Bestemmingen['Prijs'] . " "; ?><label>p.p.</label><br>
+        <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemmingen['Prijs'] . " "; ?></span><label>p.p.</label><br>
 
         <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
 
