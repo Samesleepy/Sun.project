@@ -1,4 +1,4 @@
-Als een klant, wil ik veel meer opties, zodat ik de perfecte reis kan boeken.
+Als een klant, wil ik meer opties bij het boeken van mijn reis, zodat ik de perfecte reis kan boeken. (niet concreet)
 
 Als een klant, wil ik een bevestigingsmail ontvangen, zodat ik weet dat het succesvol geboekt is.
 
@@ -8,11 +8,13 @@ Als een klant, wil ik kunnen kiezen tussen Nederlands en Engels, zodat ik de tek
 
 Als een klant, wil ik vragen kunnen stellen, zodat mijn problemen verholpen kunnen worden.
 
-Als een bedrijf, wil ik dat er een FAQ is, zodat klanten minder vaak contact opnemen.
+Als een bedrijf, wil ik dat er een FAQ is, zodat klanten zelf sneller hulp kunnen vinden.
 
 Als beheerder, wil ik niet dat klanten kunnen boeken etc. voordat ze ingelogd zijn, zodat alles in de database wordt opgeslagen.
 
-Als een klant, wil ik mijn profiel kunnen bekijken, zodat ik mijn gegevens kan zien, bewerken.
+Als een klant, wil ik mijn profiel kunnen bekijken, zodat ik mijn gegevens kan zien, .
+
+Als een klant, wil ik mijn profiel kunnen bewerken, zodat mijn gegevens altijd kloppen.
 
 Als een klant, wil ik de geschiedenis van mijn boekingen kunnen zien, zodat ik kan zien wat ik heb betaald en wanneer.
 
@@ -24,7 +26,7 @@ Als een klant, wil ik een review kunnnen schrijven, zodat ik andere kan helpen m
 
 Als een klant, wil ik reviews kunnen zien, zodat ik een betere keuze kan maken.
 
-Als een bedrijf, wil ik dat er een limiet op boekingen per reis is, zodat vervoer, verblijfplaats niet overboekt raken.
+Als een bedrijf, wil ik dat er een limiet op boekingen per reis is, zodat vervoer en verblijfplaats niet overboekt raken.
 
 Als een bedrijf, wil ik verschillende prijzen afhankelijk van datum, zodat we altijd een goede prijs krijgen voor een boeking.
 
