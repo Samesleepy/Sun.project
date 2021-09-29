@@ -1,9 +1,9 @@
-<?php 
+<?php
 include_once 'header.php';
 $id = $_GET['id'];
 $db = $database->connection();
 
-$stmt = $db->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
+$stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
 $stmt->execute();
 $result = $stmt->fetch();
 $Bestemmingen = $result;
@@ -88,7 +88,7 @@ function Boeken() {
 </head>
 <body>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
-        <h2><?php echo $Bestemmingen['Locatie']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
+        <h2><?php echo $Bestemmingen['Plaats'].",".$Bestemmingen['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
 
         <div class="form-group input-group">
             <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>

@@ -1,6 +1,6 @@
 <?php include_once 'header.php';
    $db = $database->connection();
-   $stmt = $db->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`");
+   $stmt = $db->prepare("SELECT `ID`, `Land`, `Plaats`, `Type`, `Prijs`,`Plaatje` FROM `bestemming`");
    $stmt->execute();
    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
    $Bestemmingen = $result;
@@ -24,7 +24,7 @@
       <div class="card" id="bestemmingen">
       <?php  echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>'; ?>
          <div class="card-body">
-            <h5 class="card-title"><?php echo $bestemming['Locatie']?></h5>
+            <h5 class="card-title"><?php echo $bestemming['Plaats'].",".$bestemming['Land']?></h5>
             <a class="card-link" style="text-decoration: none;"><?php echo $bestemming['Prijs'] . " " . "Euro p.p." ?></a>
             <a class="card-link" style="text-decoration: none;     margin-left: 5rem;"><?php if(isset($score)){echo "Score: " . $score;} ?></a>
          </div>
