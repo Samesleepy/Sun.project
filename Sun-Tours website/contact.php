@@ -1,43 +1,38 @@
 <?php
 include_once 'header.php';
- ?>
-
-  <head>
-    <title>Contact</title>
-  </head>
+?>
   <body>
     <div class="card bg-light">
-       <div class="card-body mx-auto" style="max-width: 800px;">
-          <div class="jumbotron text-center">
-             <h1>Heeft u een klacht?<h1>
-    <form method="post">
-      <select class="form-select form-select-sm" id="inputGroupSelect01" name="betreffend" required>
-          <option value="">Klacht betreffend: </option>
-          <option value="Hotel">Hotel</option>
-          <option value="Vliegreis">Vliegreis</option>
-          <option value="Website">Website</option>
-      </select>
-       <div class="input-group">
-         <span class="input-group-text">Omschrijf het probleem dat u ervaart: </span>
-         <textarea class="form-control"  name="probleem"></textarea>
+      <div class="card-body mx-auto" style="max-width: 800px;min-width: 700px;">
+        <div class="jumbotron text-center">
+          <h1>Neem contact op<h1>
+          <form method="post">
+            <div class="input-group mb-3">
+              <select class="form-select form-select-sm" id="inputGroupSelect01" name="score" required>
+                <option value="">Soort: </option>
+                <option value="klacht">Klacht</option>
+                <option value="vraag">Vraag</option>
+                <option value="feedback">Feedback</option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="onderwerp" placeholder="Onderwerp">
+            </div>
+            <div class="input-group mb-4">
+              <textarea class="form-control" name="opmerking" rows="5" placeholder="Opmerking"></textarea>
+            </div>
+            <div class="form-group">
+              <div class="text-center">
+                <button type="submit" name="submit" class="btn btn-primary btn-block w-100">Verstuur</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="input-group">
-        <span class="input-group-text">Wat verwacht u van ons? </span>
-        <textarea class="form-control"  name="verwachting"></textarea>
-     </div>
-
-       <div class="form-group">
-          <div class="text-center">
-             <button type="submit" name="submit" class="btn btn-primary btn-block">Verstuur</button>
-          </div>
-       </div>
-    </form>
-  </div>
-</div>
-</div>
+    </div>
   </body>
 </html>
 
 <?php
 include_once 'footer.php';
- ?>
+?>
