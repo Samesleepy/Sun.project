@@ -6,6 +6,31 @@ $stmt->execute();
 $result = $stmt->fetch();
 $Bestemmingen = $result;
 
+$stmt = $conn->prepare("SELECT `Score` FROM `Review` WHERE `BestemmingID` = '".$id."'");
+$stmt->execute();
+
+$results = array();
+
+//werkt niet
+// while($stmt->fetch(PDO::FETCH_ASSOC)){
+//   $results[] = $stmt->fetchColumn();
+// }
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    array_push($results, $row['Score']);
+}
+echo "</br>";
+print_r($results);
+
+//$score = array_sum($results)/count($results);
+
+$results = array_filter($results);
+if(count($results)) {
+    $score = array_sum($results)/count($results);
+}
+
+echo $score;
+
 $prijs = false;
 if(isset($_POST['personen'])){
     $prijs = $_POST['personen'] * $_POST['duur'];
@@ -24,7 +49,7 @@ function updatePrijs(){
     personen = document.getElementById('personenveld').value;
     dagen = document.getElementById('dagenveld').value;
     prijspp_str = document.getElementById('prijsPP').innerHTML;
-   
+
     // prijspp = prijspp_str.substr(1);
     prijspp = prijspp_str.substr(1,prijspp_str.length-5);
     prijsint = parseInt(prijspp);
@@ -61,7 +86,7 @@ function Boeken() {
 </head>
 <body>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
-        <h2><?php echo $Bestemmingen['Locatie']; ?></h2><br><br>
+        <h2><?php echo $Bestemmingen['Locatie']; echo " ",round($score,2); ?></h2><br><br>
 
         <div class="form-group input-group">
             <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
