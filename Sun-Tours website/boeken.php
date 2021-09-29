@@ -29,7 +29,7 @@ if(count($results)) {
     $score = array_sum($results)/count($results);
 }
 
-echo $score;
+//echo $score;
 
 $prijs = false;
 if(isset($_POST['personen'])){
