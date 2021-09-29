@@ -107,6 +107,7 @@ function Boeken() {
     </form>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
     <?php include_once 'review.php'; ?>
+    <?php include_once 'alternatieven.php'; ?>
 </body>
 </html>
 <?php include 'footer.php';?>
