@@ -19,8 +19,8 @@ $results = array();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     array_push($results, $row['Score']);
 }
-echo "</br>";
-print_r($results);
+//echo "</br>";
+//print_r($results);
 
 //$score = array_sum($results)/count($results);
 
