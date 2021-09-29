@@ -1,11 +1,9 @@
 <?php include_once 'header.php';
-
-    $stmt = $conn->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`");
+    $db = $database->connection();
+    $stmt = $db->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $Bestemmingen = $result;
-
-    //print_r($Bestemmingen);
 
     ?>
     <html>
@@ -15,7 +13,8 @@
        <body>
          <?php
             foreach ($Bestemmingen as $bestemming) {
-              $stmt = $conn->prepare("SELECT `Score` FROM `review` WHERE `BestemmingID` = '".$bestemming['ID']."'");
+
+              $stmt = $db->prepare("SELECT `Score` FROM `review` WHERE `BestemmingID` = '".$bestemming['ID']."'");
               $stmt->execute();
               $results = array();
               while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
