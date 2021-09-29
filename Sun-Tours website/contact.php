@@ -1,7 +1,9 @@
 <?php
 include_once 'header.php';
 
-
+if(isset($_GET['submit'])){
+  echo "test";
+}
 
 ?>
   <head>

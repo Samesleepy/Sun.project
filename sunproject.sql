@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2021 at 01:15 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Gegenereerd op: 29 sep 2021 om 13:41
+-- Serverversie: 10.4.6-MariaDB
+-- PHP-versie: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bestemming`
+-- Tabelstructuur voor tabel `bestemming`
 --
 
 CREATE TABLE `bestemming` (
@@ -35,7 +36,7 @@ CREATE TABLE `bestemming` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bestemming`
+-- Gegevens worden geëxporteerd voor tabel `bestemming`
 --
 
 INSERT INTO `bestemming` (`ID`, `Locatie`, `Prijs`, `Plaatje`) VALUES
@@ -48,7 +49,7 @@ INSERT INTO `bestemming` (`ID`, `Locatie`, `Prijs`, `Plaatje`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `boeking`
+-- Tabelstructuur voor tabel `boeking`
 --
 
 CREATE TABLE `boeking` (
@@ -60,10 +61,33 @@ CREATE TABLE `boeking` (
   `Duur` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `boeking`
+--
+
+INSERT INTO `boeking` (`KlantID`, `Bestemming`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`) VALUES
+(15, 'Kos, Griekenland', '990.00', 2, '2021-09-21', 5),
+(15, 'Ankara, Turkije', '3000.00', 3, '2021-09-21', 2),
+(18, 'Kos, Griekenland', '2079.00', 3, '2021-09-22', 7),
+(18, 'Ankara, Turkije', '5000.00', 2, '2021-09-24', 5);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `klant`
+-- Tabelstructuur voor tabel `contact`
+--
+
+CREATE TABLE `contact` (
+  `KlantID` int(11) NOT NULL,
+  `Type` varchar(10) NOT NULL,
+  `Onderwerp` varchar(100) NOT NULL,
+  `Opmerking` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `klant`
 --
 
 CREATE TABLE `klant` (
@@ -82,16 +106,17 @@ CREATE TABLE `klant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `klant`
+-- Gegevens worden geëxporteerd voor tabel `klant`
 --
 
 INSERT INTO `klant` (`KlantID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Land`, `Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES
-(17, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$ivLszsvmBCyQN5CPf09v1OHXUPEvUuxGvZvxJTNYi4QXr2i0f/Kh.', '223232323', '', 'asdfs2', '44wee', '4', 4);
+(17, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$ivLszsvmBCyQN5CPf09v1OHXUPEvUuxGvZvxJTNYi4QXr2i0f/Kh.', '223232323', '', 'asdfs2', '44wee', '4', 4),
+(18, 'Delon', 'Poels', '', 'depoge@gmail.com', '$2y$10$It/pmma1Mqx7Ca.Asw8MsetHs2J3CCbmd/zimO7JWQrCPr5BID4UG', '0683972134', '', 'Gennep', '6591EL', 'Loodsstraat', 24);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `review`
+-- Tabelstructuur voor tabel `review`
 --
 
 CREATE TABLE `review` (
@@ -105,44 +130,45 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `review`
+-- Gegevens worden geëxporteerd voor tabel `review`
 --
 
 INSERT INTO `review` (`BestemmingID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`, `Datum`) VALUES
-(4, 'Sam', 'Gijsen', '', 2, 'Weinig vissen, te veel plastic', '2021-09-21');
+(4, 'Sam', 'Gijsen', '', 2, 'Weinig vissen, te veel plastic', '2021-09-21'),
+(2, 'Delon', 'Poels', '', 1, 'jgjgggggg', '2021-09-28');
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `bestemming`
+-- Indexen voor tabel `bestemming`
 --
 ALTER TABLE `bestemming`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `klant`
+-- Indexen voor tabel `klant`
 --
 ALTER TABLE `klant`
   ADD PRIMARY KEY (`KlantID`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `bestemming`
+-- AUTO_INCREMENT voor een tabel `bestemming`
 --
 ALTER TABLE `bestemming`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `klant`
+-- AUTO_INCREMENT voor een tabel `klant`
 --
 ALTER TABLE `klant`
-  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
