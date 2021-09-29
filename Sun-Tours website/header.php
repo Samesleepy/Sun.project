@@ -1,20 +1,15 @@
-<?php session_start();
+<?php 
+session_start();
+include_once('db.php');
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$databaseName = "sunproject";
+$database = new Database();
 
-//connect to database
-try {
-  $conn = new PDO("mysql:host=$host;dbname=$databaseName", $username, $password);
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //echo "Connected successfully";
-} catch(PDOException $e) {
-    echo "Connection failed";//: " . $e->getMessage();
+if(isset($_POST['logout'])){
+   session_destroy();
+   header("Location: home.php");
 }
 
- ?>
+?>
 
 <html lang="nl" dir="ltr">
    <head>
@@ -30,71 +25,71 @@ try {
             <a href="home.php">  <img src="Pics\Sun-Tours-logo.png" class="sun" alt="Suntours">  </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="home.php">Home</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="signup.php">Sign up</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="login.php">Log in</a>
-               </li>
-             <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Taal</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Nederlands</a></li>
-                <li><a class="dropdown-item" href="#">Engels</a></li>
-              </ul>
-            </li>
-            </ul>
-              <ul class="navbar-nav ms-auto">
-               <li class="nav-item">
-                  <a class="navbar-text" aria-current="page">
-                    <form method="post">
-                      <div class="form-group">
-                        <div class="text-center">
-                          <?php                                                                                     if(isset($_SESSION['Voornaam'])){
-                              echo "<button type='submit' name='logout' class='btn btn-danger btn-block'>";
-                              echo "Log out";
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Language</a>
+                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#"><object data="Pics/flag-nl.svg" width="20" ></object> Dutch</a></li>
+                        <li><a class="dropdown-item" href="#"><object data="Pics/flag-uk.svg" width="20" ></object> English</a></li>
+                     </ul>
+                  </li>
+                  <object data="Pics/flag-uk.svg" width="20" ></object>
+               </ul>
 
-                              if(isset($_POST['logout'])){
-                                  session_destroy();
-                                  header("Location: home.php");
-                              }
-                          }  ?>
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </a>
-               </li>
-               <li class="nav-item">
-                 <a class="navbar-text" aria-current="page">
-                   <?php
-                   if(isset($_SESSION['Voornaam'])){
-                     echo $_SESSION['Voornaam'] . " " ;
-                       if($_SESSION['Tussenvoegsel'] != ""){
-                         echo " " . $_SESSION['Tussenvoegsel'] . " ";
-                       }
-                      echo $_SESSION['Achternaam'];
-                   }
-                    ?>
-                </a>
-              </li>
-             </ul>
+               <ul class="navbar-nav ms-auto">
+               <?php if(isset($_SESSION['Voornaam'])){ ?>
+                     <li class="nav-item" style="padding-right: 5px;">
+                        <form method="post">
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out</button>
+                        </form>
+                     </li>
+                  <?php }else{ ?>
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="signup.php">Register</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="login.php">Log in</a>
+                     </li>
+                  <?php } ?>
+                  <li class="nav-item">
+                     <a class="navbar-text" aria-current="page">
+                        <?php
+                        if(isset($_SESSION['Voornaam'])){
+                           echo "<div class='dropdown'>";
+                           echo    "<a class='btn btn-primary dropdown-toggle' style='' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
+                           echo $_SESSION['Voornaam'] . " " ;
+                           if($_SESSION['Tussenvoegsel'] != ""){
+                              echo " " . $_SESSION['Tussenvoegsel'] . " ";
+                           }
+                           echo $_SESSION['Achternaam'];
+                           echo    "</a>";
+                           echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
+                           echo        "<li><a class='dropdown-item' href='/userpage.php'>My Account</a></li>";
+                           echo        "<li><a class='dropdown-item' href='/boekingen.php'>My Bookings</a></li>";
+                           // if($_SESSION['Role'] == 'Admin'){
+                           //    echo "<li><a class='dropdown-item' href='/adminpage.php'>Admin page</a></li>";
+                           // }
+                           echo    "</ul>";
+                           echo "</div>";
+                        }
+                        ?>
+                     </a>
+                  </li>
+               </ul>
             </div>
          </div>
       </nav>
       <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
    </body>
-</html>
