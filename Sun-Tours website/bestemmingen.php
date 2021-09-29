@@ -30,8 +30,9 @@
                <div class="card" id="bestemmingen">
                <?php  echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>'; ?>
                   <div class="card-body">
-                     <h5 class="card-title"><?php echo $bestemming['Locatie'] . " Score: " . $score ?></h5>
-                     <p class="card-text"><?php echo $bestemming['Prijs'] . " " . "Euro p.p." ?></p>
+                     <h5 class="card-title"><?php echo $bestemming['Locatie']?></h5>
+                     <p class="card-text"><?php echo $bestemming['Prijs'] . " " . "Euro p.p." ?>
+                    <p class="card-text-right"><?php echo "Score: " . $score ?></p>
                   </div>
                </div>
             </a>
