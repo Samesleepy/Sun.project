@@ -1,12 +1,14 @@
-<?php include_once 'header.php';
+<?php 
+include_once 'header.php';
 $id = $_GET['id'];
+$db = $database->connection();
 
-$stmt = $conn->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
+$stmt = $db->prepare("SELECT `ID`, `Locatie`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
 $stmt->execute();
 $result = $stmt->fetch();
 $Bestemmingen = $result;
 
-$stmt = $conn->prepare("SELECT `Score` FROM `Review` WHERE `BestemmingID` = '".$id."'");
+$stmt = $db->prepare("SELECT `Score` FROM `Review` WHERE `BestemmingID` = '".$id."'");
 $stmt->execute();
 
 $results = array();
@@ -65,7 +67,7 @@ function updatePrijs(){
 <?php
 function Boeken() {
     global $Bestemmingen;
-    global $conn;
+    global $db;
     global $prijs;
 
     $KlantID = $_SESSION['KlantID'];
@@ -74,7 +76,7 @@ function Boeken() {
     $Vertrekdatum = $_POST['vertrekdatum'];
     $Duur = $_POST['duur'];
 
-    $query = $conn->prepare("INSERT INTO `boeking` (`KlantID`, `Bestemming`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
+    $query = $db->prepare("INSERT INTO `boeking` (`KlantID`, `Bestemming`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
     VALUES ('$KlantID','$Bestemming','$prijs','$Personen','$Vertrekdatum','$Duur')");
     $query->execute();
 }

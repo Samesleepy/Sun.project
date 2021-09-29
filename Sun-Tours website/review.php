@@ -46,12 +46,12 @@
 
               $sql = "INSERT INTO `review`(`BestemmingID`,`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`,`Datum`) VALUES(?,?,?,?,?,?,?)";
 
-              $stmt= $conn->prepare($sql);
+              $stmt= $db->prepare($sql);
               $stmt->execute([$id,$voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum]);
               unset($_POST['submit']);
             }
 
-            $stmt = $conn->prepare("SELECT `Voornaam`, `Achternaam`,`Tussenvoegsel`,`Score`, `Opmerking`, `Datum` FROM `review` WHERE `BestemmingID` = '".$id."'");
+            $stmt = $db->prepare("SELECT `Voornaam`, `Achternaam`,`Tussenvoegsel`,`Score`, `Opmerking`, `Datum` FROM `review` WHERE `BestemmingID` = '".$id."'");
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $Reviews = $result;

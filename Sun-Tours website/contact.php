@@ -1,6 +1,16 @@
 <?php
 include_once 'header.php';
+
+
+
 ?>
+  <head>
+    <script>
+      function updateSoort(){
+        document.getElementById("opmerking").placeholder = document.getElementById("soort").value;
+      }
+    </script>
+  </head>
   <body>
     <div class="card bg-light">
       <div class="card-body mx-auto" style="max-width: 800px;min-width: 700px;">
@@ -8,22 +18,22 @@ include_once 'header.php';
           <h1>Neem contact op<h1>
           <form method="post">
             <div class="input-group mb-3">
-              <select class="form-select form-select-sm" id="inputGroupSelect01" name="score" required>
-                <option value="">Soort: </option>
-                <option value="klacht">Klacht</option>
-                <option value="vraag">Vraag</option>
-                <option value="feedback">Feedback</option>
+              <select id="soort" class="form-select form-select-sm" id="inputGroupSelect01" name="soort" onchange="updateSoort()" required>
+                <option value="" disabled selected hidden>Soort: </option>
+                <option value="Klacht">Klacht</option>
+                <option value="Vraag">Vraag</option>
+                <option value="Feedback">Feedback</option>
               </select>
             </div>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" name="onderwerp" placeholder="Onderwerp">
+              <input type="text" class="form-control" name="onderwerp" placeholder="Onderwerp" required>
             </div>
             <div class="input-group mb-4">
-              <textarea class="form-control" name="opmerking" rows="5" placeholder="Opmerking"></textarea>
+              <textarea id="opmerking" class="form-control" name="opmerking" rows="5" placeholder="Opmerking" required></textarea>
             </div>
             <div class="form-group">
               <div class="text-center">
-                <button type="submit" name="submit" class="btn btn-primary btn-block w-100">Verstuur</button>
+                <button id="contactButton" type="submit" name="submit" class="btn btn-primary btn-block w-100">Verstuur</button>
               </div>
             </div>
           </form>
