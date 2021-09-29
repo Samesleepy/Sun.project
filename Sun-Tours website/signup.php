@@ -6,13 +6,14 @@
       <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
    </head>
    <body>
-     <script>function checkpass() {
-       if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
-              document.getElementById('submit').disabled = false;
-       }else{
-        document.getElementById('submit').disabled = true;
-       }
-     }
+      <script>
+         function checkpass() {
+            if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
+                  document.getElementById('submit').disabled = false;
+            }else{
+            document.getElementById('submit').disabled = true;
+            }
+         }
       </script>
       <div class="card bg-light">
          <div class="card-body mx-auto" style="max-width: 800px;">
@@ -86,53 +87,49 @@
             </form>
 
             <?php
+            $db = $database->connection();
 
-            function CheckDuplicateEmail($email, $conn){
-              $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
-              $result = $conn->query($sql);
-              $count = $result->fetchColumn();
+            function CheckDuplicateEmail($email, $db){
+               $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
+               $result = $db->query($sql);
+               $count = $result->fetchColumn();
 
-              if($count != 0){
-                return False;
-              }else{
-                return True;
-              }
-
+               if($count != 0){
+                  return False;
+               }else{
+                  return True;
+               }
             }
             if(isset($_POST['submit'])) {
 
-              $voornaam = $_POST['voornaam'];
-              $achternaam = $_POST['achternaam'];
-              $tussenvoegsel = $_POST['tussenvoegsel'];
-              $email = $_POST['email'];
-              $telefoonnummer = $_POST['telefoonnummer'];
-              $wachtwoord = $_POST['wachtwoord'];
-              $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
-              $land = $_POST['land'];
-              $woonplaats = $_POST['woonplaats'];
-              $postcode = $_POST['postcode'];
-              $straatnaam = $_POST['straatnaam'];
-              $huisnummer = $_POST['huisnummer'];
+               $voornaam = $_POST['voornaam'];
+               $achternaam = $_POST['achternaam'];
+               $tussenvoegsel = $_POST['tussenvoegsel'];
+               $email = $_POST['email'];
+               $telefoonnummer = $_POST['telefoonnummer'];
+               $wachtwoord = $_POST['wachtwoord'];
+               $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
+               $land = $_POST['land'];
+               $woonplaats = $_POST['woonplaats'];
+               $postcode = $_POST['postcode'];
+               $straatnaam = $_POST['straatnaam'];
+               $huisnummer = $_POST['huisnummer'];
 
-              if(CheckDuplicateEmail($email, $conn)){
+               if(CheckDuplicateEmail($email, $db)){
+                  $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                  $stmt= $db->prepare($sql);
+                  $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
 
-                $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-
-                $stmt= $conn->prepare($sql);
-                $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
-
-                // if(mysqli_query($conn, $sql)){
-                //   echo "Account geregistreerd!";
-                // }else{
-                //   echo "ERROR"; //$sql. " . mysqli_error($conn);
-                // }
-              }else{
-                echo "Email is al in gebruik!";
-              }
+                  // if(mysqli_query($db, $sql)){
+                  //   echo "Account geregistreerd!";
+                  // }else{
+                  //   echo "ERROR"; //$sql. " . mysqli_error($db);
+                  // }
+               }else{
+                  echo "Email is al in gebruik!";
+               }
             }
-
-             ?>
+            ?>
          </div>
       </div>
    </body>

@@ -88,7 +88,7 @@ function Boeken() {
 </head>
 <body>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
-        <h2><?php echo $Bestemmingen['Locatie']; echo " ",round($score,2); ?></h2><br><br>
+        <h2><?php echo $Bestemmingen['Locatie']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
 
         <div class="form-group input-group">
             <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
