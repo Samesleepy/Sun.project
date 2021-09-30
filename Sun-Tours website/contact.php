@@ -1,8 +1,17 @@
 <?php
 include_once 'header.php';
 
-if(isset($_GET['submit'])){
-  echo "test";
+$db = $database->connection();
+
+if(isset($_POST['submit'])){
+  $KlantID = $_SESSION['KlantID'];
+  $Soort = $_POST['soort'];
+  $Onderwerp = $_POST['onderwerp'];
+  $Opmerking = $_POST['opmerking'];
+
+  $query = $db->prepare("INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`)
+  VALUES ('$KlantID','$Soort','$Onderwerp','$Opmerking')");
+  $query->execute();
 }
 
 ?>
@@ -18,7 +27,8 @@ if(isset($_GET['submit'])){
       <div class="card-body mx-auto" style="max-width: 800px;min-width: 700px;">
         <div class="jumbotron text-center">
           <h1>Neem contact op<h1>
-          <form method="post">
+          <?php if(isset($_SESSION['Voornaam'])){ ?>
+          <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
             <div class="input-group mb-3">
               <select id="soort" class="form-select form-select-sm" id="inputGroupSelect01" name="soort" onchange="updateSoort()" required>
                 <option value="" disabled selected hidden>Soort: </option>
@@ -39,6 +49,9 @@ if(isset($_GET['submit'])){
               </div>
             </div>
           </form>
+          <?php ;}else{ ?>
+          <p class="text-danger">Log eerst in</p>
+          <?PHP ;} ?>
         </div>
       </div>
     </div>
