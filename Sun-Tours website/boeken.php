@@ -31,6 +31,12 @@ if(count($results)) {
     $score = array_sum($results)/count($results);
 }
 
+  //dubbel limiet
+  $stmt = $db->prepare("SELECT COUNT(*) FROM `Boeking` WHERE `Plaats` = '".$Bestemmingen['Plaats']."'");
+  $stmt->execute();
+  $countlimit = $stmt->fetchColumn();
+  if($countlimit >= $Bestemmingen['Limiet']){echo "Volgeboekt";}else{ echo $Bestemmingen['Prijs'] . " " . "Euro p.p.";}
+
 //echo $score;
 
 $prijs = false;
@@ -88,6 +94,7 @@ function Boeken() {
     <title>Boeken</title>
 </head>
 <body>
+  <?php  ?>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
         <h2><?php echo $Bestemmingen['Plaats'].",".$Bestemmingen['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
 

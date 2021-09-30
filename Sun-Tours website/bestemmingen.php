@@ -4,10 +4,16 @@
    $stmt->execute();
    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
    $Bestemmingen = $result;
+
 ?>
 <body>
 <?php
    foreach ($Bestemmingen as $bestemming) {
+      //dubbel limiet
+      $stmt = $db->prepare("SELECT COUNT(*) FROM `Boeking` WHERE `Plaats` = '".$bestemming['Plaats']."'");
+      $stmt->execute();
+      $countlimit = $stmt->fetchColumn();
+
 
       $stmt = $db->prepare("SELECT `Score` FROM `review` WHERE `BestemmingID` = '".$bestemming['ID']."'");
       $stmt->execute();
@@ -25,7 +31,7 @@
       <?php  echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>'; ?>
          <div class="card-body">
             <h5 class="card-title"><?php echo $bestemming['Plaats'].", ".$bestemming['Land']?></h5>
-            <a class="card-link" style="text-decoration: none;"><?php echo $bestemming['Prijs'] . " " . "Euro p.p." ?></a>
+            <a class="card-link" style="text-decoration: none;"><?php if($countlimit >= $bestemming['Limiet']){echo "Volgeboekt";}else{ echo $bestemming['Prijs'] . " " . "Euro p.p.";} ?></a>
             <a class="card-link" style="text-decoration: none;     margin-left: 5rem;"><?php if(isset($score)){echo "Score: " . $score;} ?></a>
          </div>
       </div>
