@@ -3,7 +3,7 @@ include_once 'header.php';
 $id = $_GET['id'];
 $db = $database->connection();
 
-$stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
+$stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
 $stmt->execute();
 $result = $stmt->fetch();
 $Bestemmingen = $result;

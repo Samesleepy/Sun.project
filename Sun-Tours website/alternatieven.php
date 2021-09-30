@@ -5,7 +5,7 @@
    <body>
      <?php
      $db = $database->connection();
-     $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`  FROM `bestemming` WHERE `Type` = '".$bestemming['Type']."' AND `ID` = '".$bestemming['ID']."'");
+     $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`  FROM `bestemming` WHERE `Type` = '".$Bestemmingen['Type']."' AND NOT `ID` = '".$Bestemmingen['ID']."' ");
      $stmt->execute();
      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
      $Alternatieven = $result;
