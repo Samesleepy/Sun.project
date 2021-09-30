@@ -94,7 +94,7 @@ function Boeken() {
     <title>Boeken</title>
 </head>
 <body>
-  <?php  ?>
+    <?php if(isset($_SESSION['Voornaam'])){ ?>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
         <h2><?php echo $Bestemmingen['Plaats'].",".$Bestemmingen['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
 
@@ -113,6 +113,9 @@ function Boeken() {
 
         <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block" onclick="Boeken()">
     </form>
+    <?php ;}else{ ?>
+    <p class="text-danger">Log eerst in</p>
+    <?PHP ;} ?>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
     <?php include_once 'review.php'; ?>
     <?php include_once 'alternatieven.php'; ?>
