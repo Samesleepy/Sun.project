@@ -75,11 +75,11 @@ if(isset($_POST['logout'])){
                            echo $_SESSION['Achternaam'];
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
-                           echo        "<li><a class='dropdown-item' href='/profiel.php'>My Account</a></li>";
-                           echo        "<li><a class='dropdown-item' href='/boekingen.php'>My Bookings</a></li>";
-                           // if($_SESSION['Role'] == 'Admin'){
-                           //    echo "<li><a class='dropdown-item' href='/adminpage.php'>Admin page</a></li>";
-                           // }
+                           echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
+                           if(/*$_SESSION['Role'] == 'Admin' ||*/ $_SESSION['Voornaam'] == 'joey'){
+                              echo     "<li><a class='dropdown-item' href='adminpage.php'>Admin page</a></li>";
+                           }
+                           echo        "<li><a class='dropdown-item' href='boekingen.php'>Bookings</a></li>";
                            echo    "</ul>";
                            echo "</div>";
                         }
