@@ -18,12 +18,12 @@
               <div class="card-body">
                  <h5 class="card-title"><?php echo $Alternatief['Plaats'].", ".$Alternatief['Land']?></h5>
                  <p class="card-text"><?php echo $Alternatief['Prijs'] . " " . "Euro p.p." ?>
-                <p class="card-text-right"><?php //echo "Score: " . $score ?></p>
+                 <p class="card-text-right"><?php //echo "Score: " . $score ?></p>
               </div>
            </div>
         </a>
      <?php
-   }
+    }
      ?>
    </body>
 </html>

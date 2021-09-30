@@ -3,7 +3,7 @@ include_once 'header.php';
 $id = $_GET['id'];
 $db = $database->connection();
 
-$stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
+$stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`,`Limiet` FROM `bestemming`WHERE `ID` = '".$id."'");
 $stmt->execute();
 $result = $stmt->fetch();
 $Bestemmingen = $result;
@@ -71,13 +71,14 @@ function Boeken() {
     global $prijs;
 
     $KlantID = $_SESSION['KlantID'];
-    $Bestemming = $Bestemmingen['Locatie'];
+    $Land = $Bestemmingen['Land'];
+    $Plaats = $Bestemmingen['Plaats'];
     $Personen = $_POST['personen'];
     $Vertrekdatum = $_POST['vertrekdatum'];
     $Duur = $_POST['duur'];
 
-    $query = $db->prepare("INSERT INTO `boeking` (`KlantID`, `Bestemming`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
-    VALUES ('$KlantID','$Bestemming','$prijs','$Personen','$Vertrekdatum','$Duur')");
+    $query = $db->prepare("INSERT INTO `boeking` (`KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
+    VALUES ('$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
     $query->execute();
 }
 ?>
@@ -103,7 +104,7 @@ function Boeken() {
 
         <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
 
-        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
+        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block" onclick="Boeken()">
     </form>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
     <?php include_once 'review.php'; ?>

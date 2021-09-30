@@ -1,6 +1,6 @@
 <?php include_once 'header.php';
    $db = $database->connection();
-   $stmt = $db->prepare("SELECT `ID`, `Land`, `Plaats`, `Type`, `Prijs`,`Plaatje` FROM `bestemming`");
+   $stmt = $db->prepare("SELECT `ID`, `Land`, `Plaats`, `Type`, `Prijs`,`Limiet`,`Plaatje` FROM `bestemming`");
    $stmt->execute();
    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
    $Bestemmingen = $result;
