@@ -8,36 +8,9 @@ $stmt->execute();
 $result = $stmt->fetch();
 $Bestemmingen = $result;
 
-$stmt = $db->prepare("SELECT `Score` FROM `Review` WHERE `BestemmingID` = '".$id."'");
-$stmt->execute();
+$score = GetScore($Bestemmingen['ID'],$db);
 
-$results = array();
-
-//werkt niet
-// while($stmt->fetch(PDO::FETCH_ASSOC)){
-//   $results[] = $stmt->fetchColumn();
-// }
-
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    array_push($results, $row['Score']);
-}
-//echo "</br>";
-//print_r($results);
-
-//$score = array_sum($results)/count($results);
-
-$results = array_filter($results);
-if(count($results)) {
-    $score = array_sum($results)/count($results);
-}
-
-  //dubbel limiet
-  $stmt = $db->prepare("SELECT COUNT(*) FROM `Boeking` WHERE `Plaats` = '".$Bestemmingen['Plaats']."'");
-  $stmt->execute();
-  $countlimit = $stmt->fetchColumn();
-  if($countlimit >= $Bestemmingen['Limiet']){echo "Volgeboekt";}else{ echo $Bestemmingen['Prijs'] . " " . "Euro p.p.";}
-
-//echo $score;
+$countlimit = CheckLimit($Bestemmingen['Plaats'],$db);
 
 $prijs = false;
 if(isset($_POST['personen'])){
@@ -115,7 +88,7 @@ function Boeken() {
     </form>
     <?php ;}else{ ?>
     <p class="text-danger">Log eerst in</p>
-    <?PHP ;} ?>
+    <?php ;} ?>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
     <?php include_once 'review.php'; ?>
     <?php include_once 'alternatieven.php'; ?>

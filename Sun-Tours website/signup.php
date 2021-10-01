@@ -89,17 +89,6 @@
             <?php
             $db = $database->connection();
 
-            function CheckDuplicateEmail($email, $db){
-               $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
-               $result = $db->query($sql);
-               $count = $result->fetchColumn();
-
-               if($count != 0){
-                  return False;
-               }else{
-                  return True;
-               }
-            }
             if(isset($_POST['submit'])) {
 
                $voornaam = $_POST['voornaam'];
@@ -114,7 +103,7 @@
                $postcode = $_POST['postcode'];
                $straatnaam = $_POST['straatnaam'];
                $huisnummer = $_POST['huisnummer'];
-
+               
                if(CheckDuplicateEmail($email, $db)){
                   $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                   $stmt= $db->prepare($sql);

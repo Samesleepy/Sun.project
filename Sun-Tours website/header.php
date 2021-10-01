@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once('db.php');
 
@@ -8,7 +8,7 @@ if(isset($_POST['logout'])){
    session_destroy();
    header("Location: home.php");
 }
-
+include_once('functionss.php');
 ?>
 
 <html lang="nl" dir="ltr">
