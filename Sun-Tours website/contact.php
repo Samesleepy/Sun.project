@@ -23,6 +23,7 @@ if(isset($_POST['submit'])){
     </script>
   </head>
   <body>
+    <a class="nav-link active" aria-current="page" href="FAQ.php">FAQ</a>
     <div class="card bg-light">
       <div class="card-body mx-auto" style="max-width: 800px;min-width: 700px;">
         <div class="jumbotron text-center">
