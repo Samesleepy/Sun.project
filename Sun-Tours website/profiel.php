@@ -1,4 +1,6 @@
-<?php include_once 'header.php' ?>
+<?php 
+include_once 'header.php'; 
+?>
 
 <body>
     <script>
@@ -15,7 +17,7 @@
             <div class="jumbotron text-center">
             <h1>Mijn account<h1>
         </div>
-        <form method="post">
+        <form action="" method="post">
             <div class="row">
                 <div class="col-4">
                     <div class="mb-2">
@@ -88,7 +90,10 @@
         $db = $database->connection();
 
         if(isset($_POST['submit'])) {
+            $stmt = $db->query("SELECT KlantID FROM `Klant` WHERE `Email`='".$_SESSION['Email']."'");
+            $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            $klantid = $resultinfo['KlantID'];
             $voornaam = $_POST['voornaam'];
             $achternaam = $_POST['achternaam'];
             $tussenvoegsel = $_POST['tussenvoegsel'];
@@ -100,18 +105,32 @@
             $straatnaam = $_POST['straatnaam'];
             $huisnummer = $_POST['huisnummer'];
 
-            if(CheckDuplicateEmail($email, $db)){
-                $sql = "UPDATE `klant` SET `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer` WHERE ";
-                $stmt= $db->prepare($sql);
-                $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
-            }else{
-                echo "Email is al in gebruik!";
+            $sql = "UPDATE `klant` SET 
+            `Voornaam` = '".$voornaam."',
+            `Achternaam` = '".$achternaam."',
+            `Tussenvoegsel` = '".$tussenvoegsel."', 
+            `Email` = '".$email."', 
+            `Telefoonnummer` = '".$telefoonnummer."',
+            `Land` = '".$land."',
+            `Woonplaats` = '".$woonplaats."', 
+            `Postcode` = '".$postcode."', 
+            `Straatnaam` = '".$straatnaam."', 
+            `Huisnummer` = '".$huisnummer."'
+            WHERE `KlantID` = '".$klantid."'";
+
+            $stmt = $db->query($sql);
+
+            $stmtx = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
+            $stmtx->execute();
+            $resultinfo = $stmtx->fetch(PDO::FETCH_ASSOC);
+
+            foreach ($resultinfo as $key => $klantinfo) {
+                $_SESSION[$key] = $klantinfo;
             }
-        }
-        ?>
+            //header("Refresh:0");
+        } ?>
         </div>
     </div>
 </body>
-
 
 <?php include_once 'footer.php' ?>

@@ -17,6 +17,7 @@ if(isset($_POST['logout'])){
       <title>Suntours</title>
       <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
       <link rel="stylesheet" href="test.css"/>
+      <script src="https://kit.fontawesome.com/e1d19818da.js" crossorigin="anonymous"></script>
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

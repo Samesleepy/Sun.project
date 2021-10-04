@@ -44,15 +44,7 @@ include_once 'header.php';
 
                foreach ($resultinfo as $key => $klantinfo) {
                   $_SESSION[$key] = $klantinfo;
-                  //echo $klantinfo . "</br>";
                }
-
-               //   echo "Welkom: " . $resultinfo['Voornaam'] . " " ;
-               //   if($resultinfo['Tussenvoegsel'] != ""){
-               //     echo " " . $resultinfo['Tussenvoegsel'] . " ";
-               //   }
-               //   echo $resultinfo['Achternaam'] . "!";
-               //print_r($resultinfo);
                header("Location: home.php");
                }else{
                echo "Wachtwoord is fout";

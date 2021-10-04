@@ -28,15 +28,15 @@ function CheckLimit($BestemmingPlaats,$conn){
 }
 
 function CheckDuplicateEmail($email, $db){
-   $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
-   $result = $db->query($sql);
-   $count = $result->fetchColumn();
+  $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
+  $result = $db->query($sql);
+  $count = $result->fetchColumn();
 
-   if($count != 0){
-      return False;
-   }else{
-      return True;
-   }
+  if($count != 0){
+    return False;
+  }else{
+    return True;
+  }
 }
 
- ?>
+?>
