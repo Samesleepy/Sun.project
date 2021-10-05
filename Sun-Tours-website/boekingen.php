@@ -38,7 +38,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </a>
-            <?php }}else{echo "Er zijn geen boekingen";} ?>
+            <?php }}else{echo "<h3 class='text-centered'>Er zijn geen boekingen</h3>";} ?>
         </div>
     </body>
 </html>
