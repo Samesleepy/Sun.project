@@ -7,7 +7,9 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <body>
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-            <?php foreach ($Boekingen as $key => $Boeking) {
+            <?php
+            if(!$Boekingen == ""){
+            foreach ($Boekingen as $key => $Boeking) {
                 $Land = $Boekingen[$key]['Land'];
                 $Plaats = $Boekingen[$key]['Plaats'];
                 
@@ -36,7 +38,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </a>
-            <?php } ?>
+            <?php }}else{echo "Er zijn geen boekingen";} ?>
         </div>
     </body>
 </html>
