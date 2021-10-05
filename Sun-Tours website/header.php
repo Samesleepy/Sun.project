@@ -52,7 +52,7 @@ if(isset($_POST['logout'])){
                <?php if(isset($_SESSION['Voornaam'])){ ?>
                      <li class="nav-item" style="padding-right: 5px;">
                         <form method="post">
-                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out</button>
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out <i class="fas fa-sign-out-alt"></i></button>
                         </form>
                      </li>
                   <?php }else{ ?>
@@ -68,12 +68,13 @@ if(isset($_POST['logout'])){
                         <?php
                         if(isset($_SESSION['Voornaam'])){
                            echo "<div class='dropdown'>";
-                           echo    "<a class='btn btn-primary dropdown-toggle' style='' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
+                           echo    "<a class='btn btn-primary dropdown-toggle user-btn' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
                            echo $_SESSION['Voornaam'] . " " ;
                            if($_SESSION['Tussenvoegsel'] != ""){
                               echo " " . $_SESSION['Tussenvoegsel'] . " ";
                            }
                            echo $_SESSION['Achternaam'];
+                           echo " <i class='fas fa-user'></i> ";
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                            echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
