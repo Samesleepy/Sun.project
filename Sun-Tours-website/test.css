@@ -55,3 +55,6 @@
   margin-left:15% !important;
   margin-right:15% !important;
 }
+.user-btn:hover{
+  background-color: #0150c7 !important;
+}
