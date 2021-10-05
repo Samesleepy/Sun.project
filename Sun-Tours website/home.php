@@ -8,7 +8,7 @@
       <div class="card text-white bg-dark" style="margin-left:65%; margin-top: 6%; width:20%">
          <div class="card-body">
             <h3 class="card-title" style="">
-            Wij geloven dat iedereen een geweldige vakantie verdiend!</h4>
+            Wij geloven dat iedereen een geweldige vakantie verdient!</h4>
             <h3 class="card-subtitle mb-2" style="opacity: 60%">
             We believe that everyone deserves a great vacation!</h5>
          </div>
