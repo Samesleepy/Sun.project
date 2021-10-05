@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2021 at 11:36 AM
+-- Generation Time: Oct 05, 2021 at 01:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -92,6 +92,28 @@ CREATE TABLE `contact` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `faq`
+--
+
+CREATE TABLE `faq` (
+  `QID` int(10) NOT NULL,
+  `Vraag-NL` text NOT NULL,
+  `Vraag-EN` text NOT NULL,
+  `Antwoord-NL` text NOT NULL,
+  `Antwoord-EN` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`QID`, `Vraag-NL`, `Vraag-EN`, `Antwoord-NL`, `Antwoord-EN`) VALUES
+(1, 'Hoe boek ik een reis?', 'How do I book a trip?', 'Klik op bestemmingen, u ziet nu de kaarten voor de beschikbare bestemmingen. Als u een reis wilt boeken moet u op een van de kaarten klikken, u gaat dan naar de pagina om de reis te boeken.', 'Click on destinations, You will now see cards for each available destination. If you want to book a trip you need to click on one of the cards, you will be taken to the page to book the trip.'),
+(2, 'Hoe test ik of dit systeem werkt?', 'How do I check of this system works?', 'Voeg gewoon wat willekeurige tekst toe. Het maakt eigenlijk niet uit hoelang maar misschien is het handig om te testen wat er gebeurt als je veel tekst toevoegd. Dit is eigenlijk nog niet genoeg, maar wat kan ik nog typen? De cards zien er niet uit, het is een saaie pagina, wat moet ik doen?', 'Just add some random text. It doesn\'t really matter how long but it might be useful to test what happens if you add a lot of text. This is actually not enough yet, but what else can I type? The cards don\'t look right, it\'s a boring page, what should I do?');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `klant`
 --
 
@@ -141,7 +163,11 @@ CREATE TABLE `review` (
 
 INSERT INTO `review` (`BestemmingID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`, `Datum`) VALUES
 (4, 'Sam', 'Gijsen', '', 2, 'Weinig vissen, te veel plastic', '2021-09-21'),
-(2, 'Delon', 'Poels', '', 1, 'jgjgggggg', '2021-09-28');
+(2, 'Delon', 'Poels', '', 1, 'jgjgggggg', '2021-09-28'),
+(5, 'Sam', 'Gijsen', '', 4, 'Mooi', '2021-10-01'),
+(7, 'Sam', 'Gijsen', '', 2, 'Te druk', '2021-10-01'),
+(8, 'Sam', 'Gijsen', '', 5, 'Lekker eten', '2021-10-01'),
+(5, 'Sam', 'Gijsen', '', 1, 'Houd niet zo van kamelen', '2021-10-01');
 
 --
 -- Indexes for dumped tables
@@ -152,6 +178,12 @@ INSERT INTO `review` (`BestemmingID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`,
 --
 ALTER TABLE `bestemming`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`QID`);
 
 --
 -- Indexes for table `klant`
@@ -169,6 +201,12 @@ ALTER TABLE `klant`
 --
 ALTER TABLE `bestemming`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `QID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `klant`
