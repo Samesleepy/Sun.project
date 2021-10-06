@@ -8,11 +8,7 @@ if(isset($_POST['submit'])) {
     $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $passOud = $_POST['passOud'];
-    $passOud_hashed = password_hash($_POST['passOud'], PASSWORD_DEFAULT);
-    $passNieuw = $_POST['passNieuw'];
     $passNieuw_hashed = password_hash($_POST['passNieuw'], PASSWORD_DEFAULT);
-    $passHerhaal = $_POST['passHerhaal'];
-    $passHerhaal_hashed = password_hash($_POST['passHerhaal'], PASSWORD_DEFAULT);
 
     if(password_verify($passOud, $resultinfo['Wachtwoord'])){
         if($_POST['passNieuw'] === $_POST['passHerhaal']){
