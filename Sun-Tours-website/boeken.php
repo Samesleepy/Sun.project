@@ -54,10 +54,11 @@ function Boeken() {
     $Plaats = $Bestemmingen['Plaats'];
     $Personen = $_POST['personen'];
     $Vertrekdatum = $_POST['vertrekdatum'];
+    $Boekingsdatum = date("Y-m-d");
     $Duur = $_POST['duur'];
 
-    $query = $db->prepare("INSERT INTO `boeking` (`KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
-    VALUES ('$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
+    $query = $db->prepare("INSERT INTO `boeking` (`KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Boekingsdatum`, `Duur`)
+    VALUES ('$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Boekingsdatum','$Duur')");
     $query->execute();
 }
 ?>
