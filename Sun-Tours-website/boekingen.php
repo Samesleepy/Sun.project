@@ -2,7 +2,7 @@
 include_once 'header.php';
 $db = $database->connection();
 
-$stmt = $db->query("SELECT `Land`,`Plaats`,`Prijs`,`Personen`,`Vertrekdatum`,`Boekingsdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$_SESSION['KlantID']."'");
+$stmt = $db->query("SELECT `Land`,`Plaats`,`Personen`,`Vertrekdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$_SESSION['KlantID']."'");
 $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <body>
@@ -20,7 +20,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-4">
-                            <?php echo '<img style="height: 100%;" src="data:image/png;base64,'.base64_encode($Bestemmingen[0]['Plaatje']).'" class="img-fluid rounded-start"/>';?>
+                            <?php echo '<img style="height: 250px;" src="data:image/png;base64,'.base64_encode($Bestemmingen[0]['Plaatje']).'" class="img-fluid rounded-start"/>';?>
                         </div>
                         <div class="col-8">
                             <div class="card-body">
@@ -29,9 +29,8 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div style="float: right;margin-bottom: 15px;">
                                     <p class="card-text"><small class="text-muted"><i class="fas fa-users"></i><?php echo " ".$Boeking['Personen']; ?></small></p>
                                     <p class="card-text"><small class="text-muted"><i class="fas fa-clock"></i><?php echo " ".$Boeking['Duur']." Dagen"; ?></small></p>
-                                    <p class="card-text"><small class="text-muted"><i class="fas fa-calendar-alt"></i></i><?php echo " ".$Boeking['Vertrekdatum']; ?></small></p>
                                 </div>
-                                <p class="card-text" style="margin-top: 6%;"><small class="text-muted"><?php echo $Boeking['Boekingsdatum']; ?></small></p>
+                                <p class="card-text" style="margin-top: 6%;"><small class="text-muted">Vertrekdatum <i class="fas fa-calendar-alt"></i></i><?php echo " ".$Boeking['Vertrekdatum']; ?></small></p>
                             </div>
                         </div>
                     </div>
