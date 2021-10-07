@@ -13,13 +13,13 @@
       $score = GetScore($bestemming['ID'],$db);
       $countlimit = CheckLimit($bestemming['Plaats'],$db);
       ?>
-   <a href="boeken.php?id=<?php echo $bestemming['ID']; ?>">
+   <a href="boeken.php?id=<?php echo $bestemming['ID']; ?>" style="text-decoration: none;color: black">
       <div class="card" id="bestemmingen">
       <?php  echo '<img src="data:image/png;base64,'.base64_encode($bestemming['Plaatje']).'"/>'; ?>
          <div class="card-body">
             <h5 class="card-title"><?php echo $bestemming['Plaats'].", ".$bestemming['Land']?></h5>
-            <a class="card-link"><?php if($countlimit >= $bestemming['Limiet']){echo "Volgeboekt";}else{ echo $bestemming['Prijs'] . " " . "Euro p.p.";} ?></a>
-            <a class="card-link"><?php if(isset($score)){echo "Score: " . $score;} ?></a>
+            <a class="card-text" style="text-decoration: none;color: black"><?php if($countlimit >= $bestemming['Limiet']){echo "Volgeboekt";}else{ echo $bestemming['Prijs'] . " " . "Euro p.p.";} ?></a>
+            <a class="card-text" style="text-decoration: none;color: black"><?php if(isset($score)){echo "Score: " . $score;}else{echo "Geen score";} ?></a>
          </div>
       </div>
    </a>
