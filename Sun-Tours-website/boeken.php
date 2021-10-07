@@ -1,6 +1,10 @@
 <?php
 include_once 'header.php';
-$id = $_GET['id'];
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+}else{
+    header("Location: home.php");
+}
 $db = $database->connection();
 
 $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`,`Limiet` FROM `bestemming`WHERE `ID` = '".$id."'");

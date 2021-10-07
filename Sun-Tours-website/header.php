@@ -22,7 +22,6 @@ if(isset($_POST['logout'])){
    <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container">
-
             <a href="home.php"><img src="Pics\Sun-Tours-logo.png" class="sun" alt="Suntours"></a>
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
