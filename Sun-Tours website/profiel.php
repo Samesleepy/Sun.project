@@ -1,22 +1,57 @@
 <?php 
 include_once 'header.php'; 
+
+$db = $database->connection();
+
+if(isset($_POST['submit'])) {
+    $stmt = $db->query("SELECT KlantID FROM `Klant` WHERE `Email`='".$_SESSION['Email']."'");
+    $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $klantid = $resultinfo['KlantID'];
+    $voornaam = $_POST['voornaam'];
+    $achternaam = $_POST['achternaam'];
+    $tussenvoegsel = $_POST['tussenvoegsel'];
+    $email = $_POST['email'];
+    $telefoonnummer = $_POST['telefoonnummer'];
+    $land = $_POST['land'];
+    $woonplaats = $_POST['woonplaats'];
+    $postcode = $_POST['postcode'];
+    $straatnaam = $_POST['straatnaam'];
+    $huisnummer = $_POST['huisnummer'];
+
+    $sql = "UPDATE `klant` SET 
+    `Voornaam` = '".$voornaam."',
+    `Achternaam` = '".$achternaam."',
+    `Tussenvoegsel` = '".$tussenvoegsel."', 
+    `Email` = '".$email."', 
+    `Telefoonnummer` = '".$telefoonnummer."',
+    `Land` = '".$land."',
+    `Woonplaats` = '".$woonplaats."', 
+    `Postcode` = '".$postcode."', 
+    `Straatnaam` = '".$straatnaam."', 
+    `Huisnummer` = '".$huisnummer."'
+    WHERE `KlantID` = '".$klantid."'";
+
+    $stmt = $db->query($sql);
+
+    $stmtx = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
+    $stmtx->execute();
+    $resultinfo = $stmtx->fetch(PDO::FETCH_ASSOC);
+
+    foreach ($resultinfo as $key => $klantinfo) {
+        $_SESSION[$key] = $klantinfo;
+    }
+}
 ?>
 
 <body>
-    <script>
-        function checkpass() {
-            if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
-                document.getElementById('submit').disabled = false;
-            }else{
-            document.getElementById('submit').disabled = true;
-            }
-        }
-    </script>
     <div class="card bg-light">
         <div class="card-body mx-auto" style="width: 800px;">
             <div class="jumbotron text-center">
             <h1>Mijn account<h1>
         </div>
+        <a href="wachtwoord.php" class="link" style="float: right">Wachtwoord veranderen</a>
+        <br>
         <form action="" method="post">
             <div class="row">
                 <div class="col-4">
@@ -85,52 +120,9 @@ include_once 'header.php';
                 </div>
             </div>
         </form>
-
-        <?php
-        $db = $database->connection();
-
-        if(isset($_POST['submit'])) {
-            $stmt = $db->query("SELECT KlantID FROM `Klant` WHERE `Email`='".$_SESSION['Email']."'");
-            $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $klantid = $resultinfo['KlantID'];
-            $voornaam = $_POST['voornaam'];
-            $achternaam = $_POST['achternaam'];
-            $tussenvoegsel = $_POST['tussenvoegsel'];
-            $email = $_POST['email'];
-            $telefoonnummer = $_POST['telefoonnummer'];
-            $land = $_POST['land'];
-            $woonplaats = $_POST['woonplaats'];
-            $postcode = $_POST['postcode'];
-            $straatnaam = $_POST['straatnaam'];
-            $huisnummer = $_POST['huisnummer'];
-
-            $sql = "UPDATE `klant` SET 
-            `Voornaam` = '".$voornaam."',
-            `Achternaam` = '".$achternaam."',
-            `Tussenvoegsel` = '".$tussenvoegsel."', 
-            `Email` = '".$email."', 
-            `Telefoonnummer` = '".$telefoonnummer."',
-            `Land` = '".$land."',
-            `Woonplaats` = '".$woonplaats."', 
-            `Postcode` = '".$postcode."', 
-            `Straatnaam` = '".$straatnaam."', 
-            `Huisnummer` = '".$huisnummer."'
-            WHERE `KlantID` = '".$klantid."'";
-
-            $stmt = $db->query($sql);
-
-            $stmtx = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
-            $stmtx->execute();
-            $resultinfo = $stmtx->fetch(PDO::FETCH_ASSOC);
-
-            foreach ($resultinfo as $key => $klantinfo) {
-                $_SESSION[$key] = $klantinfo;
-            }
-            //header("Refresh:0");
-        } ?>
         </div>
     </div>
 </body>
 
 <?php include_once 'footer.php' ?>
+

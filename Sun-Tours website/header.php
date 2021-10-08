@@ -9,9 +9,9 @@ include_once('boekingClass.php');
 session_start();
 $database = new Database();
 if(isset($_SESSION['user'])){
-  $User = $_SESSION['user'];
+   $User = $_SESSION['user'];
 }else{
-  $User = new User();
+   $User = new User();
 }
 //$_SESSION['User'] = serialize($User);
 
@@ -37,7 +37,6 @@ if(isset($_POST['logout'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
@@ -62,7 +61,7 @@ if(isset($_POST['logout'])){
                <?php if(isset($_SESSION['user'])){ ?>
                      <li class="nav-item" style="padding-right: 5px;">
                         <form method="post">
-                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out</button>
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out <i class="fas fa-sign-out-alt"></i></button>
                         </form>
                      </li>
                   <?php }else{ ?>
@@ -84,6 +83,7 @@ if(isset($_POST['logout'])){
                               echo " " . $User->tussenvoegsel . " ";
                            }
                            echo $User->achternaam;
+                           echo " <i class='fas fa-user'></i> ";
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                            echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
