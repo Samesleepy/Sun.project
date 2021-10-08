@@ -2,15 +2,15 @@
 
 class Bestemming
 {
-  private $id;
-  private $land;
-  private $plaats;
-  private $type;
-  private $prijs;
-  private $limiet;
-  private $plaatje;
-  private $score;
-  private $boekingen;
+  public $id;
+  public $land;
+  public $plaats;
+  public $type;
+  public $prijs;
+  public $limiet;
+  public $plaatje;
+  public $score;
+  public $boekingen;
 
    function __construct($id, $land, $plaats, $type, $prijs, $limiet, $plaatje, $score, $boekingen)
   //function __construct($database,$id)
@@ -94,6 +94,11 @@ class Bestemming
       $this->prijs = $result['Prijs'];
       $this->plaatje = $result['Plaatje'];
       $this->limiet = $result['Limiet'];
+    }
+    public function GetBestemmingInfo(){
+      $Bestemminginfo = array();
+      $Bestemminginfo = ['ID'=>$this->id, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->plaatje, 'Limiet'=>$this->limiet];
+      return $Bestemminginfo;
     }
 }
 

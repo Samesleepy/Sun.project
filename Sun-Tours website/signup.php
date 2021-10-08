@@ -1,8 +1,7 @@
 <?php include_once 'header.php' ?>
 
-<html>
+
    <head>
-      <title>Registreer</title>
       <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
    </head>
    <body>

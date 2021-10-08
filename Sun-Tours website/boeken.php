@@ -2,17 +2,29 @@
 include_once 'header.php';
 
 $id = $_GET['id'];
-// $db = $database->connection();
 
-// $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`,`Limiet` FROM `bestemming`WHERE `ID` = '".$id."'");
-// $stmt->execute();
-// $result = $stmt->fetch();
-// $Bestemmingen = $result;
-// print_r($Bestemmingen);
+$db = $database->connection();
+$stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
+AVG(`Score`), SUM(`Personen`)
+FROM `bestemming`
+LEFT JOIN review
+ON bestemming.ID = review.BestemmingID
+LEFT JOIN boeking
+ON bestemming.ID = boeking.BoekingID
+WHERE bestemming.`ID` = '".$id."'
+GROUP BY bestemming.ID;");
+$stmt->execute();
+$result = $stmt->fetch();
+// print_r($result);
+$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Plaatje'], $result['Limiet'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
+// print_r($Bestemming);
 // print_r($result);
 // print_r($stmt);
-$Bestemming = GetBestemmingFromId($database, $id);
-print_r ($Bestemming);
+//$Bestemming = GetBestemmingFromId($database, $id);
+//print_r ($Bestemming);
+$Bestemming[] = GetBestemmingInfo();
+print_r($Bestemming);
+
 
 $prijs = false;
 if(isset($_POST['personen'])){
@@ -21,10 +33,10 @@ if(isset($_POST['personen'])){
     $prijs = false;
 }
 if($prijs){
-    $prijs = intval($prijs) * intval($Bestemmingen['Prijs']);
+    $prijs = intval($prijs) * intval($Bestemming['Prijs']);
     ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php echo Boeken(); ?>;window.location.href = "home.php"}</script><?php
 }
-$prijspp = $Bestemmingen['Prijs'];
+$prijspp = $Bestemming['Prijs'];
 ?>
 <script>
 
@@ -47,14 +59,14 @@ function updatePrijs(){
 
 <?php
 function Boeken() {
-    global $Bestemmingen;
+    global $Bestemming;
     global $db;
     global $prijs;
 
-    $BestemmingID = $Bestemmingen['ID'];
+    $BestemmingID = $Bestemming['ID'];
     $KlantID = $_SESSION['KlantID'];
-    $Land = $Bestemmingen['Land'];
-    $Plaats = $Bestemmingen['Plaats'];
+    $Land = $Bestemming['Land'];
+    $Plaats = $Bestemming['Plaats'];
     $Personen = $_POST['personen'];
     $Vertrekdatum = $_POST['vertrekdatum'];
     $Duur = $_POST['duur'];
@@ -72,7 +84,7 @@ function Boeken() {
 <body>
     <?php if(isset($_SESSION['Voornaam'])){ ?>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
-        <h2><?php echo $Bestemmingen['Plaats'].",".$Bestemmingen['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
+        <h2><?php echo $Bestemming['Plaats'].",".$Bestemming['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
 
         <div class="form-group input-group">
             <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
@@ -83,7 +95,7 @@ function Boeken() {
         <div class="form-group input-group">
             <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
         </div>
-        <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemmingen['Prijs'] . " "; ?></span><label>p.p.</label><br>
+        <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemming['Prijs'] . " "; ?></span><label>p.p.</label><br>
 
         <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
 
@@ -92,7 +104,7 @@ function Boeken() {
     <?php ;}else{ ?>
     <p class="text-danger">Log eerst in</p>
     <?php ;} ?>
-    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
+    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemming['Plaatje']).'"/>';?></content>
     <?php //include_once 'review.php'; ?>
     <?php //include_once 'alternatieven.php'; ?>
 </body>

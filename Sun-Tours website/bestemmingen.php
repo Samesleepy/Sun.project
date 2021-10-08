@@ -16,7 +16,6 @@ foreach ($Bestemmingresult as $bestemming) {
   $Bestemmingen[] = new Bestemming($bestemming['ID'], $bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Limiet'], $bestemming['Plaatje'], $bestemming['AVG(`Score`)'], $bestemming['SUM(`Personen`)']);
  }
 
-
 ?>
 <body>
 <?php
