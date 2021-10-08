@@ -87,37 +87,33 @@
             </form>
 
             <?php
-            $db = $database->connection();
 
             if(isset($_POST['submit'])) {
 
-               $voornaam = $_POST['voornaam'];
-               $achternaam = $_POST['achternaam'];
-               $tussenvoegsel = $_POST['tussenvoegsel'];
-               $email = $_POST['email'];
-               $telefoonnummer = $_POST['telefoonnummer'];
-               $wachtwoord = $_POST['wachtwoord'];
-               $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
-               $land = $_POST['land'];
-               $woonplaats = $_POST['woonplaats'];
-               $postcode = $_POST['postcode'];
-               $straatnaam = $_POST['straatnaam'];
-               $huisnummer = $_POST['huisnummer'];
-               
-               if(CheckDuplicateEmail($email, $db)){
-                  $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-                  $stmt= $db->prepare($sql);
-                  $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
+               $User = new User($_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
+               $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),$_POST['land'],$_POST['woonplaats'],$_POST['postcode'],$_POST['straatnaam'],
+               $_POST['huisnummer']);
 
-                  // if(mysqli_query($db, $sql)){
-                  //   echo "Account geregistreerd!";
-                  // }else{
-                  //   echo "ERROR"; //$sql. " . mysqli_error($db);
-                  // }
-               }else{
-                  echo "Email is al in gebruik!";
-               }
-            }
+               $User->Signup($database);
+             }
+
+
+
+
+            //    if(CheckDuplicateEmail($email, $db)){
+            //       $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            //       $stmt= $db->prepare($sql);
+            //       $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
+            //
+            //       // if(mysqli_query($db, $sql)){
+            //       //   echo "Account geregistreerd!";
+            //       // }else{
+            //       //   echo "ERROR"; //$sql. " . mysqli_error($db);
+            //       // }
+            //    }else{
+            //       echo "Email is al in gebruik!";
+            //    }
+            // }
             ?>
          </div>
       </div>

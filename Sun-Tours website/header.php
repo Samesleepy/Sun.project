@@ -1,9 +1,18 @@
 <?php
-session_start();
+
 include_once('db.php');
 include_once('functionss.php');
+include_once('b.php');
+include_once('u.php');
 
+session_start();
 $database = new Database();
+if(isset($_SESSION['user'])){
+  $User = $_SESSION['user'];
+}else{
+  $User = new User();
+}
+//$_SESSION['User'] = serialize($User);
 
 if(isset($_POST['logout'])){
    session_destroy();
@@ -22,6 +31,7 @@ if(isset($_POST['logout'])){
    <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
          <div class="container">
+
             <a href="home.php"><img src="Pics\Sun-Tours-logo.png" class="sun" alt="Suntours"></a>
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
@@ -32,7 +42,7 @@ if(isset($_POST['logout'])){
                      <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
+                     <a class="nav-link active" aria-current="page" href="b.php">Covid-19 Measures</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
@@ -48,10 +58,10 @@ if(isset($_POST['logout'])){
                </ul>
 
                <ul class="navbar-nav ms-auto">
-               <?php if(isset($_SESSION['Voornaam'])){ ?>
+               <?php if(isset($_SESSION['user'])){ ?>
                      <li class="nav-item" style="padding-right: 5px;">
                         <form method="post">
-                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out <i class="fas fa-sign-out-alt"></i></button>
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out</button>
                         </form>
                      </li>
                   <?php }else{ ?>
@@ -65,19 +75,18 @@ if(isset($_POST['logout'])){
                   <li class="nav-item">
                      <a class="navbar-text" aria-current="page">
                         <?php
-                        if(isset($_SESSION['Voornaam'])){
+                        if(isset($_SESSION['user'])){
                            echo "<div class='dropdown'>";
-                           echo    "<a class='btn btn-primary dropdown-toggle user-btn' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
-                           echo $_SESSION['Voornaam'] . " " ;
-                           if($_SESSION['Tussenvoegsel'] != ""){
-                              echo " " . $_SESSION['Tussenvoegsel'] . " ";
+                           echo    "<a class='btn btn-primary dropdown-toggle' style='' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
+                           echo $User->voornaam . " " ;
+                           if($User->tussenvoegsel != ""){
+                              echo " " . $User->tussenvoegsel . " ";
                            }
-                           echo $_SESSION['Achternaam'];
-                           echo " <i class='fas fa-user'></i> ";
+                           echo $User->achternaam;
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                            echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
-                           if(/*$_SESSION['Role'] == 'Admin' ||*/ $_SESSION['Voornaam'] == 'Joey'){
+                           if(/*$_SESSION['Role'] == 'Admin' ||*/ $User->voornaam == 'Joey'){
                               echo     "<li><a class='dropdown-item' href='adminpage.php'>Admin page</a></li>";
                            }
                            echo        "<li><a class='dropdown-item' href='boekingen.php'>Bookings</a></li>";

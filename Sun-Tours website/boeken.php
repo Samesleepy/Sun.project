@@ -1,20 +1,18 @@
 <?php
 include_once 'header.php';
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-}else{
-    header("Location: home.php");
-}
-$db = $database->connection();
 
-$stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`,`Limiet` FROM `bestemming`WHERE `ID` = '".$id."'");
-$stmt->execute();
-$result = $stmt->fetch();
-$Bestemmingen = $result;
+$id = $_GET['id'];
+// $db = $database->connection();
 
-$score = GetScore($Bestemmingen['ID'],$db);
-
-$countlimit = CheckLimit($Bestemmingen['Plaats'],$db);
+// $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`,`Limiet` FROM `bestemming`WHERE `ID` = '".$id."'");
+// $stmt->execute();
+// $result = $stmt->fetch();
+// $Bestemmingen = $result;
+// print_r($Bestemmingen);
+// print_r($result);
+// print_r($stmt);
+$Bestemming = GetBestemmingFromId($database, $id);
+print_r ($Bestemming);
 
 $prijs = false;
 if(isset($_POST['personen'])){
@@ -53,16 +51,16 @@ function Boeken() {
     global $db;
     global $prijs;
 
+    $BestemmingID = $Bestemmingen['ID'];
     $KlantID = $_SESSION['KlantID'];
     $Land = $Bestemmingen['Land'];
     $Plaats = $Bestemmingen['Plaats'];
     $Personen = $_POST['personen'];
     $Vertrekdatum = $_POST['vertrekdatum'];
-    $Boekingsdatum = date("Y-m-d");
     $Duur = $_POST['duur'];
 
-    $query = $db->prepare("INSERT INTO `boeking` (`KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Boekingsdatum`, `Duur`)
-    VALUES ('$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Boekingsdatum','$Duur')");
+    $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
+    VALUES ('$BestemmingID','$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
     $query->execute();
 }
 ?>
@@ -95,8 +93,8 @@ function Boeken() {
     <p class="text-danger">Log eerst in</p>
     <?php ;} ?>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
-    <?php include_once 'review.php'; ?>
-    <?php include_once 'alternatieven.php'; ?>
+    <?php //include_once 'review.php'; ?>
+    <?php //include_once 'alternatieven.php'; ?>
 </body>
 </html>
 <?php include 'footer.php';?>

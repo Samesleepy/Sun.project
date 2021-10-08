@@ -17,19 +17,19 @@
       ?><div id="faqpage">
       <h1>Welkom op de FAQ!</h1>
         <h3>hier kunt u antwoorden voor veelgestelde vragen vinden.</h3><?php
-        foreach ($FAQs as $FAQ) {
+       foreach ($FAQs as $FAQ) {
           ?>
           <div id="faq" class="card border-primary" >
-            <div class="card-body">
-              <h2 class="card-header text-white bg-primary"><?php echo $FAQ['Vraag-NL']?></h5>
-              <h4 class="card-text"><?php echo $FAQ['Antwoord-NL']?></h4>
-            </div>
+             <div class="card-body">
+                <h2 class="card-header text-white bg-primary"><?php echo $FAQ['Vraag-NL']?></h5>
+                <h4 class="card-text"><?php echo $FAQ['Antwoord-NL']?></h4>
+             </div>
           </div>
-      </a>
+       </a>
     <?php } ?>
     <h2>Is uw vraag nog niet beantwoord?</h2>
       <form action='contact.php'>
-        <button type='submit' name='contact' class='btn btn-primary btn-block'>Terug naar contact</button>
+         <button type='submit' name='contact' class='btn btn-primary btn-block'>Terug naar contact</button>
       </form>
     </div>
   </body>

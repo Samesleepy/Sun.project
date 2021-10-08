@@ -54,8 +54,6 @@ if(isset($_POST['submit'])){
           <p class="text-danger">Log eerst in</p>
           <?PHP ;} ?>
         </div>
-        <P>Tel: 06 12345678</P>
-        <p>Locatie: Woonstraat 11, Weert</p>
       </div>
     </div>
   </body>

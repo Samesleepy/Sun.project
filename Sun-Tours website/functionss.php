@@ -26,17 +26,17 @@ function CheckLimit($BestemmingPlaats,$conn){
 
   return $countlimit;
 }
-
-function CheckDuplicateEmail($email, $db){
-  $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
-  $result = $db->query($sql);
-  $count = $result->fetchColumn();
-
-  if($count != 0){
-    return False;
-  }else{
-    return True;
-  }
-}
+//
+// function CheckDuplicateEmail($email, $db){
+//   $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
+//   $result = $db->query($sql);
+//   $count = $result->fetchColumn();
+//
+//   if($count != 0){
+//     return False;
+//   }else{
+//     return True;
+//   }
+//}
 
 ?>

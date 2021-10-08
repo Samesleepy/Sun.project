@@ -1,4 +1,4 @@
-  #bestemmingen,#homepage{
+#bestemmingen,#homepage{
   width: 18.9055rem;
   float: left;
   margin-right: 10px;
@@ -54,7 +54,4 @@
 #faqpage{
   margin-left:15% !important;
   margin-right:15% !important;
-}
-.user-btn:hover{
-  background-color: #0150c7 !important;
 }
