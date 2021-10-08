@@ -13,7 +13,6 @@ $result = $stmt->fetch();
 $Bestemmingen = $result;
 
 $score = GetScore($Bestemmingen['ID'],$db);
-
 $countlimit = CheckLimit($Bestemmingen['Plaats'],$db);
 
 $prijs = false;
@@ -66,37 +65,30 @@ function Boeken() {
     $query->execute();
 }
 ?>
-<html>
-<head>
-    <link  rel="stylesheet" href="test.css" type ="text/css"/>
-    <title>Boeken</title>
-</head>
-<body>
-    <?php if(isset($_SESSION['Voornaam'])){ ?>
-    <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
-        <h2><?php echo $Bestemmingen['Plaats'].",".$Bestemmingen['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
+<img src="data:image/png;base64,<?php echo base64_encode($Bestemmingen['Plaatje'])?>"/>
+<h1><?php echo $Bestemmingen['Plaats'].",".$Bestemmingen['Land']; ?></h1>
 
-        <div class="form-group input-group">
-            <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
-        </div>
-        <div class="form-group input-group">
-            <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
-        </div>
-        <div class="form-group input-group">
-            <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
-        </div>
-        <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemmingen['Prijs'] . " "; ?></span><label>p.p.</label><br>
+<?php if(isset($_SESSION['Voornaam'])){ ?>
+<form action="boeken.php?id=<?php echo $id; ?>" method="post">
+    <h2><?php if(isset($score)){echo " ",round($score,2);} ?></h2>
 
-        <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
+    <div class="form-group input-group">
+        <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
+    </div>
+    <div class="form-group input-group">
+        <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
+    </div>
+    <div class="form-group input-group">
+        <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
+    </div>
+    <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemmingen['Prijs'] . " "; ?></span><label>p.p.</label><br>
 
-        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block" onclick="Boeken()">
-    </form>
-    <?php ;}else{ ?>
-    <p class="text-danger">Log eerst in</p>
-    <?php ;} ?>
-    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemmingen['Plaatje']).'"/>';?></content>
-    <?php include_once 'review.php'; ?>
-    <?php include_once 'alternatieven.php'; ?>
-</body>
-</html>
-<?php include 'footer.php';?>
+    <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
+
+    <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block" onclick="Boeken()">
+</form>
+<?php ;}else{ echo "<p class='text-danger'>Log eerst in</p>";} 
+include_once 'review.php';
+include_once 'alternatieven.php';
+include 'footer.php';
+?>
