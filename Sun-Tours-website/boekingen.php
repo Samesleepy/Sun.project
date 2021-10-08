@@ -7,6 +7,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <body>
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="text-center" style="margin-bottom: 20px;"><h1>Eerdere boekingen</h1></div>
             <?php
             if(!$Boekingen == ""){
                 foreach ($Boekingen as $key => $Boeking) {
