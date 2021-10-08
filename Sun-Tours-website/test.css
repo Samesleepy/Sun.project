@@ -42,11 +42,7 @@
   height: 200px;
   object-fit: cover;
 }
-#boekform {
-  height: 100%;
-  background-color: lightblue;
-  float: left;
-}
+
 #faq{
   margin-bottom: 10px !important;
   margin-top: 10px !important;

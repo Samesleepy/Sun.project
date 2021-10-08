@@ -22,6 +22,10 @@ class Database
         return $this->conn;
     }
 
+    public function closeConnection(){
+        $this->conn = null;
+    }
+
     public function Encrypt($text,$key){
         $encryption_key = base64_decode($key);
         $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
