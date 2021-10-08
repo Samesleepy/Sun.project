@@ -2,8 +2,9 @@
 
 include_once('db.php');
 include_once('functionss.php');
-include_once('b.php');
-include_once('u.php');
+include_once('bestemmingClass.php');
+include_once('userClass.php');
+include_once('boekingClass.php');
 
 session_start();
 $database = new Database();
