@@ -1,5 +1,6 @@
 <?php
 include_once 'header.php';
+
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 }else{
@@ -18,21 +19,10 @@ WHERE bestemming.`ID` = '".$id."'
 GROUP BY bestemming.ID;");
 $stmt->execute();
 $result = $stmt->fetch();
-// print_r($result);
-$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Plaatje'], $result['Limiet'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
-//print_r($Bestemming);
-// print_r($result);
-// print_r($stmt);
-//$Bestemming = GetBestemmingFromId($database, $id);
-//print_r ($Bestemming);
+$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Limiet'], $result['Plaatje'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
 
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
 $Userinfo = $User->GetUserInfo();
-
-
-
-//print_r($Bestemming);
-
 
 $prijs = false;
 if(isset($_POST['personen'])){
@@ -47,34 +37,30 @@ if($prijs){
 $prijspp = $Bestemminginfo['Prijs'];
 ?>
 <script>
+    function updatePrijs(){
+        personen = document.getElementById('personenveld').value;
+        dagen = document.getElementById('dagenveld').value;
+        prijspp_str = document.getElementById('prijsPP').innerHTML;
 
-function updatePrijs(){
-    personen = document.getElementById('personenveld').value;
-    dagen = document.getElementById('dagenveld').value;
-    prijspp_str = document.getElementById('prijsPP').innerHTML;
-
-    // prijspp = prijspp_str.substr(1);
-    prijspp = prijspp_str.substr(1,prijspp_str.length-5);
-    prijsint = parseInt(prijspp);
-    if(personen==""||dagen==""){
-        document.getElementById('totaal').innerHTML = "€0.00";
-    }else{
-        result = personen * dagen * prijsint;
-        document.getElementById('totaal').innerHTML = "€" + result + ".00";
+        prijspp = prijspp_str.substr(1,prijspp_str.length-5);
+        prijsint = parseInt(prijspp);
+        if(personen==""||dagen==""){
+            document.getElementById('totaal').innerHTML = "€0.00";
+        }else{
+            result = personen * dagen * prijsint;
+            document.getElementById('totaal').innerHTML = "€" + result + ".00";
+        }
     }
-}
 </script>
-
-<html>
-<head>
-    <link rel="stylesheet" href="test.css" type ="text/css"/>
-    <title>Boeken</title>
-</head>
 <body>
-    <?php if(isset($_SESSION['user'])){ ?>
+    <?php
+    print_r($Bestemminginfo);
+    die();
+    
+    if(isset($_SESSION['user'])){ ?>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
         <h2><?php echo $Bestemminginfo['Plaats'].",".$Bestemminginfo['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
-
+        <?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';?>
         <div class="form-group input-group">
             <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
         </div>
@@ -93,21 +79,16 @@ function updatePrijs(){
     <?php ;}else{ ?>
     <p class="text-danger">Log eerst in</p>
     <?php ;} ?>
-    <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';?></content>
-    <?php //include_once 'review.php';
-   //include_once 'alternatieven.php';
+  
+    <?php 
+    include_once 'review.php';
+    include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
-    $boekingsdatum = Date("Y-m-d");
-    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
-    $Boeking->Boeken($database);
-    // $Boeking->Boeken($database, $Bestemminginfo['ID'],$Userinfo['klantID'], $Bestemminginfo['Land'],
-    // $Bestemminginfo['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
-    // {
-    //     $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`) VALUES('$BestemmingID','$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
-    //     $query->execute();
-    // }
-  }
-     ?>
+        $boekingsdatum = Date("Y-m-d");
+        $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
+        $Boeking->Boeken($database);
+    }
+    ?>
 </body>
-</html>
+
 <?php include 'footer.php';?>
