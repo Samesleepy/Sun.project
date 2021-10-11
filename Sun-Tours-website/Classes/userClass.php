@@ -17,33 +17,32 @@ class User
   private $straatnaam;
   private $huisnummer;
 
-  function __construct($voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer)
-  //function __construct()
+  //function __construct($voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer)
+  function __construct()
   {
-     //$this->klantID = 0;
-    // $this->voornaam = "";
-    // $this->achternaam = "";
-    // $this->tussenvoegsel = "";
-    // $this->email = "";
-    // $this->telefoonnummer = 0;
-    // $this->land = "";
-    // $this->woonplaats = "";
-    // $this->postcode = "";
-    // $this->straatnaam = "";
-    // $this->huisnummer = "";
+    $this->voornaam = "";
+    $this->achternaam = "";
+    $this->tussenvoegsel = "";
+    $this->email = "";
+    $this->telefoonnummer = 0;
+    $this->land = "";
+    $this->woonplaats = "";
+    $this->postcode = "";
+    $this->straatnaam = "";
+    $this->huisnummer = "";
 
     //$this->klantID = $klantID;
-    $this->voornaam = $voornaam;
-    $this->achternaam = $achternaam;
-    $this->tussenvoegsel = $tussenvoegsel;
-    $this->email = $email;
-    $this->telefoonnummer = $telefoonnummer;
-    $this->hashed_wachtwoord = $hashed_wachtwoord;
-    $this->land = $land;
-    $this->woonplaats = $woonplaats;
-    $this->postcode = $postcode;
-    $this->straatnaam = $straatnaam;
-    $this->huisnummer = $huisnummer;
+    // $this->voornaam = $voornaam;
+    // $this->achternaam = $achternaam;
+    // $this->tussenvoegsel = $tussenvoegsel;
+    // $this->email = $email;
+    // $this->telefoonnummer = $telefoonnummer;
+    // $this->hashed_wachtwoord = $hashed_wachtwoord;
+    // $this->land = $land;
+    // $this->woonplaats = $woonplaats;
+    // $this->postcode = $postcode;
+    // $this->straatnaam = $straatnaam;
+    // $this->huisnummer = $huisnummer;
   }
 
   private function CheckCredentials($database,$email,$wachtwoord){
@@ -87,13 +86,14 @@ class User
     }
   }
 
-  public function Signup($database){//hier meegeven
+  //public function Signup($database){//hier meegeven
+  public function Signup($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){
     try {
       $db = $database->connection();
       $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
       $stmt= $db->prepare($sql);
-      $success = $stmt->execute([$this->voornaam, $this->achternaam, $this->tussenvoegsel, $this->email,
-      $this->hashed_wachtwoord, $this->telefoonnummer,$this->land , $this->woonplaats, $this->postcode, $this->straatnaam, $this->huisnummer]);
+      $success = $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email,
+      $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
     } catch (PDOException $e) {
       if($e->errorInfo[1] == 1062){ // duplicate entry
         echo "Email al in gebruik";

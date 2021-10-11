@@ -21,7 +21,7 @@ class Boeking
     $this->prijs = $prijs;
     $this->personen = $personen;
     $this->vertrekdatum = $vertrekdatum;
-    $this->boekingsdatum = $boekingdatum;
+    $this->boekingsdatum = $boekingsdatum;
     $this->duur = $duur;
   }
 
