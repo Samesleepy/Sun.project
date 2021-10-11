@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 }else{
     header("Location: home.php");
 }
-
+    
 $db = $database->connection();
 $stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
 AVG(`Score`), SUM(`Personen`)
