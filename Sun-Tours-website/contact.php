@@ -15,51 +15,52 @@ if(isset($_POST['submit'])){
 }
 
 ?>
-  <head>
-    <script>
-      function updateSoort(){
-        document.getElementById("opmerking").placeholder = document.getElementById("soort").value;
-      }
-    </script>
-  </head>
-  <body>
-    <a class="nav-link active" aria-current="page" href="FAQ.php">FAQ</a>
-    <div class="card bg-light">
-      <div class="card-body mx-auto" style="max-width: 800px;min-width: 700px;">
-        <div class="jumbotron text-center">
-          <h1>Neem contact op<h1>
-          <?php if(isset($_SESSION['Voornaam'])){ ?>
-          <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-            <div class="input-group mb-3">
-              <select id="soort" class="form-select form-select-sm" id="inputGroupSelect01" name="soort" onchange="updateSoort()" required>
-                <option value="" disabled selected hidden>Soort: </option>
-                <option value="Klacht">Klacht</option>
-                <option value="Vraag">Vraag</option>
-                <option value="Feedback">Feedback</option>
-              </select>
-            </div>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" name="onderwerp" placeholder="Onderwerp" required>
-            </div>
-            <div class="input-group mb-4">
-              <textarea id="opmerking" class="form-control" name="opmerking" rows="5" placeholder="Opmerking" required></textarea>
-            </div>
-            <div class="form-group">
-              <div class="text-center">
-                <button id="contactButton" type="submit" name="submit" class="btn btn-primary btn-block w-100">Verstuur</button>
-              </div>
-            </div>
-          </form>
-          <?php ;}else{ ?>
-          <p class="text-danger">Log eerst in</p>
-          <?PHP ;} ?>
-        </div>
-        <P>Tel: 06 12345678</P>
-        <p>Locatie: Woonstraat 11, Weert</p>
+<body>
+
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Neem contact op</h1>
+        <p class="col-lg-10 fs-3">Mocht je contact willen opnemen met ons dan kan dat hier. Vul het formulier hiernaast in en verstuur je vraag</p>
+        <p class="col-lg-10 fs-5">Tel: 06 12345678</p>
+        <p class="col-lg-10 fs-5">Locatie: Woonstraat 11, Weert</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <?php if(isset($_SESSION['user'])){ ?>
+        <form class="p-4 p-md-5 border rounded-3 bg-light" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+          <div class="form-floating mb-3">
+            <select id="soort" class="form-select form-select-sm" name="soort" onchange="updateSoort()" required>
+              <option value="" disabled selected hidden>Soort: </option>
+              <option value="Klacht">Klacht</option>
+              <option value="Vraag">Vraag</option>
+              <option value="Feedback">Feedback</option>
+            </select>
+            <label for="floatingInput">Soort vraag</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="onderwerp" placeholder="Onderwerp" required>
+            <label for="onderwerp">Onderwerp</label>
+          </div>
+          <div class="form-floating mb-3" >
+            <textarea  style="height: auto !important" class="form-control" name="opmerking" rows="5" required></textarea>
+            <label id="label" for="onderwerp">Soort</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Verstuur</button>
+          <hr class="my-4">
+          <small class="text-muted">Kijk hier of je vraag er al bij staat. <a class="active" aria-current="page" href="FAQ.php">FAQ</a></small>
+        </form>
+          <?php }else{ ?>
+            <p class="display-4 fw-2 text-danger lh-2 mb-3">log eerst in</p>
+          <?php } ?>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+  <script>
+    function updateSoort(){
+      document.getElementById("label").innerHTML = document.getElementById("soort").value;
+    }
+  </script>
+</body>
 
 <?php
 include_once 'footer.php';

@@ -4,7 +4,7 @@ include_once 'header.php';
 $db = $database->connection();
 if(isset($_POST['submit'])) {
 
-    $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$_SESSION['KlantID']."'");
+    $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$User->GetUserInfo()['klantID']."'");
     $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $passOud = $_POST['passOud'];
