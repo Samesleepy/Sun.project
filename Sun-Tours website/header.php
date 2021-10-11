@@ -1,10 +1,9 @@
 <?php
 
-include_once('db.php');
-include_once('functionss.php');
-include_once('bestemmingClass.php');
-include_once('userClass.php');
-include_once('boekingClass.php');
+include_once('Classes/db.php');
+include_once('Classes/bestemmingClass.php');
+include_once('Classes/userClass.php');
+include_once('Classes/boekingClass.php');
 
 session_start();
 $database = new Database();
