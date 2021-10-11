@@ -21,6 +21,7 @@ class Boeking
     $this->prijs = $prijs;
     $this->personen = $personen;
     $this->vertrekdatum = $vertrekdatum;
+    $this->boekingsdatum = $boekingdatum;
     $this->duur = $duur;
   }
 
@@ -31,9 +32,9 @@ class Boeking
 
   function Boeken($database){
     $db = $database->connection();
-    $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`)
+    $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`,`Boekingsdatum`, `Duur`)
     VALUES ('$this->bestemmingID','$this->klantID','$this->land',
-      '$this->plaats','$this->prijs','$this->personen','$this->vertrekdatum','$this->duur')");
+      '$this->plaats','$this->prijs','$this->personen','$this->vertrekdatum','$this->boekingsdatum','$this->duur')");
     $query->execute();
   }
 }

@@ -10,7 +10,8 @@ $database = new Database();
 if(isset($_SESSION['user'])){
    $User = $_SESSION['user'];
 }else{
-   $User = new User();
+   $User = new User("", "", "", "", 0, "", "", "", "", "", 0);
+   //$User = new User();
 }
 
 if(isset($_POST['logout'])){

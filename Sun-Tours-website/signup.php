@@ -88,12 +88,14 @@
             <?php
 
             if(isset($_POST['submit'])) {
-
-               $User = new User($_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
-               $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),$_POST['land'],$_POST['woonplaats'],$_POST['postcode'],$_POST['straatnaam'],
+               $Userr = new User($_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
+               $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),
+               $_POST['land'],$_POST['woonplaats'],$_POST['postcode'], $_POST['straatnaam'],
                $_POST['huisnummer']);
 
-               $User->Signup($database);
+               $Userr->Signup($database);
+
+
              }
 
 
