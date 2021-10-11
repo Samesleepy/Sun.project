@@ -1,7 +1,10 @@
 <?php
 include_once 'header.php';
-
-$id = $_GET['id'];
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+}else{
+    header("Location: home.php");
+}
 
 $db = $database->connection();
 $stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
@@ -24,6 +27,7 @@ $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Ty
 //print_r ($Bestemming);
 
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
+$Userinfo = $User->GetUserInfo();
 //print_r($Bestemming);
 
 
@@ -34,7 +38,7 @@ if(isset($_POST['personen'])){
     $prijs = false;
 }
 if($prijs){
-    $prijs = intval($prijs) * intval($Bestemming['Prijs']);
+    $prijs = intval($prijs) * intval($Bestemminginfo['Prijs']);
     ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php echo Boeken(); ?>;window.location.href = "home.php"}</script><?php
 }
 $prijspp = $Bestemminginfo['Prijs'];
@@ -58,15 +62,6 @@ function updatePrijs(){
 }
 </script>
 
-<?php
-$Boeking = new Boeking;
-$Boeken->Boeken($Bestemming['ID'], $User->KlantID, $Bestemming['Land'],
-$Bestemming['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
-{
-    $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`) VALUES('$BestemmingID','$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
-    $query->execute();
-}
-?>
 <html>
 <head>
     <link rel="stylesheet" href="test.css" type ="text/css"/>
@@ -90,14 +85,24 @@ $Bestemming['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur'
 
         <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
 
-        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block" onclick="Boeken()">
+        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
     </form>
     <?php ;}else{ ?>
     <p class="text-danger">Log eerst in</p>
     <?php ;} ?>
     <content><?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';?></content>
-    <?php //include_once 'review.php'; ?>
-    <?php //include_once 'alternatieven.php'; ?>
+    <?php //include_once 'review.php';
+   //include_once 'alternatieven.php';
+    if(isset($_POST['submit'])){
+    $Boeking = new Boeking;
+    $Boeking->Boeken($database, $Bestemminginfo['ID'],$Userinfo['klantID'], $Bestemminginfo['Land'],
+    $Bestemminginfo['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
+    // {
+    //     $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`) VALUES('$BestemmingID','$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
+    //     $query->execute();
+    // }
+  }
+     ?>
 </body>
 </html>
 <?php include 'footer.php';?>

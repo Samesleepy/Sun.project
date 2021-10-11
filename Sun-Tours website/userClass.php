@@ -4,7 +4,7 @@
 class User
 {
 //$wachtwoord = $_POST['wachtwoord'];
-
+  private $klantID;
   public $voornaam;
   public $achternaam;
   public $tussenvoegsel;
@@ -20,6 +20,7 @@ class User
   //function __construct($voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer)
   function __construct()
   {
+    $this->klantID = 0;
     $this->voornaam = "";
     $this->achternaam = "";
     $this->tussenvoegsel = "";
@@ -56,6 +57,7 @@ class User
   public function Login($database,$email,$wachtwoord){
     $result = $this->CheckCredentials($database,$email,$wachtwoord);
     if($result != "Fout"){
+      $this->klantID = $result['KlantID'];
       $this->voornaam = $result['Voornaam'];
       $this->achternaam = $result['Achternaam'];
       $this->tussenvoegsel = $result['Tussenvoegsel'];
@@ -91,6 +93,13 @@ class User
       }
     }
     $db = NULL;
+  }
+  public function GetUserInfo(){
+    $Userinfo = array();
+    $Userinfo = ['klantID'=>$this->klantID, 'Voornaam'=>$this->voornaam, 'Achternaam'=>$this->achternaam, 'Tussenvoegsel'=>$this->tussenvoegsel, 'Email'=>$this->email, 'Telefoonnummer'=>$this->telefoonnummer,
+    'Land'=>$this->land, 'Woonplaats'=>$this->woonplaats,'Postcode'=>$this->postcode,
+    'Straatnaam'=>$this->straatnaam, 'Huisnummer'=>$this->huisnummer];
+    return $Userinfo;
   }
 
 }
