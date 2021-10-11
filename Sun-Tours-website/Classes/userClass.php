@@ -77,6 +77,7 @@ class User
       $this->telefoonnummer = $result['Telefoonnummer'];
       $this->land = $result['Land'];
       $this->woonplaats = $result['Woonplaats'];
+      $this->postcode = $result['Postcode'];
       $this->straatnaam = $result['Straatnaam'];
       $this->huisnummer = $result['Huisnummer'];
 
@@ -92,7 +93,7 @@ class User
       $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
       $stmt= $db->prepare($sql);
       $success = $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email,
-      $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
+      $hashed_wachtwoord, $telefoonnummer, $land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
     } catch (PDOException $e) {
       if($e->errorInfo[1] == 1062){ // duplicate entry
         echo "Email al in gebruik";
@@ -106,21 +107,8 @@ class User
   }
 
   public function UpdateUserInfo($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){
-        //$Userinfo = $this->GetUserInfo();
         $db = $database->connection();
 
-        $klantid = $Userinfo['KlantID'];
-        // $voornaam = $_POST['voornaam'];
-        // $achternaam = $_POST['achternaam'];
-        // $tussenvoegsel = $_POST['tussenvoegsel'];
-        // $email = $_POST['email'];
-        // $telefoonnummer = $_POST['telefoonnummer'];
-        // $land = $_POST['land'];
-        // $woonplaats = $_POST['woonplaats'];
-        // $postcode = $_POST['postcode'];
-        // $straatnaam = $_POST['straatnaam'];
-        // $huisnummer = $_POST['huisnummer'];
-//return bij update query
         $sql = "UPDATE `klant` SET
         `Voornaam` = '".$voornaam."',
         `Achternaam` = '".$achternaam."',
@@ -132,17 +120,26 @@ class User
         `Postcode` = '".$postcode."',
         `Straatnaam` = '".$straatnaam."',
         `Huisnummer` = '".$huisnummer."'
-        WHERE `KlantID` = '".$klantid."'";
+        WHERE `KlantID` = '".$this->klantID."'";
+        $stmt= $db->prepare($sql);
+        $stmt->execute();
 
-        $stmt = $db->query($sql);
+        $stmt = $db->prepare("SELECT * FROM `Klant` WHERE `KlantID`='".$this->klantID."'");
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $this->klantID = $result['KlantID'];
+        $this->voornaam = $result['Voornaam'];
+        $this->achternaam = $result['Achternaam'];
+        $this->tussenvoegsel = $result['Tussenvoegsel'];
+        $this->email = $result['Email'];
+        $this->telefoonnummer = $result['Telefoonnummer'];
+        $this->land = $result['Land'];
+        $this->woonplaats = $result['Woonplaats'];
+        $this->postcode = $result['Postcode'];
+        $this->straatnaam = $result['Straatnaam'];
+        $this->huisnummer = $result['Huisnummer'];
 
-        $stmtx = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
-        $stmtx->execute();
-        $resultinfo = $stmtx->fetch(PDO::FETCH_ASSOC);
-
-        foreach ($resultinfo as $key => $klantinfo) {
-            $_SESSION[$key] = $klantinfo;
-        }
+        $db = NULL;
   }
 
   public function GetUserInfo(){
