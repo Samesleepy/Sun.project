@@ -86,7 +86,6 @@ class User
     }
   }
 
-  //public function Signup($database){//hier meegeven
   public function Signup($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){
     try {
       $db = $database->connection();
@@ -103,21 +102,47 @@ class User
     }
     Header('Location: Login.php');
 
-   //
-   //
-   //  if(!$success){//error
-   //    if($stmt->errorCode()==1062){ // duplicate enrty
-   //     echo "Email is al in gebruik";
-   //    }else{
-   //     echo "Er is iets misgegaan";
-   //    }
-   // }else{
-   //    if($success){
-   //      //Header('Location: Login.php');
-   //      echo "success";
-   //    }
-   //  }
     $db = NULL;
+  }
+
+  public function UpdateUserInfo($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){
+        //$Userinfo = $this->GetUserInfo();
+        $db = $database->connection();
+
+        $klantid = $Userinfo['KlantID'];
+        // $voornaam = $_POST['voornaam'];
+        // $achternaam = $_POST['achternaam'];
+        // $tussenvoegsel = $_POST['tussenvoegsel'];
+        // $email = $_POST['email'];
+        // $telefoonnummer = $_POST['telefoonnummer'];
+        // $land = $_POST['land'];
+        // $woonplaats = $_POST['woonplaats'];
+        // $postcode = $_POST['postcode'];
+        // $straatnaam = $_POST['straatnaam'];
+        // $huisnummer = $_POST['huisnummer'];
+//return bij update query
+        $sql = "UPDATE `klant` SET
+        `Voornaam` = '".$voornaam."',
+        `Achternaam` = '".$achternaam."',
+        `Tussenvoegsel` = '".$tussenvoegsel."',
+        `Email` = '".$email."',
+        `Telefoonnummer` = '".$telefoonnummer."',
+        `Land` = '".$land."',
+        `Woonplaats` = '".$woonplaats."',
+        `Postcode` = '".$postcode."',
+        `Straatnaam` = '".$straatnaam."',
+        `Huisnummer` = '".$huisnummer."'
+        WHERE `KlantID` = '".$klantid."'";
+
+        $stmt = $db->query($sql);
+
+        $stmtx = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
+        $stmtx->execute();
+        $resultinfo = $stmtx->fetch(PDO::FETCH_ASSOC);
+
+        foreach ($resultinfo as $key => $klantinfo) {
+            $_SESSION[$key] = $klantinfo;
+        }
   }
 
   public function GetUserInfo(){
@@ -129,10 +154,4 @@ class User
   }
 
 }
-
-
-
-
-
-
  ?>
