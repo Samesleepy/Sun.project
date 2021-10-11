@@ -2,7 +2,7 @@
 include_once 'header.php';
 $db = $database->connection();
 
-$stmt = $db->query("SELECT `Land`,`Plaats`,`Personen`,`Vertrekdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$_SESSION['KlantID']."'");
+$stmt = $db->query("SELECT `Land`,`Plaats`,`Personen`,`Vertrekdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$User->GetUserInfo()['klantID']."'");
 $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <body>
