@@ -12,7 +12,6 @@ if(isset($_SESSION['user'])){
 }else{
    $User = new User();
 }
-//$_SESSION['User'] = serialize($User);
 
 if(isset($_POST['logout'])){
    session_destroy();
