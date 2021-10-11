@@ -20,7 +20,7 @@ $stmt->execute();
 $result = $stmt->fetch();
 // print_r($result);
 $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Plaatje'], $result['Limiet'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
-// print_r($Bestemming);
+//print_r($Bestemming);
 // print_r($result);
 // print_r($stmt);
 //$Bestemming = GetBestemmingFromId($database, $id);
@@ -39,7 +39,7 @@ if(isset($_POST['personen'])){
 }
 if($prijs){
     $prijs = intval($prijs) * intval($Bestemminginfo['Prijs']);
-    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php echo Boeken(); ?>;window.location.href = "home.php"}</script><?php
+    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "home.php"}</script><?php
 }
 $prijspp = $Bestemminginfo['Prijs'];
 ?>
@@ -94,9 +94,10 @@ function updatePrijs(){
     <?php //include_once 'review.php';
    //include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
-    $Boeking = new Boeking;
-    $Boeking->Boeken($database, $Bestemminginfo['ID'],$Userinfo['klantID'], $Bestemminginfo['Land'],
-    $Bestemminginfo['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
+    $Boeking = new Boeking($BestemmingInfo['ID'], $Userinfo['klantID'], $Bestemminginfo['land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
+    $Boeking->Boeken($database);
+    // $Boeking->Boeken($database, $Bestemminginfo['ID'],$Userinfo['klantID'], $Bestemminginfo['Land'],
+    // $Bestemminginfo['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
     // {
     //     $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`, `Duur`) VALUES('$BestemmingID','$KlantID','$Land','$Plaats','$prijs','$Personen','$Vertrekdatum','$Duur')");
     //     $query->execute();
