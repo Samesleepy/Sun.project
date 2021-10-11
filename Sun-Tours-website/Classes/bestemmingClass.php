@@ -12,7 +12,7 @@ class Bestemming
   private $score;
   private $boekingen;
 
-   function __construct($id, $land, $plaats, $type, $prijs, $limiet, $plaatje, $score, $boekingen)
+    function __construct($id, $land, $plaats, $type, $prijs, $limiet, $plaatje, $score, $boekingen)
   //function __construct($database,$id)
   {
     $this->id = $id;
@@ -65,7 +65,7 @@ class Bestemming
   // }
 
   public function ShowBestemming(){
-    echo '<a href="boeken.php?id='.$this->id.'">';
+    echo '<a href="boeken.php?id='.$this->id.'" style="text-decoration:none;color:black;">';
       echo '<div class="card" id="bestemmingen">';
         echo '<img src="data:image/png;base64,'.base64_encode($this->plaatje).'"/>';
           echo '<div class="card-body">';
@@ -73,10 +73,11 @@ class Bestemming
         //  echo '<a class="card-link">';
           //if($countlimit >= $this->limiet){echo "Volgeboekt";}else{ echo $this->prijs. " Euro p.p.";}
           //echo '</a>';
-         echo '<a class="card-link">';
-        if(isset($this->score)){echo "Score: " . $this->score;}
+          echo '<a class="card-link" style="text-decoration:none;color:black;">';
+          if(isset($this->score)){$this->score = substr($this->score, 0, -3);}
+        if(isset($this->score)){echo "Score: " . $this->score;}else{echo "Geen score";}
       echo '</a>';
-     echo '</div>';
+    echo '</div>';
   echo '</div>';
   echo '</a>';
   }
@@ -121,4 +122,4 @@ class Bestemming
 // }
 //////////////////////////////////////////////////////////
 
- ?>
+?>
