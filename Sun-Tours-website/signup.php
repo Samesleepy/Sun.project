@@ -8,6 +8,9 @@ if(isset($_POST['submit'])) {
   $_POST['land'],$_POST['woonplaats'],$_POST['postcode'], $_POST['straatnaam'],
   $_POST['huisnummer']);
 }
+if($_SESSION['user']=$User){
+             header("Location: home.php");
+           }
 ?>
 
    <head>
