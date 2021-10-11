@@ -41,7 +41,7 @@ if(isset($_POST['logout'])){
                      <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="b.php">Covid-19 Measures</a>
+                     <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
