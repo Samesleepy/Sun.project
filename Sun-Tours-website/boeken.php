@@ -98,7 +98,7 @@ function updatePrijs(){
    //include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
     $boekingsdatum = Date("Y-m-d");
-    $Boeking = new Boeking($BestemmingInfo['ID'], $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
+    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
     $Boeking->Boeken($database);
     // $Boeking->Boeken($database, $Bestemminginfo['ID'],$Userinfo['klantID'], $Bestemminginfo['Land'],
     // $Bestemminginfo['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
