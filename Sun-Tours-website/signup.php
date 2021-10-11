@@ -1,5 +1,14 @@
-<?php include_once 'header.php' ?>
+<?php
+include_once 'header.php';
 
+if(isset($_POST['submit'])) {
+  $User = new User;
+  $User->Signup($database,$_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
+  $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),
+  $_POST['land'],$_POST['woonplaats'],$_POST['postcode'], $_POST['straatnaam'],
+  $_POST['huisnummer']);
+}
+?>
 
    <head>
       <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
@@ -84,41 +93,6 @@
                </div>
                <p class="text-center">Heb je al een account?<a href="">Log In</a> </p>
             </form>
-
-            <?php
-
-            if(isset($_POST['submit'])) {
-               // $Userr = new User($_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
-               // $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),
-               // $_POST['land'],$_POST['woonplaats'],$_POST['postcode'], $_POST['straatnaam'],
-               // $_POST['huisnummer']);
-               $User = new User;
-               $User->Signup($database,$_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
-               $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),
-               $_POST['land'],$_POST['woonplaats'],$_POST['postcode'], $_POST['straatnaam'],
-               $_POST['huisnummer']);
-
-
-             }
-
-
-
-
-            //    if(CheckDuplicateEmail($email, $db)){
-            //       $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-            //       $stmt= $db->prepare($sql);
-            //       $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email, $hashed_wachtwoord, $telefoonnummer,$land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
-            //
-            //       // if(mysqli_query($db, $sql)){
-            //       //   echo "Account geregistreerd!";
-            //       // }else{
-            //       //   echo "ERROR"; //$sql. " . mysqli_error($db);
-            //       // }
-            //    }else{
-            //       echo "Email is al in gebruik!";
-            //    }
-            // }
-            ?>
          </div>
       </div>
    </body>

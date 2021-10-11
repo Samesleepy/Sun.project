@@ -101,6 +101,7 @@ class User
         echo "Er is iets misgegaan";
       }
     }
+    Header('Location: Login.php');
 
    //
    //
