@@ -4,7 +4,7 @@ include_once 'header.php';
 $db = $database->connection();
 
 if(isset($_POST['submit'])){
-  $KlantID = $_SESSION['KlantID'];
+  $KlantID = $User->GetUserInfo()['KlantID'];
   $Soort = $_POST['soort'];
   $Onderwerp = $_POST['onderwerp'];
   $Opmerking = $_POST['opmerking'];
@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
         <form class="p-4 p-md-5 border rounded-3 bg-light" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
           <div class="form-floating mb-3">
             <select id="soort" class="form-select form-select-sm" name="soort" onchange="updateSoort()" required>
-              <option value="" disabled selected hidden>Soort: </option>
+              <option value="" disabled selected hidden></option>
               <option value="Klacht">Klacht</option>
               <option value="Vraag">Vraag</option>
               <option value="Feedback">Feedback</option>
@@ -43,9 +43,9 @@ if(isset($_POST['submit'])){
           </div>
           <div class="form-floating mb-3" >
             <textarea  style="height: auto !important" class="form-control" name="opmerking" rows="5" required></textarea>
-            <label id="label" for="onderwerp">Soort</label>
+            <label id="label" for="onderwerp">Opmerking</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Verstuur</button>
+          <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit">Verstuur</button>
           <hr class="my-4">
           <small class="text-muted">Kijk hier of je vraag er al bij staat. <a class="active" aria-current="page" href="FAQ.php">FAQ</a></small>
         </form>
