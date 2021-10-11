@@ -5,7 +5,11 @@ include_once 'header.php';
 $Userinfo = $User->GetUserInfo();
 
 if(isset($_POST['submit'])) {
-  $User->UpdateUserInfo();
+  $User->UpdateUserInfo($database, $_POST['voornaam'],$_POST['achternaam'],$_POST['tussenvoegsel'],$_POST['email'],
+  $_POST['telefoonnummer'],$_POST['land'],$_POST['woonplaats'],$_POST['postcode'],
+  $_POST['straatnaam'],$_POST['huisnummer']);
+
+  header("Location: profiel.php");
 //
 //     $stmt = $db->query("SELECT KlantID FROM `Klant` WHERE `Email`='".$_SESSION['Email']."'");
 //     $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -46,6 +50,7 @@ if(isset($_POST['submit'])) {
 //     }
 //  }
 }
+
 ?>
 
 <body>
