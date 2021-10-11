@@ -28,6 +28,9 @@ $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Ty
 
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
 $Userinfo = $User->GetUserInfo();
+
+
+
 //print_r($Bestemming);
 
 
@@ -94,7 +97,8 @@ function updatePrijs(){
     <?php //include_once 'review.php';
    //include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
-    $Boeking = new Boeking($BestemmingInfo['ID'], $Userinfo['klantID'], $Bestemminginfo['land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);
+    $boekingsdatum = Date("Y-m-d");
+    $Boeking = new Boeking($BestemmingInfo['ID'], $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
     $Boeking->Boeken($database);
     // $Boeking->Boeken($database, $Bestemminginfo['ID'],$Userinfo['klantID'], $Bestemminginfo['Land'],
     // $Bestemminginfo['Plaats'], $_POST['personen'], $_POST['vertrekdatum'], $_POST['duur']);

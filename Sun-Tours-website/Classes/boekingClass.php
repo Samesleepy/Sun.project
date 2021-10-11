@@ -9,9 +9,10 @@ class Boeking
   private $prijs;
   private $personen;
   private $vertrekdatum;
+  private $boekingsdatum;
   private $duur;
 
-  function __construct($bestemmingID, $klantID, $land, $plaats, $prijs, $personen, $vertrekdatum, $duur)
+  function __construct($bestemmingID, $klantID, $land, $plaats, $prijs, $personen, $vertrekdatum, $boekingsdatum, $duur)
   {
     $this->bestemmingID = $bestemmingID;
     $this->klantID = $klantID;
