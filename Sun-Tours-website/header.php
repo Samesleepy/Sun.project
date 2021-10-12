@@ -8,6 +8,12 @@ include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
 include_once('Classes/contactClass.php');
 
+//for testing
+function dd($x){
+    print_r($x);
+    die();
+}
+
 session_start();
 $database = new Database();
 if(isset($_SESSION['user'])){
