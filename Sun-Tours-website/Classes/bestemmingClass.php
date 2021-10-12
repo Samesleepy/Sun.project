@@ -65,24 +65,23 @@ class Bestemming
   echo '</a>';
   }
 
-
-  public function GetBestemmingFromId($database,$id){
-    $db = $database->connection();
-    $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Limiet`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
-    $stmt->execute();
-    $result = $stmt->fetch();
-    $this->id = $result['ID'];
-    $this->land = $result['Land'];
-    $this->plaats = $result['Plaats'];
-    $this->type = $result['Type'];
-    $this->prijs = $result['Prijs'];
-    $this->limiet = $result['Limiet'];
-    $this->plaatje = $result['Plaatje'];
-  }
+  // public function GetBestemmingFromId($database,$id){
+  //   $db = $database->connection();
+  //   $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Limiet`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
+  //   $stmt->execute();
+  //   $result = $stmt->fetch();
+  //   $this->id = $result['ID'];
+  //   $this->land = $result['Land'];
+  //   $this->plaats = $result['Plaats'];
+  //   $this->type = $result['Type'];
+  //   $this->prijs = $result['Prijs'];
+  //   $this->limiet = $result['Limiet'];
+  //   $this->plaatje = $result['Plaatje'];
+  // }
 
   public function GetBestemmingInfo(){
     $Bestemminginfo = array();
-    $Bestemminginfo = ['ID'=>$this->id, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->prijs, 'Limiet'=>$this->limiet, 'Plaatje'=>$this->plaatje];
+    $Bestemminginfo = ['ID'=>$this->id, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->prijs, 'Limiet'=>$this->limiet, 'Plaatje'=>$this->plaatje, 'Score'=>$this->score];
 
     return $Bestemminginfo;
   }
