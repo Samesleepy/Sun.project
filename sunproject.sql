@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 11 okt 2021 om 09:14
--- Serverversie: 10.4.6-MariaDB
--- PHP-versie: 7.3.8
+-- Generation Time: Oct 12, 2021 at 09:08 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `bestemming`
+-- Table structure for table `bestemming`
 --
 
 CREATE TABLE `bestemming` (
@@ -40,7 +39,7 @@ CREATE TABLE `bestemming` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `bestemming`
+-- Dumping data for table `bestemming`
 --
 
 INSERT INTO `bestemming` (`ID`, `Land`, `Plaats`, `Type`, `Beschrijving`, `Prijs`, `Limiet`, `Plaatje`) VALUES
@@ -58,7 +57,7 @@ INSERT INTO `bestemming` (`ID`, `Land`, `Plaats`, `Type`, `Beschrijving`, `Prijs
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `boeking`
+-- Table structure for table `boeking`
 --
 
 CREATE TABLE `boeking` (
@@ -77,19 +76,23 @@ CREATE TABLE `boeking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `boeking`
+-- Dumping data for table `boeking`
 --
 
 INSERT INTO `boeking` (`BoekingID`, `BestemmingID`, `KlantID`, `Land`, `Plaats`, `Prijs`, `Personen`, `Hotel`, `Vervoer`, `Vertrekdatum`, `Boekingsdatum`, `Duur`) VALUES
-(1, 0, 17, 'China', 'Huanglong', '3360.00', 1, '', '', '2021-10-01', '0000-00-00', 12),
-(2, 0, 18, 'Indonesië', 'Jakarta', '6300.00', 3, '', '', '2021-10-07', '0000-00-00', 7),
-(3, 0, 18, 'Egypte', 'Gizeh', '1375.00', 1, '', '', '2021-10-30', '2021-10-06', 5),
-(4, 0, 18, 'Amerika', 'New York', '8750.00', 5, '', '', '2021-10-13', '2021-10-08', 7);
+(17, 7, 17, 'Turkije', 'Ankara', '3000.00', 5, '', '', '2021-10-14', '2021-10-11', 5),
+(19, 11, 17, 'China', 'Huanglong', '7000.00', 5, '', '', '2021-10-14', '2021-10-11', 5),
+(20, 5, 17, 'Egypte', 'Gizeh', '6875.00', 5, '', '', '2021-10-12', '2021-10-11', 5),
+(21, 7, 17, 'Turkije', 'Ankara', '3000.00', 5, '', '', '2021-10-13', '2021-10-11', 5),
+(22, 8, 17, 'Indonesië', 'Jakarta', '7500.00', 5, '', '', '2021-10-14', '2021-10-11', 5),
+(23, 9, 17, 'Griekenland', 'Kos', '3125.00', 5, '', '', '2021-10-12', '2021-10-11', 5),
+(24, 10, 17, 'Frankrijk', 'Parijs', '3600.00', 5, '', '', '2021-10-13', '2021-10-11', 9),
+(25, 12, 17, 'Amerika', 'New York', '6250.00', 5, '', '', '2021-10-12', '2021-10-11', 5);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `contact`
+-- Table structure for table `contact`
 --
 
 CREATE TABLE `contact` (
@@ -100,7 +103,7 @@ CREATE TABLE `contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `contact`
+-- Dumping data for table `contact`
 --
 
 INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`) VALUES
@@ -109,7 +112,7 @@ INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `faq`
+-- Table structure for table `faq`
 --
 
 CREATE TABLE `faq` (
@@ -121,7 +124,7 @@ CREATE TABLE `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Gegevens worden geëxporteerd voor tabel `faq`
+-- Dumping data for table `faq`
 --
 
 INSERT INTO `faq` (`QID`, `Vraag-NL`, `Vraag-EN`, `Antwoord-NL`, `Antwoord-EN`) VALUES
@@ -131,7 +134,7 @@ INSERT INTO `faq` (`QID`, `Vraag-NL`, `Vraag-EN`, `Antwoord-NL`, `Antwoord-EN`) 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `hotel`
+-- Table structure for table `hotel`
 --
 
 CREATE TABLE `hotel` (
@@ -144,7 +147,7 @@ CREATE TABLE `hotel` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `klant`
+-- Table structure for table `klant`
 --
 
 CREATE TABLE `klant` (
@@ -160,21 +163,21 @@ CREATE TABLE `klant` (
   `Postcode` varchar(7) NOT NULL,
   `Straatnaam` varchar(60) NOT NULL,
   `Huisnummer` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Gegevens worden geëxporteerd voor tabel `klant`
+-- Dumping data for table `klant`
 --
 
 INSERT INTO `klant` (`KlantID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`, `Land`, `Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES
-(17, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$ivLszsvmBCyQN5CPf09v1OHXUPEvUuxGvZvxJTNYi4QXr2i0f/Kh.', '223232323', '', 'asdfs2', '44wee', '4', 4),
+(17, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$ivLszsvmBCyQN5CPf09v1OHXUPEvUuxGvZvxJTNYi4QXr2i0f/Kh.', '0623231442', 'Atlantis', 'Atlantis', '2238AK', 'Zeeweg', 45),
 (18, 'Delon', 'Poels', '', 'Delon.Poels@Student.GildeOpleidingen.nl', '$2y$10$It/pmma1Mqx7Ca.Asw8MsetHs2J3CCbmd/zimO7JWQrCPr5BID4UG', '0612345678', 'Nederland', 'Woonboon', '1235 AC', 'Frietstraat', 7),
 (19, 'Joey', 'Haerkens', '', 'Joey.Haerkens@Student.GildeOpleidingen.nl', '$2y$10$CZAw3VBtCAuvxenbDw0dFejInLgIhJPClHeaRhUNSP0ZkvzATQ0Ay', '2482534523', 'ned', 'saofdajwek', '5r0adsd', 'asdkflaek', 5);
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `review` (
@@ -189,7 +192,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Gegevens worden geëxporteerd voor tabel `review`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`ReviewID`, `BestemmingID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`, `Datum`) VALUES
@@ -201,82 +204,82 @@ INSERT INTO `review` (`ReviewID`, `BestemmingID`, `Voornaam`, `Achternaam`, `Tus
 (6, 5, 'Sam', 'Gijsen', '', 1, 'Houd niet zo van kamelen', '2021-10-01');
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `bestemming`
+-- Indexes for table `bestemming`
 --
 ALTER TABLE `bestemming`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexen voor tabel `boeking`
+-- Indexes for table `boeking`
 --
 ALTER TABLE `boeking`
   ADD PRIMARY KEY (`BoekingID`);
 
 --
--- Indexen voor tabel `faq`
+-- Indexes for table `faq`
 --
 ALTER TABLE `faq`
   ADD PRIMARY KEY (`QID`);
 
 --
--- Indexen voor tabel `hotel`
+-- Indexes for table `hotel`
 --
 ALTER TABLE `hotel`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexen voor tabel `klant`
+-- Indexes for table `klant`
 --
 ALTER TABLE `klant`
   ADD PRIMARY KEY (`KlantID`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Indexen voor tabel `review`
+-- Indexes for table `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`ReviewID`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `bestemming`
+-- AUTO_INCREMENT for table `bestemming`
 --
 ALTER TABLE `bestemming`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT voor een tabel `boeking`
+-- AUTO_INCREMENT for table `boeking`
 --
 ALTER TABLE `boeking`
-  MODIFY `BoekingID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `BoekingID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT voor een tabel `faq`
+-- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
   MODIFY `QID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT voor een tabel `hotel`
+-- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
   MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `klant`
+-- AUTO_INCREMENT for table `klant`
 --
 ALTER TABLE `klant`
-  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `KlantID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT voor een tabel `review`
+-- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
   MODIFY `ReviewID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
