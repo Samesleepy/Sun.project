@@ -34,18 +34,18 @@
             <?php
             if(isset($_POST['submit'])){
 
-               $voornaam = $_SESSION['Voornaam'];
-               $achternaam = $_SESSION['Achternaam'];
-               $tussenvoegsel = $_SESSION['Tussenvoegsel'];
-               $score = $_POST['score'];
-               $review = $_POST['review'];
-               $datum = date('Y/m/d');
-
-               $sql = "INSERT INTO `review`(`BestemmingID`,`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`,`Datum`) VALUES(?,?,?,?,?,?,?)";
-
-               $stmt= $db->prepare($sql);
-               $stmt->execute([$id,$voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum]);
-               unset($_POST['submit']);
+               // $voornaam = $_SESSION['Voornaam'];
+               // $achternaam = $_SESSION['Achternaam'];
+               // $tussenvoegsel = $_SESSION['Tussenvoegsel'];
+               // $score = $_POST['score'];
+               // $review = $_POST['review'];
+               // $datum = date('Y/m/d');
+               //
+               // $sql = "INSERT INTO `review`(`BestemmingID`,`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`,`Datum`) VALUES(?,?,?,?,?,?,?)";
+               //
+               // $stmt= $db->prepare($sql);
+               // $stmt->execute([$id,$voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum]);
+               // unset($_POST['submit']);
             }
 
             $stmt = $db->prepare("SELECT `Voornaam`, `Achternaam`,`Tussenvoegsel`,`Score`, `Opmerking`, `Datum` FROM `review` WHERE `BestemmingID` = '".$id."'");
