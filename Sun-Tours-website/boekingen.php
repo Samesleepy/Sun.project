@@ -1,5 +1,10 @@
 <?php
 include_once 'header.php';
+
+if($User->voornaam == ""){
+   header("Location: home.php");
+}
+
 $db = $database->connection();
 
 $stmt = $db->query("SELECT `BoekingID`,`Land`,`Plaats`,`Personen`,`Vertrekdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$User->GetUserInfo()['KlantID']."'");
@@ -13,7 +18,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($Boekingen as $key => $Boeking) {
                     $Land = $Boekingen[$key]['Land'];
                     $Plaats = $Boekingen[$key]['Plaats'];
-                    
+
                     $stmt = $db->query("SELECT `Plaatje`,`Beschrijving` FROM `bestemming` WHERE `Land` = '".$Land."' AND `Plaats` = '".$Plaats."'");
                     $Bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>

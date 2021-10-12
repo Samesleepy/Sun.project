@@ -1,5 +1,9 @@
 <?php
 include_once 'header.php';
+
+if($User->voornaam == ""){
+             header("Location: home.php");
+           }
 if(isset($_POST['submit'])) {
   $User->ChangePass($database, $User->GetUserInfo()['KlantID'], $_POST['passNieuw'], $_POST['passOud'], $_POST['passHerhaal']);
 }

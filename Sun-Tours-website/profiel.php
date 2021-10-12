@@ -1,6 +1,10 @@
 <?php
 include_once 'header.php';
 
+if($User->voornaam == ""){
+   header("Location: home.php");
+}
+
 $Userinfo = $User->GetUserInfo();
 
 if(isset($_POST['submit'])) {
