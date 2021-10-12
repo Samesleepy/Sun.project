@@ -1,7 +1,8 @@
-<?php 
-include_once 'header.php'; 
-
-$User->ChangePass($database, $User);
+<?php
+include_once 'header.php';
+if(isset($_POST['submit'])) {
+  $User->ChangePass($database, $User->GetUserInfo()['KlantID'], $_POST['passNieuw'], $_POST['passOud'], $_POST['passHerhaal']);
+}
 ?>
 
 <body>
@@ -29,7 +30,7 @@ $User->ChangePass($database, $User);
                 </div>
             </div>
         </form>
-        
+
         </div>
     </div>
 </body>
