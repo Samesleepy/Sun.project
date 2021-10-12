@@ -9,8 +9,6 @@ if(isset($_GET['id'])){
     header("Location: home.php");
 }
 
-
-
 //select avg score and other stuff
 $db = $database->connection();
 $stmt = $db->prepare("SELECT bestemming.ID, bestemming.Land, bestemming.Plaats, bestemming.Type, bestemming.Prijs, bestemming.Beschrijving, bestemming.Limiet, bestemming.Plaatje, tableA.totalRes, tableB.avgRev from bestemming LEFT JOIN ( SELECT BestemmingID, SUM(personen) AS totalRes FROM boeking GROUP BY BestemmingID ) tableA ON bestemming.id = tableA.BestemmingID LEFT JOIN ( SELECT BestemmingID, AVG(score) AS avgRev FROM review GROUP BY BestemmingID ) tableB ON bestemming.id = tableB.BestemmingID WHERE bestemming.ID = '".$id."';");
@@ -18,23 +16,13 @@ $stmt->execute();
 $result = $stmt->fetch();
 //dd($result);
 
-//$db = null;
+$db = null;
 
 //zet de result in class
 $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['avgRev'], $result['totalRes']);
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
 
 //dd($Bestemminginfo);
-
-//if form submitted
-if(isset($_POST['submit'])){
-    //print_r($Userinfo);
-    //$Bestemminginfo = $Bestemming->GetBestemmingInfo();
-    $Userinfo = $User->GetUserInfo();
-    $boekingsdatum = Date("Y-m-d");
-    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
-    $Boeking->Boeken($database);
-}
 
 //bereken prijs
 $prijs = false;
@@ -49,7 +37,16 @@ if($prijs){
 }
 $prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];
-$beschrijving = $Bestemminginfo['Beschrijving'];
+
+//if form submitted
+if(isset($_POST['submit'])){
+    //print_r($Userinfo);
+    //$Bestemminginfo = $Bestemming->GetBestemmingInfo();
+    $Userinfo = $User->GetUserInfo();
+    $boekingsdatum = Date("Y-m-d");
+    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
+    $Boeking->Boeken($database);
+}
 ?>
 
 <script>
