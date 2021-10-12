@@ -82,30 +82,50 @@ if(isset($_POST['submit'])){
                 echo '<h2>';
                     echo $Bestemminginfo['Plaats'].",".$Bestemminginfo['Land'];
                 echo '</h2>';
-                echo '<img height="250px" src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';
+                echo '<img height="250px" style="max-width: 380px;" src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';
                 //echo score if isset
                 echo "<div class='my-3'>";
-                    if(isset($score)){echo round($score,2);}
+                    if(isset($score)){echo "<h5> Score : " . round($score,2) . "</h5>";}
                 echo "</div>";
             ?>
             </div>
             <div class="col-8">
                 <h2 class="text-primary">Booking info</h2>
                 <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
-                    <div class="form-group input-group">
+                    <div class="mb-2">
+                        <label for="personen" class="form-label">Aantal personen</label>
                         <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
                     </div>
-                    <div class="form-group input-group">
-                        <input name="vertrekdatum" class="form-control" min="<?php echo date("Y-m-d"); ?>" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
+                    <div class="mb-2">
+                        <label for="datum" class="form-label">Vertrek datum</label>
+                        <input name="vertrekdatum" class="form-control" min="<?php echo date("Y-m-d"); ?>" placeholder="MM/DD/YYYY" type="date" required>
                     </div>
-                    <div class="form-group input-group">
-                        <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
+                    <div class="mb-5">
+                        <label for="dagenn" class="form-label">Aantal dagen</label>
+                        <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required>
                     </div>
-                    <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span><label>p.p.</label><br>
 
-                    <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
+                    <hr>
 
-                    <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
+                    <div class="row g-5">
+                        <div class="col-md-5 col-lg-4 order-md-last">
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                    <div>
+                                        <h6 class="my-0">Prijs p.p.</h6>
+                                        <small class="text-muted">Prijs per persoon</small>
+                                    </div>
+                                    <span class="text-muted"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Totaal</span>
+                                    <strong><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div></strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" style="float: right;" value="Naar betalen" class="btn btn-primary btn-block w-100"/>
                 </form>
             </div>
             <?php

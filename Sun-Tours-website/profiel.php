@@ -2,18 +2,17 @@
 include_once 'header.php';
 
 if($User->voornaam == ""){
-   header("Location: home.php");
+    header("Location: home.php");
 }
 
 $Userinfo = $User->GetUserInfo();
 
 if(isset($_POST['submit'])) {
-  $User->UpdateUserInfo($database, $_POST['voornaam'],$_POST['achternaam'],$_POST['tussenvoegsel'],$_POST['email'],
-  $_POST['telefoonnummer'],$_POST['land'],$_POST['woonplaats'],$_POST['postcode'],
-  $_POST['straatnaam'],$_POST['huisnummer']);
+    $User->UpdateUserInfo($database, $_POST['voornaam'],$_POST['achternaam'],$_POST['tussenvoegsel'],$_POST['email'],
+    $_POST['telefoonnummer'],$_POST['land'],$_POST['woonplaats'],$_POST['postcode'],
+    $_POST['straatnaam'],$_POST['huisnummer']);
 
-  header("Location: profiel.php");
-
+    header("Location: profiel.php");
 }
 
 ?>
