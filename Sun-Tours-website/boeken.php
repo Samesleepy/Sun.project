@@ -18,22 +18,14 @@ if(isset($_POST['submit'])){
 
 //select avg score and other stuff
 $db = $database->connection();
-$stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Beschrijving`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
-AVG(`Score`), SUM(`Personen`)
-FROM `bestemming`
-LEFT JOIN review
-ON bestemming.ID = review.BestemmingID
-LEFT JOIN boeking
-ON bestemming.ID = boeking.BoekingID
-WHERE bestemming.`ID` = '".$id."'
-GROUP BY bestemming.ID;");
+$stmt = $db->prepare("SELECT bestemming.ID, bestemming.Land, bestemming.Plaats, bestemming.Type, bestemming.Prijs, bestemming.Beschrijving, bestemming.Limiet, bestemming.Plaatje, tableA.totalRes, tableB.avgRev from bestemming LEFT JOIN ( SELECT BestemmingID, SUM(personen) AS totalRes FROM boeking GROUP BY BestemmingID ) tableA ON bestemming.id = tableA.BestemmingID LEFT JOIN ( SELECT BestemmingID, AVG(score) AS avgRev FROM review GROUP BY BestemmingID ) tableB ON bestemming.id = tableB.BestemmingID;");
 $stmt->execute();
 $result = $stmt->fetch();
 
 $db = null;
 
 //zet de result in class
-$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
+$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['avgRev'], $result['totalRes']);
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
 $Userinfo = $User->GetUserInfo();
 
