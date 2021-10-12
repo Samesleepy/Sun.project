@@ -1,6 +1,6 @@
 <?php include_once 'header.php';
 $db = $database->connection();
-$stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
+$stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Beschrijving`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
 AVG(`Score`), SUM(`Personen`)
 FROM `bestemming`
 LEFT JOIN review
@@ -13,7 +13,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $Bestemmingresult = $result;
 
 foreach ($Bestemmingresult as $bestemming) {
-  $Bestemmingen[] = new Bestemming($bestemming['ID'], $bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Limiet'], $bestemming['Plaatje'], $bestemming['AVG(`Score`)'], $bestemming['SUM(`Personen`)']);
+  $Bestemmingen[] = new Bestemming($bestemming['ID'], $bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Beschrijving'], $bestemming['Limiet'], $bestemming['Plaatje'], $bestemming['AVG(`Score`)'], $bestemming['SUM(`Personen`)']);
  }
 
 ?>

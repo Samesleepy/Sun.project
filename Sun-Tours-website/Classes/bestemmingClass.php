@@ -11,18 +11,21 @@ class Bestemming
   private $plaatje;
   private $score;
   private $boekingen;
+  private $beschrijving;
 
-  function __construct($id, $land, $plaats, $type, $prijs, $limiet, $plaatje, $score, $boekingen)
+  function __construct($id, $land, $plaats, $type, $prijs, $beschrijving, $limiet, $plaatje, $score, $boekingen )
     {
       $this->id = $id;
       $this->land = $land;
       $this->plaats = $plaats;
       $this->type = $type;
       $this->prijs = $prijs;
+      $this->beschrijving = $beschrijving;
       $this->limiet = $limiet;
       $this->plaatje = $plaatje;
       $this->score = $score;
       $this->boekingen = $boekingen;
+
 
       // $db = $database->connection();
       // $stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
@@ -81,7 +84,7 @@ class Bestemming
 
   public function GetBestemmingInfo(){
     $Bestemminginfo = array();
-    $Bestemminginfo = ['ID'=>$this->id, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->prijs, 'Limiet'=>$this->limiet, 'Plaatje'=>$this->plaatje, 'Score'=>$this->score];
+    $Bestemminginfo = ['ID'=>$this->id, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->prijs, 'Limiet'=>$this->limiet, 'Plaatje'=>$this->plaatje, 'Score'=>$this->score, 'Beschrijving'=>$this->beschrijving];
 
     return $Bestemminginfo;
   }

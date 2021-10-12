@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
 
 //select avg score and other stuff
 $db = $database->connection();
-$stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
+$stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Beschrijving`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
 AVG(`Score`), SUM(`Personen`)
 FROM `bestemming`
 LEFT JOIN review
@@ -33,7 +33,7 @@ $result = $stmt->fetch();
 $db = null;
 
 //zet de result in class
-$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Limiet'], $result['Plaatje'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
+$Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['AVG(`Score`)'], $result['SUM(`Personen`)']);
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
 $Userinfo = $User->GetUserInfo();
 
@@ -78,7 +78,7 @@ $score = $Bestemminginfo['Score'];
         </div>
         <div class="row">
             <div class="col-4">
-            <?php 
+            <?php
             //check if user is logged in
             if(isset($_SESSION['user'])){
                 //echo image
@@ -105,9 +105,9 @@ $score = $Bestemminginfo['Score'];
                         <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
                     </div>
                     <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span><label>p.p.</label><br>
-        
+
                     <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
-        
+
                     <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
                 </form>
             </div>
@@ -118,7 +118,7 @@ $score = $Bestemminginfo['Score'];
                 //show reviews and alternatives
                 // include_once 'review.php';
                 // include_once 'alternatieven.php';
-                
+
             ?>
         </div>
     </div>
