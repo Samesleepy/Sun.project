@@ -75,8 +75,8 @@ $prijspp = $Bestemminginfo['Prijs'];
     <?php }else{ ?>
     <p class="text-danger">Log eerst in</p>
     <?php }
-    include_once 'review.php';
-    include_once 'alternatieven.php';
+    // include_once 'review.php';
+    // include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
         $boekingsdatum = Date("Y-m-d");
         $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
