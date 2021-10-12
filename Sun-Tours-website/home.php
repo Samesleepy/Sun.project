@@ -6,7 +6,7 @@
          <h3 class="card-title">
          Wij geloven dat iedereen een geweldige vakantie verdient!</h4>
          <h3 class="card-subtitle mb-2" style="opacity: 60%">
-         We believe that everyone deserves a great vacation!</h5>
+         Wat u ook zoekt, wij bieden het!</h5>
       </div>
    </div>
 
