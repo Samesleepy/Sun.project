@@ -133,7 +133,7 @@ if(isset($_POST['submit'])){
                                         <h6 class="my-0">Prijs p.p.</h6>
                                         <small class="text-muted">Prijs per persoon</small>
                                     </div>
-                                    <span class="text-muted"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span>
+                                    <span id="prijsPP" class="text-muted"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Totaal</span>
