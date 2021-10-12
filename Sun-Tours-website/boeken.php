@@ -53,36 +53,30 @@ $prijspp = $Bestemminginfo['Prijs'];
     }
 </script>
 <body>
-    <?php
-    // print_r($Bestemminginfo);
-    // die();
-
-    if(isset($_SESSION['user'])){ ?>
-    <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
+    <?php if(isset($_SESSION['user'])){ ?>
+        <?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>'; ?>
         <h2><?php echo $Bestemminginfo['Plaats'].",".$Bestemminginfo['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
-        <?php echo '<img src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';?>
-        <div class="form-group input-group">
-            <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
-        </div>
-        <div class="form-group input-group">
-            <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
-        </div>
-        <div class="form-group input-group">
-            <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
-        </div>
-        <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span><label>p.p.</label><br>
+        <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
+            <div class="form-group input-group">
+                <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
+            </div>
+            <div class="form-group input-group">
+                <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
+            </div>
+            <div class="form-group input-group">
+                <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
+            </div>
+            <br><label>Prijs &nbsp;</label><span id="prijsPP"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span><label>p.p.</label><br>
 
-        <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
+            <label style="float:left;">Totaal &nbsp;</label><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div><br><br>
 
-        <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
-    </form>
-    <?php ;}else{ ?>
+            <input type="submit" name="submit" value="Naar betalen" class="btn btn-primary btn-block">
+        </form>
+    <?php }else{ ?>
     <p class="text-danger">Log eerst in</p>
-    <?php ;} ?>
-
-    <?php
-  //  include_once 'review.php';
-  //  include_once 'alternatieven.php';
+    <?php }
+    include_once 'review.php';
+    include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
         $boekingsdatum = Date("Y-m-d");
         $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
