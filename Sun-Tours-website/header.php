@@ -6,6 +6,7 @@ include_once('Classes/userClass.php');
 include_once('Classes/boekingClass.php');
 include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
+include_once('Classes/contactClass.php');
 
 session_start();
 $database = new Database();

@@ -23,7 +23,7 @@ class Review
   }
 
 
-  public function WriteReview(){
+  public function CreateReview(){
     $score = $_POST['score'];
     $review = $_POST['review'];
     $datum = date('Y/m/d');
