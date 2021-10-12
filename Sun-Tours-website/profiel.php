@@ -1,7 +1,6 @@
 <?php
 include_once 'header.php';
 
-//$db = $database->connection();
 $Userinfo = $User->GetUserInfo();
 
 if(isset($_POST['submit'])) {
@@ -10,45 +9,7 @@ if(isset($_POST['submit'])) {
   $_POST['straatnaam'],$_POST['huisnummer']);
 
   header("Location: profiel.php");
-//
-//     $stmt = $db->query("SELECT KlantID FROM `Klant` WHERE `Email`='".$_SESSION['Email']."'");
-//     $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
-//
-//     $klantid = $resultinfo['KlantID'];
-//     $voornaam = $_POST['voornaam'];
-//     $achternaam = $_POST['achternaam'];
-//     $tussenvoegsel = $_POST['tussenvoegsel'];
-//     $email = $_POST['email'];
-//     $telefoonnummer = $_POST['telefoonnummer'];
-//     $land = $_POST['land'];
-//     $woonplaats = $_POST['woonplaats'];
-//     $postcode = $_POST['postcode'];
-//     $straatnaam = $_POST['straatnaam'];
-//     $huisnummer = $_POST['huisnummer'];
-//
-//     $sql = "UPDATE `klant` SET
-//     `Voornaam` = '".$voornaam."',
-//     `Achternaam` = '".$achternaam."',
-//     `Tussenvoegsel` = '".$tussenvoegsel."',
-//     `Email` = '".$email."',
-//     `Telefoonnummer` = '".$telefoonnummer."',
-//     `Land` = '".$land."',
-//     `Woonplaats` = '".$woonplaats."',
-//     `Postcode` = '".$postcode."',
-//     `Straatnaam` = '".$straatnaam."',
-//     `Huisnummer` = '".$huisnummer."'
-//     WHERE `KlantID` = '".$klantid."'";
-//
-//     $stmt = $db->query($sql);
-//
-//     $stmtx = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
-//     $stmtx->execute();
-//     $resultinfo = $stmtx->fetch(PDO::FETCH_ASSOC);
-//
-//     foreach ($resultinfo as $key => $klantinfo) {
-//         $_SESSION[$key] = $klantinfo;
-//     }
-//  }
+
 }
 
 ?>

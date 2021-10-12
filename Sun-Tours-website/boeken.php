@@ -6,7 +6,7 @@ if(isset($_GET['id'])){
 }else{
     header("Location: home.php");
 }
-    
+
 $db = $database->connection();
 $stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
 AVG(`Score`), SUM(`Personen`)
@@ -54,9 +54,9 @@ $prijspp = $Bestemminginfo['Prijs'];
 </script>
 <body>
     <?php
-    print_r($Bestemminginfo);
-    die();
-    
+    // print_r($Bestemminginfo);
+    // die();
+
     if(isset($_SESSION['user'])){ ?>
     <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
         <h2><?php echo $Bestemminginfo['Plaats'].",".$Bestemminginfo['Land']; if(isset($score)){echo " ",round($score,2);} ?></h2><br><br>
@@ -79,10 +79,10 @@ $prijspp = $Bestemminginfo['Prijs'];
     <?php ;}else{ ?>
     <p class="text-danger">Log eerst in</p>
     <?php ;} ?>
-  
-    <?php 
-    include_once 'review.php';
-    include_once 'alternatieven.php';
+
+    <?php
+  //  include_once 'review.php';
+  //  include_once 'alternatieven.php';
     if(isset($_POST['submit'])){
         $boekingsdatum = Date("Y-m-d");
         $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
