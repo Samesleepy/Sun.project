@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
          $_SESSION['user']=$User;
          header("Location: home.php");
    }else{
-      echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Herhaal het nieuwe wachtwoord</div>";
+      echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Wachtwoord is fout!</div>";
    }
 }
 ?>

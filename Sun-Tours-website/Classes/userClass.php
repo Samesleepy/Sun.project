@@ -150,5 +150,27 @@ class User
     return $Userinfo;
   }
 
+  public function ChangePass($database, $User){
+    $db = $database->connection();
+    if(isset($_POST['submit'])) {
+      $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$User->GetUserInfo()['KlantID']."'");
+      $resultinfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $passOud = $_POST['passOud'];
+      $passNieuw_hashed = password_hash($_POST['passNieuw'], PASSWORD_DEFAULT);
+
+      if(password_verify($passOud, $resultinfo['Wachtwoord'])){
+          if($_POST['passNieuw'] === $_POST['passHerhaal']){
+              $stmt = $db->prepare("UPDATE `klant` SET `Wachtwoord` = '".$passNieuw_hashed."' WHERE `KlantID` = '".$User->GetUserInfo()['KlantID']."'");
+              $stmt->execute();
+              header("Location: profiel.php");
+          }else{
+              echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Herhaal het nieuwe wachtwoord</div>";
+          }
+      }else{
+          echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Je oude wachtwoord is verkeerd</div>";
+      }
+    }
+  }
 }
- ?>
+?>
