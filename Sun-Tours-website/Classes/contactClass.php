@@ -20,6 +20,8 @@ class Contact
     $query = $db->prepare("INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`)
     VALUES ('$this->klantID','$this->soort','$this->onderwerp','$this->opmerking')");
     $query->execute();
+
+    $db = NULL;
   }
 }
 

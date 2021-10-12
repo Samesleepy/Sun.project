@@ -36,6 +36,8 @@ class Boeking
     VALUES ('$this->bestemmingID','$this->klantID','$this->land',
       '$this->plaats','$this->prijs','$this->personen','$this->vertrekdatum','$this->boekingsdatum','$this->duur')");
     $query->execute();
+    
+    $db = NULL;
   }
 }
 

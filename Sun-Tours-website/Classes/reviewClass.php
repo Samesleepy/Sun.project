@@ -32,6 +32,8 @@ class Review
 
     $stmt= $db->prepare($sql);
     $stmt->execute([$bestemmingID, $voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum]);
+
+    $db = NULL;
   }
 
   public function ShowReview(){
