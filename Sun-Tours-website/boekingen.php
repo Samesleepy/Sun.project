@@ -2,7 +2,7 @@
 include_once 'header.php';
 $db = $database->connection();
 
-$stmt = $db->query("SELECT `Land`,`Plaats`,`Personen`,`Vertrekdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$User->GetUserInfo()['KlantID']."'");
+$stmt = $db->query("SELECT `BoekingID`,`Land`,`Plaats`,`Personen`,`Vertrekdatum`,`Duur` FROM `boeking` WHERE `KlantID` = '".$User->GetUserInfo()['KlantID']."'");
 $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <body>
@@ -17,7 +17,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = $db->query("SELECT `Plaatje`,`Beschrijving` FROM `bestemming` WHERE `Land` = '".$Land."' AND `Plaats` = '".$Plaats."'");
                     $Bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ?>
-            <a href="#" style="text-decoration: none;color: black">
+            <a href="factuur.php?id=<?php echo $Boeking['BoekingID']; ?>" style="text-decoration: none;color: black">
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-4">
