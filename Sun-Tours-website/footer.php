@@ -1,4 +1,5 @@
 <body>
+  <div class="mt-5"></div>
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="footer-img">
       <a class="navbar-brand" href="#">Sun-Tours</a>

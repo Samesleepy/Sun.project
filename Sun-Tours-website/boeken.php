@@ -100,14 +100,32 @@ if(isset($_POST['submit'])){
                         <label for="datum" class="form-label">Vertrek datum</label>
                         <input name="vertrekdatum" class="form-control" min="<?php echo date("Y-m-d"); ?>" placeholder="MM/DD/YYYY" type="date" required>
                     </div>
-                    <div class="mb-5">
-                        <label for="dagenn" class="form-label">Aantal dagen</label>
+                    <div class="mb-2">
+                        <label for="dagen" class="form-label">Aantal dagen</label>
                         <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="hotel" class="form-label">Kies je hotel</label>
+                        <select class="form-select" name="hotel" aria-label="Default select example">
+                            <option selected>Kies hier uw hotel</option>
+                            <option value="Hotel1">Hotel 1</option>
+                            <option value="Hotel2">Hotel 2</option>
+                            <option value="Hotel3">Hotel 3</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label for="Vervoer" class="form-label">Kies je vervoer</label>
+                        <select class="form-select" name="hotel" aria-label="Default select example">
+                            <option selected>Kies hier uw vervoer</option>
+                            <option value="Auto">Auto</option>
+                            <option value="Vliegtuig">Vliegtuig</option>
+                            <option value="Boot">Boot</option>
+                        </select>
                     </div>
 
                     <hr>
 
-                    <div class="row g-5">
+                    <div class="row g-5 my-1">
                         <div class="col-md-5 col-lg-4 order-md-last">
                             <ul class="list-group mb-3">
                                 <li class="list-group-item d-flex justify-content-between lh-sm">

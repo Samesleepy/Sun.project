@@ -57,7 +57,7 @@ class Bestemming
           echo '<div class="card-body">';
           echo '<h5 class="card-title">'.$this->plaats.", ".$this->land.'</h5>';
           echo '<a class="card-link">';
-          if($this->boekingen >= $this->limiet){echo "Volgeboekt";}else{ echo $this->boekingen. " Euro p.p.";}
+          if($this->boekingen >= $this->limiet){echo "Volgeboekt";}else{ echo $this->prijs. " Euro p.p.";}
           echo '</a>';
           echo '<a class="card-link" style="text-decoration:none;color:black;">';
           if(isset($this->score)){$this->score = substr($this->score, 0, -3);}
