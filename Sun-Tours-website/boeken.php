@@ -49,6 +49,7 @@ if($prijs){
 }
 $prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];
+$beschrijving = $Bestemminginfo['Beschrijving'];
 ?>
 
 <script>
@@ -98,7 +99,7 @@ $score = $Bestemminginfo['Score'];
                         <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
                     </div>
                     <div class="form-group input-group">
-                        <input name="vertrekdatum" class="form-control" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
+                        <input name="vertrekdatum" class="form-control" min="<?php echo date("Y-m-d"); ?>" placeholder="MM/DD/YYYY" type="date" required><label>&nbsp; Vertrekdatum</label>
                     </div>
                     <div class="form-group input-group">
                         <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required><label>&nbsp; Dagen</label>
