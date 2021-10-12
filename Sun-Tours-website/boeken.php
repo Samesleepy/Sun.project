@@ -33,7 +33,7 @@ if(isset($_POST['personen'])){
 }
 if($prijs){
     $prijs = intval($prijs) * intval($Bestemminginfo['Prijs']);
-    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "home.php"}</script><?php
+    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "home.php<?php //echo $BoekingID; ?>"}</script><?php
 }
 $prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];
