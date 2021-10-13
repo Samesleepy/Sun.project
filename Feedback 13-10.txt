@@ -12,5 +12,4 @@
  Type, beschrijving bij boeken pagina
  Per bestemming, land covid maatregelen.
  Testplan.
-
- 
+ Als reis te duur is: (echo "Neem contact op")
