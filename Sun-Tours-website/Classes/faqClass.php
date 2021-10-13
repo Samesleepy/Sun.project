@@ -19,20 +19,20 @@ class Faq
 
   }
 
-  public function ShowFaq($key){
-          // echo '<div class="accordion-header">';
-            echo '<h2 class="accordion-item" id="flush-heading'.$key. '">';//
-              echo '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'.$key.'aria-expanded="false" aria-controls="flush-collapse'. $key. '">';
-                echo $this->vraagNL;
-              echo '</button>';
-            echo '</h2>';
-          echo '<div id="flush-collapse<?php echo $key; ?>" class="accordion-collapse collapse" aria-labelledby="flush-heading'.$key.'" data-bs-parent="#accordionFlushExample">';
-        echo '<div class="accordion-body">'; echo $this->antwoordNL; '</div>';//
-      echo '</div>';//
-    echo '</div>';
-  echo '</div>';
-
-  }
+  public function ShowFaq($key){ ?>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading<?php echo $key ?>">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key ?>" aria-expanded="true" aria-controls="collapse<?php echo $key ?>">
+          <?php echo $this->vraagNL; ?>
+        </button>
+      </h2>
+      <div id="collapse<?php echo $key ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo $key ?>" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+        <?php echo $this->antwoordNL; ?>
+        </div>
+      </div>
+    </div>
+  <?php }
 
 
 }

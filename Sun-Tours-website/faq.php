@@ -15,9 +15,9 @@
     ?>
     <h1 style="text-align: center;">Welkom op de FAQ!</h1>
     <h3 style="text-align: center;">hier kunt u antwoorden voor veelgestelde vragen vinden.</h3>
-    <div style="margin-top: 10px;" class="d-flex justify-content-center">
-      <div class="accordion accordion-flush" id="accordionFlushExample" style="width: 50%;border: 1px solid black">
-      <div class="accordion-header">
+
+    <div class="container col-xl-10 col-xxl-6 px-4 py-5">
+      <div class="accordion" id="accordionExample">
         <?php 
         foreach ($FAQs as $key => $FAQ){
           $FAQ[$key] = new Faq($FAQ['QID'], $FAQ['Vraag-NL'], $FAQ['Antwoord-NL'], $FAQ['Vraag-EN'], $FAQ['Antwoord-EN']);

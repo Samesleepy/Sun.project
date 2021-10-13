@@ -27,22 +27,21 @@
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button type="submit" name="submitr" class="btn btn-primary mt-3 btn-block">Verstuur</button>
+                     <button type="submit" name="review" class="btn btn-primary mt-3 btn-block">Verstuur</button>
                   </div>
                </div>
             </form>
             <?php
 
             //print_r($Bestemminginfo);
-             if(isset($_POST['submitr'])){
+            if(isset($_POST['review'])){
                $Reviewdate = date('Y/m/d');
                $Bestemminginfo = $Bestemming->GetBestemmingInfo();
                //print_r($Bestemminginfo['ID']);
 
                $Review = new Review($Bestemminginfo['ID'], $Userinfo['Voornaam'], $Userinfo['Achternaam'], $Userinfo['Tussenvoegsel'],$_POST['score'], $_POST['review'], $Reviewdate);
-               //print_r($Review->BestemmingID);
                $Review->CreateReview($database);
-             }
+            }
 
             $stmt = $db->prepare("SELECT `Voornaam`, `Achternaam`,`Tussenvoegsel`,`Score`, `Opmerking`, `Datum` FROM `review` WHERE `BestemmingID` = '".$Bestemminginfo['ID']."'");
             $stmt->execute();
@@ -51,8 +50,8 @@
             //dd($Reviewsresult);
 
             foreach ($Reviewsresult as $Reviews){
-              $Reviews = new Review($Bestemminginfo['ID'], $Reviews['Voornaam'], $Reviews['Achternaam'], $Reviews['Tussenvoegsel'], $Reviews['Score'], $Reviews['Opmerking'], $Reviews['Datum']);
-              $Reviews->ShowReview();
+               $Reviews = new Review($Bestemminginfo['ID'], $Reviews['Voornaam'], $Reviews['Achternaam'], $Reviews['Tussenvoegsel'], $Reviews['Score'], $Reviews['Opmerking'], $Reviews['Datum']);
+               $Reviews->ShowReview();
             }
             ?>
          </div>
