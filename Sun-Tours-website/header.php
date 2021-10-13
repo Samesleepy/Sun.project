@@ -46,9 +46,17 @@ if(isset($_POST['logout'])){
                <ul class="navbar-nav">
                   <li class="nav-item">
                   </li>
+                  <?php 
+                     if($User->voornaam == 'Sam'){      
+                  ?>
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="https://code.visualstudio.com/download">Destinations</a>
+                  </li>
+                  <?php }else{ ?>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
                   </li>
+                  <?php } ?>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
                   </li>
