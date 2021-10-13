@@ -13,13 +13,13 @@ $Boekingen = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="mb-2">
                 <label for="woonplaats" class="form-label">Land</label>
-                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Land'] ?>" type="text" disabled>
+                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Land']; ?>" type="text" disabled>
             </div>
         </div>
         <div class="col">
             <div class="mb-2">
                 <label for="postcode" class="form-label">Plaats</label>
-                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Plaats'] ?>" type="text" disabled>
+                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Plaats']; ?>" type="text" disabled>
             </div>
         </div>
     </div>
@@ -27,13 +27,13 @@ $Boekingen = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="mb-2">
                 <label for="woonplaats" class="form-label">Duur</label>
-                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Duur'] ?>" type="text" disabled>
+                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Duur']; ?>" type="text" disabled>
             </div>
         </div>
         <div class="col">
             <div class="mb-2">
                 <label for="postcode" class="form-label">Personen</label>
-                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Personen'] ?>" type="text" disabled>
+                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Personen']; ?>" type="text" disabled>
             </div>
         </div>
     </div>
@@ -41,13 +41,13 @@ $Boekingen = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="mb-2">
                 <label for="woonplaats" class="form-label">Hotel</label>
-                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Hotel'] ?>" type="text" disabled>
+                <input name="woonplaats" class="form-control" value="<?php if(!$Boekingen['Hotel'] == ""){echo $Boekingen['Hotel'];}else{echo "Geen hotel";} ?>" type="text" disabled>
             </div>
         </div>
         <div class="col">
             <div class="mb-2">
                 <label for="postcode" class="form-label">Vervoer</label>
-                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Vervoer'] ?>" type="text" disabled>
+                <input name="postcode" class="form-control" value="<?php if(!$Boekingen['Vervoer'] == ""){echo $Boekingen['Vervoer'];}else{echo "Geen vervoer";} ?>" type="text" disabled>
             </div>
         </div>
     </div>
@@ -55,13 +55,13 @@ $Boekingen = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="mb-2">
                 <label for="woonplaats" class="form-label">Vertrekdatum</label>
-                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Vertrekdatum'] ?>" type="text" disabled>
+                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Vertrekdatum']; ?>" type="text" disabled>
             </div>
         </div>
         <div class="col">
             <div class="mb-2">
                 <label for="postcode" class="form-label">Boekingsdatum</label>
-                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Boekingsdatum'] ?>" type="text" disabled>
+                <input name="postcode" class="form-control" value="<?php echo $Boekingen['Boekingsdatum']; ?>" type="text" disabled>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@ $Boekingen = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="col">
             <div class="mb-2" style="width:48.75%;">
                 <label for="woonplaats" class="form-label">Prijs</label>
-                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Prijs'] ?>" type="text" disabled>
+                <input name="woonplaats" class="form-control" value="<?php echo $Boekingen['Prijs']; ?>" type="text" disabled>
             </div>
         </div>
     </div>
