@@ -37,49 +37,24 @@
              if(isset($_POST['submitr'])){
                $Reviewdate = date('Y/m/d');
                $Bestemminginfo = $Bestemming->GetBestemmingInfo();
-               print_r($Bestemminginfo['ID']);
+               //print_r($Bestemminginfo['ID']);
 
                $Review = new Review($Bestemminginfo['ID'], $Userinfo['Voornaam'], $Userinfo['Achternaam'], $Userinfo['Tussenvoegsel'],$_POST['score'], $_POST['review'], $Reviewdate);
-               print_r($Review->BestemmingID);
+               //print_r($Review->BestemmingID);
                $Review->CreateReview($database);
+             }
 
-            //    $voornaam = $_SESSION['Voornaam'];
-            //    $achternaam = $_SESSION['Achternaam'];
-            //    $tussenvoegsel = $_SESSION['Tussenvoegsel'];
-            //    $score = $_POST['score'];
-            //    $review = $_POST['review'];
-            //    $datum = date('Y/m/d');
+            $stmt = $db->prepare("SELECT `Voornaam`, `Achternaam`,`Tussenvoegsel`,`Score`, `Opmerking`, `Datum` FROM `review` WHERE `BestemmingID` = '".$Bestemminginfo['ID']."'");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $Reviewsresult = $result;
+            //dd($Reviewsresult);
 
-            //    $sql = "INSERT INTO `review`(`BestemmingID`,`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`,`Datum`) VALUES(?,?,?,?,?,?,?)";
-
-            //    $stmt= $db->prepare($sql);
-            //    $stmt->execute([$id,$voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum]);
-            //    unset($_POST['submit']);
-            // }
-
-            // $stmt = $db->prepare("SELECT `Voornaam`, `Achternaam`,`Tussenvoegsel`,`Score`, `Opmerking`, `Datum` FROM `review` WHERE `BestemmingID` = '".$id."'");
-            // $stmt->execute();
-            // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // $Reviews = $result;
-
-            //print_r($Reviews);
-
-            //foreach ($Reviews as $review) {
+            foreach ($Reviewsresult as $Reviews){
+              $Reviews = new Review($Bestemminginfo['ID'], $Reviews['Voornaam'], $Reviews['Achternaam'], $Reviews['Tussenvoegsel'], $Reviews['Score'], $Reviews['Opmerking'], $Reviews['Datum']);
+              $Reviews->ShowReview();
+            }
             ?>
-            <!-- <div class="card">
-               <div class="card-body">
-                  <h5 class="card-title"><?php //echo $review['Voornaam'] . " " ;
-                  // if($review['Tussenvoegsel'] != ""){
-                  //    echo " " . $review['Tussenvoegsel'] . " ";
-                  // }
-                  //echo $review['Achternaam']; ?></h5>
-                  <h6 class="card-subtitle mb-2 text-muted"><?php //echo $review['Datum']?></h6>
-                  <p class="card-text"><?php //echo $review['Score'] ?></p>
-                  <p class="card-text"><?php //echo $review['Opmerking'] ?></p>
-
-               </div>
-            </div> -->
-         <?php } ?>
          </div>
       </div>
    </body>

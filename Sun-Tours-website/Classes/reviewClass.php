@@ -38,12 +38,19 @@ class Review
   }
 
   public function ShowReview(){
-
+  echo  '<div class="card">';
+    echo  '<div class="card-body">';
+      echo  '<h5 class="card-title">'.$this->voornaam. " " ;
+          if($this->tussenvoegsel!= ""){
+             echo " " .$this->tussenvoegsel. " ";
+          }
+          echo $this->achternaam.'</h5>';
+          echo '<h6 class="card-subtitle mb-2 text-muted">'.$this->datum.'</h6>';
+          echo '<p class="card-text">'.$this->score.'</p>';
+          echo '<p class="card-text">'.$this->review.'</p>';
+      echo '</div>';
+  echo  '</div>';
   }
+
 }
-
-
-
-
-
- ?>
+?>
