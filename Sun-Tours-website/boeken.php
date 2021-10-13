@@ -145,14 +145,19 @@ if(isset($_POST['submit'])){
 
                     <input type="submit" name="submit" style="float: right;" value="Naar betalen" class="btn btn-primary btn-block w-100"/>
                 </form>
+
             </div>
+
+            <hr class="my-5">
+
             <?php
+                //show reviews and alternatives
+                include_once 'review.php';
+                include_once 'alternatieven.php';
                 }else{
                     echo "<p class='text-danger'>Log eerst in</p>";
                 }
-                //show reviews and alternatives
-                // include_once 'review.php';
-                // include_once 'alternatieven.php';
+                
 
             ?>
         </div>
