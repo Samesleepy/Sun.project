@@ -12,6 +12,7 @@ foreach ($bestemmingresult as $key => $bestemming) {
    $Bestemmingen[$key] = $Bestemming;
 }
 ?>
+<h2 class="my-3 mx-1">Alternatieven</h2>
 <div class="row">
 <?php foreach ($Bestemmingen as $bestemming) { ?>
    <div class="col" style="max-width: 320px;">
