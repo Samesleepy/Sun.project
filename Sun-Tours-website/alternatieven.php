@@ -1,26 +1,21 @@
+<?php
+$db = $database->connection();
+$stmt = $db->prepare("SELECT bestemming.ID, bestemming.Land, bestemming.Plaats, bestemming.Type, bestemming.Prijs, bestemming.Beschrijving, bestemming.Limiet, bestemming.Plaatje, tableA.totalRes, tableB.avgRev from bestemming LEFT JOIN ( SELECT BestemmingID, SUM(personen) AS totalRes FROM boeking GROUP BY BestemmingID ) tableA ON bestemming.id = tableA.BestemmingID LEFT JOIN ( SELECT BestemmingID, AVG(score) AS avgRev FROM review GROUP BY BestemmingID ) tableB ON bestemming.id = tableB.BestemmingID WHERE `Type` = '".$Bestemminginfo['Type']."' AND NOT `ID` = '".$Bestemminginfo['ID']."';");
+$stmt->execute();
+$bestemmingresult = $stmt->fetchAll();
 
-<html>
-   <head>
-   </head>
-   <body>
-      <?php
-         $db = $database->connection();
-         $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Plaatje`  FROM `bestemming` WHERE `Type` = '".$Bestemmingen['Type']."' AND NOT `ID` = '".$Bestemmingen['ID']."' ");
-         $stmt->execute();
-         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         $Alternatieven = $result;
 
-         foreach ($Alternatieven as $Alternatief){ ?>
-         <a href="boeken.php?id=<?php echo $Alternatief['ID']; ?>">
-            <div class="card" id="bestemmingen">
-            <?php  echo '<img src="data:image/png;base64,'.base64_encode($Alternatief['Plaatje']).'"/>'; ?>
-               <div class="card-body">
-                  <h5 class="card-title"><?php echo $Alternatief['Plaats'].", ".$Alternatief['Land']?></h5>
-                  <p class="card-text"><?php echo $Alternatief['Prijs'] . " " . "Euro p.p." ?>
-                  <p class="card-text-right"><?php //echo "Score: " . $score ?></p>
-               </div>
-            </div>
-         </a>
-      <?php } ?>
-   </body>
-</html>
+
+$Bestemmingen = array();
+foreach ($bestemmingresult as $key => $bestemming) {
+   $Bestemming = new Bestemming($bestemming['ID'], $bestemming['Land'], $bestemming['Plaats'],$bestemming['Type'], $bestemming['Prijs'], $bestemming['Beschrijving'], $bestemming['Limiet'], $bestemming['Plaatje'], $bestemming['avgRev'], $bestemming['totalRes']);
+   $Bestemmingen[$key] = $Bestemming;
+}
+?>
+<div class="row">
+<?php foreach ($Bestemmingen as $bestemming) { ?>
+   <div class="col" style="max-width: 320px;">
+      <?php $bestemming->ShowBestemming(); ?>
+   </div>   
+<?php } ?>
+</div>
