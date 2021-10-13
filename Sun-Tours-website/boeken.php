@@ -21,7 +21,7 @@ $db = null;
 //zet de result in class
 $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['avgRev'], $result['totalRes']);
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
-
+$Userinfo = $User->GetUserInfo();
 //dd($Bestemminginfo);
 
 //bereken prijs
@@ -38,11 +38,12 @@ if($prijs){
 $prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];
 
+
 //if form submitted
 if(isset($_POST['submit'])){
     //print_r($Userinfo);
     //$Bestemminginfo = $Bestemming->GetBestemmingInfo();
-    $Userinfo = $User->GetUserInfo();
+
     $boekingsdatum = Date("Y-m-d");
     $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
     $Boeking->Boeken($database);
@@ -121,7 +122,7 @@ $hotels = $stmt->fetchAll();
                             }else{
                                 echo "<option value='Niks' disabled>Geen hotels</option>";
                             }
-                            
+
                             ?>
                         </select>
                     </div>
@@ -169,7 +170,7 @@ $hotels = $stmt->fetchAll();
                 }else{
                     echo "<p class='text-danger'>Log eerst in</p>";
                 }
-                
+
 
             ?>
         </div>

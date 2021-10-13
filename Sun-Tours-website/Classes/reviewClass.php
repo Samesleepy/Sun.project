@@ -2,7 +2,7 @@
 
 class Review
 {
-  private $bestemmingID;
+  public $bestemmingID;
   private $voornaam;
   private $achternaam;
   private $tussenvoegsel;
@@ -23,15 +23,16 @@ class Review
   }
 
 
-  public function CreateReview(){
-    $score = $_POST['score'];
-    $review = $_POST['review'];
-    $datum = date('Y/m/d');
+  public function CreateReview($database){
+    // $score = $_POST['score'];
+    // $review = $_POST['review'];
+    // $datum = date('Y/m/d');
+    $db = $database->connection();
 
     $sql = "INSERT INTO `review`(`BestemmingID`,`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`,`Datum`) VALUES(?,?,?,?,?,?,?)";
 
     $stmt= $db->prepare($sql);
-    $stmt->execute([$bestemmingID, $voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum]);
+    $stmt->execute([$this->bestemmingID, $this->voornaam, $this->achternaam, $this->tussenvoegsel, $this->score, $this->review, $this->datum]);
 
     $db = NULL;
   }

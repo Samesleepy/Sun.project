@@ -13,6 +13,7 @@ class Boeking
   private $duur;
   private $hotel;
   private $vervoer;
+  public  $BoekingID;
 
   function __construct($bestemmingID, $klantID, $land, $plaats, $prijs, $personen, $vertrekdatum, $boekingsdatum, $duur, $hotel, $vervoer)
   {
@@ -40,7 +41,12 @@ class Boeking
     VALUES ('$this->bestemmingID','$this->klantID','$this->land',
       '$this->plaats','$this->prijs','$this->hotel','$this->vervoer','$this->personen','$this->vertrekdatum','$this->boekingsdatum','$this->duur')");
     $query->execute();
-    
+    $result = $db->lastInsertId();
+    // $stmt = $db->prepare("SELECT LAST_INSERT_ID();");
+    // $stmt = $db->execute();
+    $BoekingID = $result;
+    $this->BoekingID = $BoekingID;
+
     $db = NULL;
   }
 }

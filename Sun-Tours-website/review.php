@@ -27,12 +27,21 @@
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button type="submit" name="submit" class="btn btn-primary mt-3 btn-block">Verstuur</button>
+                     <button type="submit" name="submitr" class="btn btn-primary mt-3 btn-block">Verstuur</button>
                   </div>
                </div>
             </form>
             <?php
-            // if(isset($_POST['submit'])){
+
+            //print_r($Bestemminginfo);
+             if(isset($_POST['submitr'])){
+               $Reviewdate = date('Y/m/d');
+               $Bestemminginfo = $Bestemming->GetBestemmingInfo();
+               print_r($Bestemminginfo['ID']);
+
+               $Review = new Review($Bestemminginfo['ID'], $Userinfo['Voornaam'], $Userinfo['Achternaam'], $Userinfo['Tussenvoegsel'],$_POST['score'], $_POST['review'], $Reviewdate);
+               print_r($Review->BestemmingID);
+               $Review->CreateReview($database);
 
             //    $voornaam = $_SESSION['Voornaam'];
             //    $achternaam = $_SESSION['Achternaam'];
@@ -70,7 +79,7 @@
 
                </div>
             </div> -->
-         <?php //} ?>
+         <?php } ?>
          </div>
       </div>
    </body>
