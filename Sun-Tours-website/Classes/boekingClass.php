@@ -11,8 +11,10 @@ class Boeking
   private $vertrekdatum;
   private $boekingsdatum;
   private $duur;
+  private $hotel;
+  private $vervoer;
 
-  function __construct($bestemmingID, $klantID, $land, $plaats, $prijs, $personen, $vertrekdatum, $boekingsdatum, $duur)
+  function __construct($bestemmingID, $klantID, $land, $plaats, $prijs, $personen, $vertrekdatum, $boekingsdatum, $duur, $hotel, $vervoer)
   {
     $this->bestemmingID = $bestemmingID;
     $this->klantID = $klantID;
@@ -23,6 +25,8 @@ class Boeking
     $this->vertrekdatum = $vertrekdatum;
     $this->boekingsdatum = $boekingsdatum;
     $this->duur = $duur;
+    $this->hotel = $hotel;
+    $this->vervoer = $vervoer;
   }
 
   function ShowBoekingForm(){
@@ -32,9 +36,9 @@ class Boeking
 
   function Boeken($database){
     $db = $database->connection();
-    $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`, `KlantID`, `Land`,`Plaats`, `Prijs`, `Personen`, `Vertrekdatum`,`Boekingsdatum`, `Duur`)
+    $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`,`KlantID`,`Land`,`Plaats`,`Prijs`,`Hotel`,`Vervoer`,`Personen`,`Vertrekdatum`,`Boekingsdatum`,`Duur`)
     VALUES ('$this->bestemmingID','$this->klantID','$this->land',
-      '$this->plaats','$this->prijs','$this->personen','$this->vertrekdatum','$this->boekingsdatum','$this->duur')");
+      '$this->plaats','$this->prijs','$this->hotel','$this->vervoer','$this->personen','$this->vertrekdatum','$this->boekingsdatum','$this->duur')");
     $query->execute();
     
     $db = NULL;
@@ -46,4 +50,4 @@ class Boeking
 
 
 
- ?>
+?>

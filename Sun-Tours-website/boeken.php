@@ -44,9 +44,14 @@ if(isset($_POST['submit'])){
     //$Bestemminginfo = $Bestemming->GetBestemmingInfo();
     $Userinfo = $User->GetUserInfo();
     $boekingsdatum = Date("Y-m-d");
-    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur']);
+    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
     $Boeking->Boeken($database);
 }
+
+$db = $database->connection();
+$stmt = $db->prepare("SELECT `Naam` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
+$stmt->execute();
+$hotels = $stmt->fetchAll();
 ?>
 
 <script>
@@ -80,7 +85,7 @@ if(isset($_POST['submit'])){
             if(isset($_SESSION['user'])){
                 //echo image
                 echo '<h2>';
-                    echo $Bestemminginfo['Plaats'].",".$Bestemminginfo['Land'];
+                    echo $Bestemminginfo['Plaats'].", ".$Bestemminginfo['Land'];
                 echo '</h2>';
                 echo '<img height="250px" style="max-width: 380px;" src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';
                 //echo score if isset
@@ -106,17 +111,24 @@ if(isset($_POST['submit'])){
                     </div>
                     <div class="mb-2">
                         <label for="hotel" class="form-label">Kies je hotel</label>
-                        <select class="form-select" name="hotel" aria-label="Default select example">
-                            <option selected>Kies hier uw hotel</option>
-                            <option value="Hotel1">Hotel 1</option>
-                            <option value="Hotel2">Hotel 2</option>
-                            <option value="Hotel3">Hotel 3</option>
+                        <select class="form-select" name="hotel" aria-label="Default select example" required>
+                            <option disabled selected hidden>Kies hier uw hotel</option>
+                            <?php
+                            if(!$hotels == ""){
+                                foreach($hotels as $hotel){
+                                echo "<option value='".$hotel['Naam']."'>".$hotel['Naam']."</option>";
+                                }
+                            }else{
+                                echo "<option value='Niks' disabled>Geen hotels</option>";
+                            }
+                            
+                            ?>
                         </select>
                     </div>
                     <div class="mb-5">
                         <label for="Vervoer" class="form-label">Kies je vervoer</label>
-                        <select class="form-select" name="hotel" aria-label="Default select example">
-                            <option selected>Kies hier uw vervoer</option>
+                        <select class="form-select" name="vervoer" aria-label="Default select example" required>
+                            <option disabled selected hidden>Kies hier uw vervoer</option>
                             <option value="Auto">Auto</option>
                             <option value="Vliegtuig">Vliegtuig</option>
                             <option value="Boot">Boot</option>

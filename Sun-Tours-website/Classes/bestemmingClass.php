@@ -56,7 +56,7 @@ class Bestemming
         echo '<img src="data:image/png;base64,'.base64_encode($this->plaatje).'"/>';
           echo '<div class="card-body">';
           echo '<h5 class="card-title">'.$this->plaats.", ".$this->land.'</h5>';
-          echo '<a class="card-link">';
+          echo '<a class="card-link" style="text-decoration:none;color:black;">';
           if($this->boekingen >= $this->limiet){echo "Volgeboekt";}else{ echo $this->prijs. " Euro p.p.";}
           echo '</a>';
           echo '<a class="card-link" style="text-decoration:none;color:black;">';
