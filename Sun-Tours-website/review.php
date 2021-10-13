@@ -27,16 +27,17 @@
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button type="submit" name="review" class="btn btn-primary mt-3 btn-block">Verstuur</button>
+                     <button type="submit" name="submitr" class="btn btn-primary mt-3 btn-block">Verstuur</button>
                   </div>
                </div>
             </form>
             <?php
 
             //print_r($Bestemminginfo);
-            if(isset($_POST['review'])){
+            if(isset($_POST['submitr'])){
                $Reviewdate = date('Y/m/d');
                $Bestemminginfo = $Bestemming->GetBestemmingInfo();
+               //dd($_POST['review']);
                //print_r($Bestemminginfo['ID']);
 
                $Review = new Review($Bestemminginfo['ID'], $Userinfo['Voornaam'], $Userinfo['Achternaam'], $Userinfo['Tussenvoegsel'],$_POST['score'], $_POST['review'], $Reviewdate);
