@@ -33,11 +33,10 @@ if(isset($_POST['personen'])){
 }
 if($prijs){
     $prijs = intval($prijs) * intval($Bestemminginfo['Prijs']);
-    ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "home.php<?php //echo $BoekingID; ?>"}</script><?php
+    ?><?php
 }
 $prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];
-
 
 //if form submitted
 if(isset($_POST['submit'])){
@@ -47,7 +46,9 @@ if(isset($_POST['submit'])){
     $boekingsdatum = Date("Y-m-d");
     $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
     $Boeking->Boeken($database);
+    //dd($Boeking->BoekingID);
 }
+?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
 
 $db = $database->connection();
 $stmt = $db->prepare("SELECT `Naam` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
