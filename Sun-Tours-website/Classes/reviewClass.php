@@ -2,15 +2,15 @@
 
 class Review
 {
-  public $bestemmingID;
-  private $voornaam;
+  public $bestemmingID; //ID van bestemming van waar het om gaat
+  private $voornaam; 
   private $achternaam;
-  private $tussenvoegsel;
-  private $score;
-  private $review;
-  private $datum;
+  private $tussenvoegsel; //(mogelijk) Tussenvoegsel
+  private $score; //Score die de klant geeft aan de review
+  private $review; //Text van review
+  private $datum; //Wanneer de review geschreven is
 
-
+  //Maak review instance aan en met de meegegeven info
   function __construct($bestemmingID, $voornaam, $achternaam, $tussenvoegsel, $score, $review, $datum)
   {
     $this->bestemmingID = $bestemmingID;
@@ -23,10 +23,7 @@ class Review
   }
 
 
-  public function CreateReview($database){
-    // $score = $_POST['score'];
-    // $review = $_POST['review'];
-    // $datum = date('Y/m/d');
+  public function CreateReview($database){ //Zet review in database
     $db = $database->connection();
 
     $sql = "INSERT INTO `review`(`BestemmingID`,`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Score`, `Opmerking`,`Datum`) VALUES(?,?,?,?,?,?,?)";
@@ -37,7 +34,7 @@ class Review
     $db = NULL;
   }
 
-  public function ShowReview(){
+  public function ShowReview(){ //laat review zien met een card, info uit de instance
   echo  '<div class="card">';
     echo  '<div class="card-body">';
       echo  '<h5 class="card-title">'.$this->voornaam. " " ;

@@ -2,19 +2,20 @@
 
 class Boeking
 {
-  private $bestemmingID;
-  private $klantID;
-  private $land;
-  private $plaats;
-  private $prijs;
-  private $personen;
+  private $bestemmingID; //ID van bestemming die je wil boeken
+  private $klantID; //ID van klant die aan het boeken is
+  private $land; //land van bestemming
+  private $plaats; //plaats van bestemming
+  private $prijs; //totale prijs van boeking
+  private $personen; //hoeveel personen mee gaan
   private $vertrekdatum;
-  private $boekingsdatum;
-  private $duur;
+  private $boekingsdatum; //wanneer er geboekt is
+  private $duur; //hoelang (in dagen) de reis is
   private $hotel;
   private $vervoer;
-  public  $BoekingID;
+  public  $BoekingID; //ID dat wordt aangemaakt als een boeking geplaatst is(nodig voor factuur)
 
+  //Maak boeking instance aan en met de meegegeven info
   function __construct($bestemmingID, $klantID, $land, $plaats, $prijs, $personen, $vertrekdatum, $boekingsdatum, $duur, $hotel, $vervoer)
   {
     $this->bestemmingID = $bestemmingID;
@@ -34,8 +35,9 @@ class Boeking
 
   }
 
+ //maak cancel optie of factuur pagina, laat boeking gebeuren
 
-  function Boeken($database){
+  function Boeken($database){ //stuur boekinginfo naar database en geef boekingID terug, om id te laten zien
     $db = $database->connection();
     $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`,`KlantID`,`Land`,`Plaats`,`Prijs`,`Hotel`,`Vervoer`,`Personen`,`Vertrekdatum`,`Boekingsdatum`,`Duur`)
     VALUES ('$this->bestemmingID','$this->klantID','$this->land',
@@ -47,7 +49,7 @@ class Boeking
     $BoekingID = $result;
     $this->BoekingID = $BoekingID;
 
-    $db = NULL;
+    $db = NULL; //verbreek verbinding met database
   }
 }
 

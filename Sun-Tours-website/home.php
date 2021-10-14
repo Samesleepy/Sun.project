@@ -12,7 +12,7 @@
 
    <?php
 
-   if ($User->voornaam != ""){
+   if ($User->voornaam != ""){ //Als user ingelogd is
    echo '<a href="bestemmingen.php" class="btn btn-primary rounded" style="margin-left:65%; margin-top: 1%; width: 20%">Destinations</a>';
    }else{
    echo '<a href="signup.php" class="btn btn-primary rounded" style="margin-left:65%; margin-top: 1%; width: 20%">Register</a>';

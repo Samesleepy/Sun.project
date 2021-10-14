@@ -4,21 +4,20 @@
 class User
 {
 //$wachtwoord = $_POST['wachtwoord'];
-  private $klantID;
+  private $klantID; //ID van klant
   public $voornaam;
   public $achternaam;
-  public $tussenvoegsel;
+  public $tussenvoegsel; //(mogelijk) Tussenvoegsel
   private $email;
   private $telefoonnummer;
-  private $hashed_wachtwoord;
+  private $hashed_wachtwoord; //Wachtwoord nadat deze gehasht is
   private $land;
   private $woonplaats;
   private $postcode;
   private $straatnaam;
   private $huisnummer;
 
-  //function __construct($voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer)
-  function __construct()
+  function __construct()//Maak user instance aan met default waardes
   {
     $this->voornaam = "";
     $this->achternaam = "";
@@ -30,43 +29,30 @@ class User
     $this->postcode = "";
     $this->straatnaam = "";
     $this->huisnummer = "";
-
-    //$this->klantID = $klantID;
-    // $this->voornaam = $voornaam;
-    // $this->achternaam = $achternaam;
-    // $this->tussenvoegsel = $tussenvoegsel;
-    // $this->email = $email;
-    // $this->telefoonnummer = $telefoonnummer;
-    // $this->hashed_wachtwoord = $hashed_wachtwoord;
-    // $this->land = $land;
-    // $this->woonplaats = $woonplaats;
-    // $this->postcode = $postcode;
-    // $this->straatnaam = $straatnaam;
-    // $this->huisnummer = $huisnummer;
   }
 
-  private function CheckCredentials($database,$email,$wachtwoord){
+  private function CheckCredentials($database,$email,$wachtwoord){ //Controleer of email bestaat, controleer daarna of wachtwoord overeenkomt met wachtwoord van email's account
     $db = $database->connection();
     $stmt = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
     $stmt->execute();
     $result = $stmt->fetch();
     if($result){
       if(password_verify($wachtwoord, $result['Wachtwoord'])){
-        $db = NULL;
+        $db = NULL; //verbreek verbinding met database
         return $result;
       }else{
         $result = "Fout";
-        $db = NULL;
+        $db = NULL; //verbreek verbinding met database
         return $result;
       }
     }else{
       $result = "Fout";
-      $db = NULL;
+      $db = NULL; //verbreek verbinding met database
       return $result;
     }
   }
 
-  public function Login($database,$email,$wachtwoord){
+  public function Login($database,$email,$wachtwoord){ //log de user in, update de default waardes van de instance
     $result = $this->CheckCredentials($database,$email,$wachtwoord);
     if($result != "Fout"){
       $this->klantID = $result['KlantID'];
@@ -95,7 +81,7 @@ class User
       $success = $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email,
       $hashed_wachtwoord, $telefoonnummer, $land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
     } catch (PDOException $e) {
-      if($e->errorInfo[1] == 1062){ // duplicate entry
+      if($e->errorInfo[1] == 1062){ // 1062 is duplicate entry
         echo "Email al in gebruik";
       }else{
         echo "Er is iets misgegaan";
@@ -103,10 +89,10 @@ class User
     }
     Header('Location: Login.php');
 
-    $db = NULL;
+    $db = NULL; //verbreek verbinding met database
   }
 
-  public function UpdateUserInfo($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){
+  public function UpdateUserInfo($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){ //Update info van het ingelogde account
         $db = $database->connection();
 
         $sql = "UPDATE `klant` SET
@@ -139,10 +125,10 @@ class User
         $this->straatnaam = $result['Straatnaam'];
         $this->huisnummer = $result['Huisnummer'];
 
-        $db = NULL;
+        $db = NULL; //verbreek verbinding met database
   }
 
-  public function GetUserInfo(){
+  public function GetUserInfo(){ //Omdat userinfo private is moet je hem met een functie uit de instance halen
     $Userinfo = array();
     $Userinfo = ['KlantID'=>$this->klantID, 'Voornaam'=>$this->voornaam, 'Achternaam'=>$this->achternaam, 'Tussenvoegsel'=>$this->tussenvoegsel, 'Email'=>$this->email, 'Telefoonnummer'=>$this->telefoonnummer,
     'Land'=>$this->land, 'Woonplaats'=>$this->woonplaats,'Postcode'=>$this->postcode,
@@ -150,7 +136,7 @@ class User
     return $Userinfo;
   }
 
-  public function ChangePass($database, $klantID, $newPass, $oldPass, $rePass){
+  public function ChangePass($database, $klantID, $newPass, $oldPass, $rePass){ //Verander wachtwoord van ingelogde account, repass is het herhaalde wachtwoord
     $db = $database->connection();
     //if(isset($_POST['submit'])) {
       $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$klantID."'");
@@ -168,7 +154,7 @@ class User
       }else{
           echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Je oude wachtwoord is verkeerd</div>";
       }
-      $db = NULL;
+      $db = NULL; //verbreek verbinding met database
     //}
   }
 }

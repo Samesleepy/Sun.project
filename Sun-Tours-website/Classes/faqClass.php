@@ -2,12 +2,13 @@
 
 class Faq
 {
-  private $qID;
-  private $vraagNL;
-  private $antwoordNL;
-  private $vraagEN;
-  private $antwoordEN;
+  private $qID; //ID van faq
+  private $vraagNL; //Vraag in het Nederlands
+  private $antwoordNL; //Antwoord in het Nederlands
+  private $vraagEN; //Vraag in het Engels
+  private $antwoordEN; //Antwoord in het Engels
 
+  //Maak faq instance aan en met de meegegeven info
   function __construct($qID, $vraagNL, $antwoordNL, $vraagEN, $antwoordEN)
   {
     $this->qID = $qID;
@@ -15,11 +16,9 @@ class Faq
     $this->antwoordNL = $antwoordNL;
     $this->vraagEN = $vraagEN;
     $this->antwoordEN = $antwoordEN;
-
-
   }
 
-  public function ShowFaq($key){ ?>
+  public function ShowFaq($key){//Laat faq zien met accordion ?>
     <div class="accordion-item">
       <h2 class="accordion-header" id="heading<?php echo $key ?>">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $key ?>" aria-expanded="true" aria-controls="collapse<?php echo $key ?>">

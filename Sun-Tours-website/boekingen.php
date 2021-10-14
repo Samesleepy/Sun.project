@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
 
-if($User->voornaam == ""){
+if($User->voornaam == ""){ //Kijk of er een ingelogde user is
    header("Location: home.php");
 }
 

@@ -1,5 +1,6 @@
 <?php
 
+//Include alle classes
 include_once('Classes/db.php');
 include_once('Classes/bestemmingClass.php');
 include_once('Classes/userClass.php');
@@ -81,7 +82,7 @@ if(isset($_POST['logout'])){
                   <li class="nav-item">
                      <a class="navbar-text" aria-current="page">
                         <?php
-                        if(isset($_SESSION['user'])){
+                        if(isset($_SESSION['user'])){ //echo naam, en mogelijk tussenvoegsel
                            echo "<div class='dropdown'>";
                            echo    "<a class='btn btn-primary dropdown-toggle' style='' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
                            echo $User->voornaam . " " ;

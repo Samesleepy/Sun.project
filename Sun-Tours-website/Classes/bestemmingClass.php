@@ -2,20 +2,21 @@
 
 class Bestemming
 {
-  private $id;
+  private $ID; //ID van bestemming
   private $land;
-  private $plaats;
-  private $type;
-  private $prijs;
-  private $limiet;
+  private $plaats; //plaats(stad, etc.)
+  private $type; //type(cultuur,stedentrip etc.)
+  private $prijs; //prijs per persoon
+  private $limiet; //hoeveel boekingen er mogen zijn
   private $plaatje;
-  private $score;
-  private $boekingen;
+  private $score; //gemiddelde score van reviews
+  private $boekingen; //hoeveel boekingen er NU zijn
   private $beschrijving;
 
-  function __construct($id, $land, $plaats, $type, $prijs, $beschrijving, $limiet, $plaatje, $score, $boekingen )
+  //Maak bestemming instance aan en met de meegegeven info
+  function __construct($ID, $land, $plaats, $type, $prijs, $beschrijving, $limiet, $plaatje, $score, $boekingen )
     {
-      $this->id = $id;
+      $this->ID = $ID;
       $this->land = $land;
       $this->plaats = $plaats;
       $this->type = $type;
@@ -25,33 +26,10 @@ class Bestemming
       $this->plaatje = $plaatje;
       $this->score = $score;
       $this->boekingen = $boekingen;
-
-
-      // $db = $database->connection();
-      // $stmt = $db->prepare("SELECT bestemming.`ID`, bestemming.`Land`, bestemming.`Plaats`, `Type`, bestemming.`Prijs`,`Limiet`,`Plaatje`,
-      // AVG(`Score`), SUM(`Personen`)
-      // FROM `bestemming`
-      // LEFT JOIN review
-      // ON bestemming.ID = review.BestemmingID
-      // LEFT JOIN boeking
-      // ON bestemming.ID = boeking.BoekingID
-      // GROUP BY bestemming.ID;");
-      // $stmt->execute();
-      // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      //
-      // $this->id = $result['ID'];
-      // $this->land = $result['Land'];
-      // $this->plaats = $result['ID'];
-      // $this->type = $result['ID'];
-      // $this->prijs = $result['ID'];
-      // $this->limiet = $result['ID'];
-      // $this->plaatje = $result['ID'];
-      // $this->score = $result['ID'];
-      // $this->boekingen = $result['ID'];
     }
 
-  public function ShowBestemming(){
-    echo '<a href="boeken.php?id='.$this->id.'" style="text-decoration:none;color:black;">';
+  public function ShowBestemming(){ //laat bestemming zien met een card, informatie uit de instance
+    echo '<a href="boeken.php?id='.$this->ID.'" style="text-decoration:none;color:black;">';
       echo '<div class="card" id="bestemmingen">';
         echo '<img src="data:image/png;base64,'.base64_encode($this->plaatje).'"/>';
           echo '<div class="card-body">';
@@ -68,23 +46,9 @@ class Bestemming
   echo '</a>';
   }
 
-  // public function GetBestemmingFromId($database,$id){
-  //   $db = $database->connection();
-  //   $stmt = $db->prepare("SELECT `ID`, `Land`,`Plaats`,`Type`,`Prijs`,`Limiet`,`Plaatje` FROM `bestemming`WHERE `ID` = '".$id."'");
-  //   $stmt->execute();
-  //   $result = $stmt->fetch();
-  //   $this->id = $result['ID'];
-  //   $this->land = $result['Land'];
-  //   $this->plaats = $result['Plaats'];
-  //   $this->type = $result['Type'];
-  //   $this->prijs = $result['Prijs'];
-  //   $this->limiet = $result['Limiet'];
-  //   $this->plaatje = $result['Plaatje'];
-  // }
-
-  public function GetBestemmingInfo(){
-    $Bestemminginfo = array();
-    $Bestemminginfo = ['ID'=>$this->id, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->prijs, 'Limiet'=>$this->limiet, 'Plaatje'=>$this->plaatje, 'Score'=>$this->score, 'Beschrijving'=>$this->beschrijving];
+  public function GetBestemmingInfo(){ //Omdat variabelen private zijn moet je hiermee info ophalen
+    $Bestemminginfo = array(); //associative array
+    $Bestemminginfo = ['ID'=>$this->ID, 'Land'=>$this->land, 'Plaats'=>$this->plaats, 'Type'=>$this->type, 'Prijs'=>$this->prijs, 'Limiet'=>$this->limiet, 'Plaatje'=>$this->plaatje, 'Score'=>$this->score, 'Beschrijving'=>$this->beschrijving];
 
     return $Bestemminginfo;
   }
