@@ -9,14 +9,13 @@ if(isset($_GET['id'])){
     header("Location: home.php");
 }
 
-//select avg score and other stuff
 $db = $database->connection();
 $stmt = $db->prepare("SELECT bestemming.ID, bestemming.Land, bestemming.Plaats, bestemming.Type, bestemming.Prijs, bestemming.Beschrijving, bestemming.Limiet, bestemming.Plaatje, tableA.totalRes, tableB.avgRev from bestemming LEFT JOIN ( SELECT BestemmingID, SUM(personen) AS totalRes FROM boeking GROUP BY BestemmingID ) tableA ON bestemming.id = tableA.BestemmingID LEFT JOIN ( SELECT BestemmingID, AVG(score) AS avgRev FROM review GROUP BY BestemmingID ) tableB ON bestemming.id = tableB.BestemmingID WHERE bestemming.ID = '".$id."';");
-$stmt->execute();
+$stmt->execute(); //Haal bestemminginfo, gemiddelde score van reviews en het totaal aantal reserveringen uit de database, doormiddel van een query met subqueries
 $result = $stmt->fetch();
 //dd($result);
 
-$db = null;
+$db = null; //verbreek de verbinding met de database
 
 //zet de result in class
 $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['avgRev'], $result['totalRes']);
@@ -40,19 +39,17 @@ $score = $Bestemminginfo['Score'];
 
 //if form submitted
 if(isset($_POST['submit'])){
-    //print_r($Userinfo);
-    //$Bestemminginfo = $Bestemming->GetBestemmingInfo();
 
     $boekingsdatum = Date("Y-m-d");
-    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
-    $Boeking->Boeken($database);
-    //dd($Boeking->BoekingID);
+    //Maak instance boeking met info van de pagina en andere classes
+    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel']="", $_POST['vervoer']="");
+    $Boeking->Boeken($database); //Boekt de reis, stuurt naar database en return BoekingID om zo factuur te kunnen laten zien
 }
 ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
 
 $db = $database->connection();
 $stmt = $db->prepare("SELECT `Naam` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
-$stmt->execute();
+$stmt->execute(); //Haal naam van hotel uit database, hotels van de gekozen bestemming
 $hotels = $stmt->fetchAll();
 ?>
 
@@ -116,11 +113,11 @@ $hotels = $stmt->fetchAll();
                         <select class="form-select" name="hotel" aria-label="Default select example" required>
                             <option disabled selected hidden>Kies hier uw hotel</option>
                             <?php
-                            if(!$hotels == ""){
+                            if(!$hotels == ""){ //Als hotels NIET leeg zijn
                                 foreach($hotels as $hotel){
                                 echo "<option value='".$hotel['Naam']."'>".$hotel['Naam']."</option>";
                                 }
-                            }else{
+                            }else{ //Wel leeg
                                 echo "<option value='Niks' disabled>Geen hotels</option>";
                             }
 
@@ -156,10 +153,8 @@ $hotels = $stmt->fetchAll();
                             </ul>
                         </div>
                     </div>
-
                     <input type="submit" name="submit" style="float: right;" value="Naar betalen" class="btn btn-primary btn-block w-100"/>
                 </form>
-
             </div>
 
             <hr class="my-5">
@@ -171,8 +166,6 @@ $hotels = $stmt->fetchAll();
                 }else{
                     echo "<p class='text-danger'>Log eerst in</p>";
                 }
-
-
             ?>
         </div>
     </div>
