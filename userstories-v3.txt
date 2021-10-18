@@ -1,0 +1,24 @@
+Als een klant wil ik mijn gegevens kunnen controleren voordat ik betaal, zodat ik zeker weet dat mijn gegevens kloppen. (Als een bedrijf wil ik het adresgegevens van de klant op de factuur)
+
+Als een bedrijf wil ik realistische prijzen aanbieden, zodat mijn klanten eerder boeken.
+
+Als een klant wil ik dat de vervoeropties realistisch zijn, zodat klanten niet met de fiets naar Jakarta kunnen.
+
+Als een klant wil ik een bevestigingsmail ontvangen, zodat ik weet dat ik geboekt heb.
+
+Als een klant wil ik mijn account kunnen verwijderen, zodat ik mijn gegevens veilig kan houden.
+
+Als een klant wil ik een optie voor als ik mijn wachtwoord ben vergeten, zodat ik toegang tot mijn account terug kan krijgen.
+
+Als een klant wil ik een bevestiging als ik een contact stuur, zodat ik weet dat het goed verzonden is.
+
+Als een klant wil ik de covid maatregelen zien bij de reis die ik boek, zodat ik weet waar ik rekening mee moet houden.
+
+Als een bedrijf wil ik een beheerderskant, zodat ik wijzigingen kan aanbrengen op de website.
+
+
+
+
+
+
+

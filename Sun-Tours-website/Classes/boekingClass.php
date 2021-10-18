@@ -34,9 +34,7 @@ class Boeking
   function ShowBoekingForm(){
 
   }
-
- //maak cancel optie of factuur pagina, laat boeking gebeuren
-
+  //aparte functie voor factuur pagina (na naar betalen)
   function Boeken($database){ //stuur boekinginfo naar database en geef boekingID terug, om id te laten zien
     $db = $database->connection();
     $query = $db->prepare("INSERT INTO `boeking` (`BestemmingID`,`KlantID`,`Land`,`Plaats`,`Prijs`,`Hotel`,`Vervoer`,`Personen`,`Vertrekdatum`,`Boekingsdatum`,`Duur`)
