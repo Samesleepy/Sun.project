@@ -40,7 +40,6 @@ $score = $Bestemminginfo['Score'];
 //if form submitted
 if(isset($_POST['submit'])){
 
-
     $boekingsdatum = Date("Y-m-d");
     //Maak instance boeking met info van de pagina en andere classes
     $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
