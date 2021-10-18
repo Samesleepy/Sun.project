@@ -1,0 +1,72 @@
+Als een klant, wil ik meer opties bij het boeken van mijn reis, zodat ik de perfecte reis kan boeken.
+-Meer reizen.
+-Bij het boeken, opties voor: vervoer, verblijf, type vakantie.
+
+
+///////////////////Als een klant, wil ik een bevestigingsmail ontvangen, zodat ik weet dat het succesvol geboekt is.
+-mailservice
+-
+
+
+Als een bedrijf, wil ik dat klanten alternatieven kunnen zien, zodat er een grotere kans is dat ze een reis boeken.
+-Onderaan de boekpagina staan reizen met hetzelfde land.
+-Als je klikt op reis, ga je naar die pagina.
+-Reizen hebben dezelfde layout, card.
+
+Als een klant, wil ik kunnen kiezen tussen Nederlands en Engels, zodat ik de tekst altijd kan begrijpen.
+-Dropdown met opties Nederlands, Engels.
+-Alle tekst veranderd van Nederlands - Engels of andersom als je op een taal klikt.
+-Als je een taal kiest veranderd het vlaggetje naar de vlag van het gekozen land.
+
+Als een klant, wil ik vragen kunnen stellen, zodat mijn problemen verholpen kunnen worden.
+-Dropdown met opties, vraag, klacht, feedback.
+-Klacht: heeft velden: klacht betreffend, het probleem, uw verwachting.
+-Vraag: heeft velden: Vraag over, vraag.
+-Feedback: heeft velden: Feedback over, feedback.
+
+Als een bedrijf, wil ik dat er een FAQ is, zodat klanten zelf sneller hulp kunnen vinden.
+-Link op contactpagina, naar FAQ pagina.
+-Knop met link naar contactpagina, voor als vraag nog niet beantwoord is.
+
+Als beheerder, wil ik niet dat klanten kunnen boeken etc. voordat ze ingelogd zijn, zodat alles in de database wordt opgeslagen.
+-Check if klant is ingelogd, als zo is kan naar boeken pagina etc., anders niet.
+
+Als een klant, wil ik mijn profiel kunnen bekijken, zodat ik mijn gegevens kan zien.
+-Dropdown aan rechterkant van nav-bar, opties met onder andere profiel, als je er op klikt ga je naar profiel pagina.
+-In tekstveldjes, alle gegevens die bij registratie worden opgeslagen.
+
+Als een klant, wil ik mijn profiel kunnen bewerken, zodat mijn gegevens altijd kloppen.
+-Op profiel pagina, in tekstveldjes staat info.
+-veldjes kunnen pas edit worden na het klikken op edit knop.
+
+Als een klant, wil ik de geschiedenis van mijn boekingen kunnen zien, zodat ik kan zien wat ik heb betaald en wanneer.
+-Dropdown aan rechterkant van nav-var, opties met onder andere facturen, als je er op klikt ga je naar facturen pagina.
+-Facturen hebben datums van boeking.
+-Facturen staan in een tabel.
+
+Als een klant, wil ik de factuur zien, zodat ik de informatie kan controleren.
+-Na boeken automatisch doorgestuurd naar nieuwe pagina.
+-Op factuur pagina een knop met bevestigen, om de betaling te finaliseren.
+-Factuur in een tabel.
+
+//////////////Als een bedrijf, wil ik dat de reviewpagina na de boeking beschikbaar wordt, zodat klanten niks kunnen schrijven zonder dat ze op reis zijn geweest.
+
+Als een klant, wil ik een review kunnnen schrijven, zodat ik andere kan helpen met een reis kiezen.
+-Als je op verstuur knop klikt, wordt review opgeslagen in database.
+-Dropdown met score 1 tot 5.
+-Tekstveld waar klant review kan schrijven.
+
+Als een klant, wil ik reviews kunnen zien, zodat ik een betere keuze kan maken.
+-Op boeken pagina, nadat je op een bestemming card geklikt hebt.
+
+Als een bedrijf, wil ik dat er een limiet op boekingen per reis is, zodat vervoer en verblijfplaats niet overboekt raken.
+-Limiet toevoegen per reis, in database.
+-Als reis vol is, geef melding als klant op boeken pagina voor die reis is.
+
+//////////////Als een bedrijf, wil ik verschillende prijzen afhankelijk van datum, zodat we altijd een goede prijs krijgen voor een boeking.
+-
+
+Als een bedrijf, wil ik een introductie op de homepagina, zodat klanten weten wat wij doen.
+-Introductie op homepagina.
+-Tekst in het Nederlands en Engels.
+

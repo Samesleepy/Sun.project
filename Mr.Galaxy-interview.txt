@@ -1,0 +1,11 @@
+Questions Mr. Galaxy:
+
+What should the customer be able to do?
+
+What was wrong with the existing web application?
+
+What info should a destination/card have?
+
+What info should a potential customer fill in in the registration form? Woonplaats/land etc.
+
+Do you have any particular wishes regarding the layout, colours etc. of the website?

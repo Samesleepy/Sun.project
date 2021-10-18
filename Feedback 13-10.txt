@@ -1,0 +1,15 @@
+ Gegevens controleren nadat je op naar betalen heb geklikt.
+ Realistische prijzen, geen vervoer geen hotel is goedkoper.
+ Niet met fiets naar Jakarta!
+ Bevestiging/ factuur naar klant email sturen.
+ Adres bij factuur
+ Account verwijderen optie
+ Wachtwoord vergeten
+ Adres roermond
+ Bevestigingsmelding naar verzenden van contact, etc.
+ Interview met klant voor opties reizen. (all inclusive, half pension)
+ Design website (Bestemmingen kaal, design.)
+ Type, beschrijving bij boeken pagina
+ Per bestemming, land covid maatregelen.
+ Testplan.
+ Als reis te duur is: (echo "Neem contact op")

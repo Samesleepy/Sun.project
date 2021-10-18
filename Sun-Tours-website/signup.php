@@ -1,20 +1,30 @@
+<?php
+include_once 'header.php';
 
+if(isset($_POST['submit'])) {
+  $User = new User;
+  $User->Signup($database,$_POST['voornaam'],$_POST['achternaam'], $_POST['tussenvoegsel'],$_POST['email'],$_POST['telefoonnummer'],
+  $hashed_wachtwoord = password_hash($_POST['wachtwoord'], PASSWORD_DEFAULT),
+  $_POST['land'],$_POST['woonplaats'],$_POST['postcode'], $_POST['straatnaam'],
+  $_POST['huisnummer']);
+}
+if($User->voornaam != ""){
+             header("Location: home.php");
+           }
+?>
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
    <head>
-      <meta charset="utf-8">
-      <title>Registreer</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet">
    </head>
    <body>
-     <script>function checkpass() {
-       if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
-              document.getElementById('submit').disabled = false;
-       }else{
-        document.getElementById('submit').disabled = true;
-       }
-     }
+      <script>
+         function checkpass() {
+            if (document.getElementById('wachtwoord').value == document.getElementById('wachtwoordh').value) {
+                  document.getElementById('submit').disabled = false;
+            }else{
+            document.getElementById('submit').disabled = true;
+            }
+         }
       </script>
       <div class="card bg-light">
          <div class="card-body mx-auto" style="max-width: 800px;">
@@ -59,6 +69,9 @@
                   </div>
                </div>
                <div class="form-group input-group">
+                  <input name="land" class="form-control" placeholder="Land" type="text" required>
+               </div>
+               <div class="form-group input-group">
                   <input name="postcode" class="form-control" placeholder="Postcode" type="text" required>
                </div>
                <div class="form-group input-group">
@@ -83,64 +96,9 @@
                </div>
                <p class="text-center">Heb je al een account?<a href="">Log In</a> </p>
             </form>
-
-            <?php
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $databaseName = "sunproject";
-
-            //connect to database
-            $conn = mysqli_connect($host, $username, $password, $databaseName);
-
-            if (!$conn) {
-              die("Connection failed"); //: " . mysqli_connect_error());
-            }
-
-            //echo "Connected Successfully. </br>";
-
-            function CheckDuplicateEmail($email, $conn){
-              //$email = mysqli_real_escape_string($conn, $_POST['email']);
-              $sql = "SELECT COUNT(*) FROM `Klant` WHERE `Email` ='".$email."'";
-              $result = mysqli_fetch_array(mysqli_query($conn, $sql));
-              if($result[0] != 0){
-                return False;
-              }else{
-                return True;
-              }
-
-            }
-            if(isset($_POST['submit'])) {
-              $voornaam = mysqli_real_escape_string($conn, $_POST['voornaam']);
-              $achternaam = mysqli_real_escape_string($conn, $_POST['achternaam']);
-              $tussenvoegsel = mysqli_real_escape_string($conn, $_POST['tussenvoegsel']);
-              $email = mysqli_real_escape_string($conn, $_POST['email']);
-              $telefoonnummer = mysqli_real_escape_string($conn, $_POST['telefoonnummer']);
-              $wachtwoord = mysqli_real_escape_string($conn, $_POST['wachtwoord']);
-              $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
-              $woonplaats = mysqli_real_escape_string($conn, $_POST['woonplaats']);
-              $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
-              $straatnaam = mysqli_real_escape_string($conn, $_POST['straatnaam']);
-              $huisnummer = mysqli_real_escape_string($conn, $_POST['huisnummer']);
-
-              if(CheckDuplicateEmail($email, $conn)){
-
-                $sql = "INSERT INTO `klant`(`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`)
-                VALUES ('$voornaam','$achternaam' , '$tussenvoegsel','$email','$hashed_wachtwoord','$telefoonnummer','$woonplaats','$postcode','$straatnaam','$huisnummer')";
-
-
-                if(mysqli_query($conn, $sql)){
-                  echo "Account geregistreerd!";
-                }else{
-                  echo "ERROR"; //$sql. " . mysqli_error($conn);
-                }
-              }else{
-                echo "Email is al in gebruik!";
-              }
-            }
-
-             ?>
          </div>
       </div>
    </body>
 </html>
+
+<?php include_once 'footer.php' ?>

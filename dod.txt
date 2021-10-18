@@ -1,0 +1,65 @@
+Als een klant wil ik meer opties zodat ik de perfecte reis kan boeken.
+-Select voor: type vakantie, verblijf, vervoer.
+-Prijs verandert mee als je iets kiest.
+-Keuzes worden verstuurd naar database.
+
+Als een bedrijf wil ik dat klanten alternieven kunnen zien zodat er een grotere kans is dat ze een reis boeken.
+-Onderaan boeken pagina staan reizen uit hetzelfde land.
+-In dezelfde cards als de bestemmingen pagina, uit de database.
+-Als je op een card klikt ga je naar die reis.
+
+Als een bedrijf wil ik niet dat klanten kunnen boeken of inloggen zonder dat ze ingelogd zijn zodat alles naar de website gaat.
+-Als klant niet ingelogd is, op de boeken pagina, form wordt vervangen door melding dat je moet inloggen voordat je kunt boeken.
+-Als klant wel is ingelogd, kan hij volledig gebruik maken van de website.
+
+Als een bedrijf wil ik dat er een FAQ is, zodat klanten sneller zelf hulp kunnen vinden.
+-Link op contactpagina naar FAQ.
+-Vragen en antwoorden komen uit database.
+-Op FAQ link terug naar contactpagina, voor als je vraag niet beantwoord is.
+
+Als een bedrijf wil ik dat er een limiet is op boekingen per reis, zodat de reis niet overboekt raakt.
+-Als je op de bestemmingen pagina komt, staat er op de cards van de reizen inplaats van prijs, volgeboekt.
+-Als reis vol is en je komt op boeken pagina, wordt de form vervangen door melding dat de reis vol is. (zelfde manier als bij niet ingelogd)
+
+Als een klant wil ik mijn profiel kunnen bewerken zodat ik mijn gegevens kan updaten.
+-In dropdown van je naam, als je op profiel klikt ga je naar profiel pagina.
+-Op profiel pagina, tekstveldjes met je info, als je ze verandert kun je op een knop met opslaan klikken.
+-Als je opslaat ga je terug naar de homepagina.
+
+Als een klant wil ik de geschiedenis van mijn boekingen kunnen zien zodat ik weet wat en wanneer ik reizen heb geboekt.
+-In de dropdown van je naam, komt een item boekingen en als je daar op klikt ga je naar de boekingen pagina.
+-Op de boekingen pagina, een lijst met al je boekingen.
+-Bij elke boeking, een knop om een review te schrijven over die specifieke boeking.
+
+Als een klant wil ik de factuur kunnen zien zodat ik de informatie controleren.
+-Op de boeking pagina, een knop "Naar Betalen", als je er op klikt ga je naar de factuur pagina.
+-Op de factuur pagina een factuur, een knop met "Annuleren" en een knop met "Betalen".
+
+Als een bedrijf wil ik een introductie op de homepagina, zodat klanten weten wat wij doen.
+-Introductie in tekst.
+-In het Nederlands en Engels.
+-Bovenaan homepagina in blokje met tekst Nederlands.
+-Net onder dat blokje met tekst Engels.
+
+Als een klant wil ik reviews kunnen zien, zodat ik een betere keuze kan maken.
+-Reviews onderaan boeken pagina boven lijst met alternatieven.
+-Reviews komen onder elkaar te staan (5), om meer reviews te zien kun je op laad meer klikken, dan laad hij 5 meer reviews.
+-Reviews zijn gesorteerd op hoogste score naar laagste score.
+-Gemiddelde score staat op cards op bestemmingen pagina.
+
+Als een klant wil ik mijn profiel kunnen bekijken zodat ik mijn gegevens kan zien.
+-In dropdown, als je op mijn profiel klikt kom je op de profielpagina.
+-In tekstveldjes zie je je informatie staan.
+
+Als een klant wil ik vragen kunnen stellen zodat mijn problemen verholpen worden.
+-In navigatiebalk link naar contactpagina.
+-Bovenaan link naar FAQ pagina, met een tekst die aanraad om eerst in de FAQ te kijken.
+-Een select met opties: Klacht, vraag, feedback. 
+-Daaronder tekst veldje met onderwerp.
+-Daaronder tekstvak met de opmerking.
+-Verstuur knop die de opmerking naar de database stuurt.
+-Als je een optie selecteert veranderd standaard-tekst in onderste veldje veranderd.
+
+Als een klant wil ik reviews kunnnen schrijven zodat ik andere kan helpen met een keuze helpen.
+
+
