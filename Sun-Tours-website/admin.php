@@ -10,7 +10,7 @@ include_once('admin-header.php');
                 <div class="card-body">
                     Hier komt een kleine lijst met de meest recente boekingen.
                     <br><br>
-                    <a href="http://maxvanbreemenfotografie.test/maxvanbreemenfotografie/public/albums/create" class="btn btn-primary">Alle boekingen</a>
+                    <a href="boekingen.php" class="btn btn-primary">Alle boekingen</a>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@ include_once('admin-header.php');
                 <div class="card-body">
                     Hier komt een kleine lijst met de meest nieuwe klanten.
                     <br><br>
-                    <a href="http://maxvanbreemenfotografie.test/maxvanbreemenfotografie/public/albums/create" class="btn btn-primary">Alle klanten</a>
+                    <a href="klanten.php" class="btn btn-primary">Alle klanten</a>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@ include_once('admin-header.php');
                 <div class="card-body">
                     Hier komt een kleine lijst met de meest nieuwe vragen of klachten.
                     <br><br>
-                    <a href="http://maxvanbreemenfotografie.test/maxvanbreemenfotografie/public/albums/create" class="btn btn-primary">Alle vragen</a>
+                    <a href="vragen.php" class="btn btn-primary">Alle vragen</a>
                 </div>
             </div>
         </div>
