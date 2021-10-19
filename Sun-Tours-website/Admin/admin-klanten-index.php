@@ -17,9 +17,9 @@ if(isset($_POST['delete'])){
 
 ?>
 <div class="container py-4">
-    <h1>Alle klanten</h1>
+    <h1 class="text-center">Alle klanten</h1>
     <br>
-    <table class="table table-dark table-hover" style="border-radius: 5%">
+    <table class="table table-dark table-hover">
         <thead>
             <tr>
                 <th>#</th>

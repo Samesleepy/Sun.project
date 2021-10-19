@@ -96,7 +96,7 @@ if(isset($_POST['logout'])){
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                            echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
                            if($_SESSION['user']->role == 'Admin'){
-                              echo     "<li><a class='dropdown-item' href='admin.php'>Dashboard</a></li>";
+                              echo     "<li><a class='dropdown-item' href='admin/admin.php'>Dashboard</a></li>";
                            }
                            echo        "<li><a class='dropdown-item' href='boekingen.php'>Bookings</a></li>";
                            echo    "</ul>";
