@@ -68,32 +68,32 @@ if(isset($_POST['logout'])){
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="admin-boekingen.php" class="nav-link text-white">
                             <i class="fas fa-globe-americas" width="16" height="16" style="padding-right: 7px"></i>
                             Boekingen
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="admin-klanten.php" class="nav-link text-white">
                             <i class="fas fa-users" width="16" height="16" style="padding-right: 3px"></i>
                             Klanten
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="admin-vragen.php" class="nav-link text-white">
                             <i class="far fa-question-circle" width="16" height="16" style="padding-right: 7px"></i>
                             Vragen
                             <span class="badge bg-light text-dark rounded-pill align-text-bottom">3</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="admin-faq.php" class="nav-link text-white">
                         <i class="far fa-comments" width="16" height="16" style="padding-right: 5px"></i>
                             FAQ's
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="admin-reviews.php" class="nav-link text-white">
                             <i class="far fa-star" width="16" height="16" style="padding-right: 5px"></i>
                             Reviews
                         </a>
