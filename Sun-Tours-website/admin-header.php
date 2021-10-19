@@ -34,6 +34,13 @@ if(isset($_POST['logout'])){
     session_destroy();
     header("Location: home.php");
 }
+
+$db = $database->connection();
+$stmt = $db->prepare("SELECT COUNT(*) FROM `contact`;");
+$stmt->execute();
+$countVragen = $stmt->fetch();
+$count = $countVragen[0];
+$db = NULL
 ?>
 
 <html lang="nl" dir="ltr">
@@ -83,7 +90,7 @@ if(isset($_POST['logout'])){
                         <a href="admin-vragen.php" class="nav-link text-white">
                             <i class="far fa-question-circle" width="16" height="16" style="padding-right: 7px"></i>
                             Vragen
-                            <span class="badge bg-light text-dark rounded-pill align-text-bottom">3</span>
+                            <span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $count ?></span>
                         </a>
                     </li>
                     <li>

@@ -1,6 +1,20 @@
 <?php
 include_once('admin-header.php');
 
+$db = $database->connection();
+$stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `boeking`.`Boekingsdatum` DESC LIMIT 3;");
+$stmt->execute();
+$resultBoekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $db->prepare("SELECT * FROM `klant` ORDER BY `klant`.`KlantID` ASC LIMIT 3;");
+$stmt->execute();
+$resultKlanten = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $db->prepare("SELECT * FROM `contact` ORDER BY `contact`.`VraagID` ASC LIMIT 3;");
+$stmt->execute();
+$resultContacten = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$db = NULL;
 
 
 ?>
