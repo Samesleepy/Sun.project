@@ -39,7 +39,7 @@ if(isset($_POST['logout'])){
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <div class="container">
+         <div class="container" style="min-width: 100%;">
 
             <a href="home.php"><img src="Pics\Sun-Tours-logo.png" class="sun" alt="Suntours"></a>
             <div class="collapse navbar-collapse" id="navbarNav">

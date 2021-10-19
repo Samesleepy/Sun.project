@@ -14,7 +14,13 @@ if(isset($_POST['submit'])) {
 
     header("Location: profiel.php");
 }
-
+if(isset($_POST['test'])){
+  $userinfo = $_SESSION['user']->GetUserInfo();
+  $KlantID = $userinfo['KlantID'];
+  $_SESSION['user']->DeleteUser($database, $KlantID);
+  $_SESSION['user'] = NULL;
+  header("Refresh:0");
+}
 ?>
 
 <body>
@@ -89,7 +95,23 @@ if(isset($_POST['submit'])) {
             </div>
             <div class="my-3">
                 <div class="text-end ">
-                    <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block w-100">Opslaan</button>
+                    <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block ">Opslaan</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Verwijder account</button>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Account verwijderen.</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="text-align:center;"> Weet je zeker dat je je account wilt verwijderen? Je kunt je account niet meer terug krijgen zodra je het verwijderd.</div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+                              <button id="test" type="submit" name="test" class="btn btn-danger btn-block ">Verwijder account</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </div>
         </form>
