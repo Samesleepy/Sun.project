@@ -111,7 +111,7 @@ $hotels = $stmt->fetchAll();
                     <div class="mb-2">
                         <label for="hotel" class="form-label">Kies je hotel</label>
                         <select class="form-select" name="hotel" aria-label="Default select example" required>
-                            <option disabled selected hidden>Kies hier uw hotel</option>
+                            <option value="" disabled selected hidden>Kies hier uw hotel</option>
                             <?php
                             if(!$hotels == ""){ //Als hotels NIET leeg zijn
                                 foreach($hotels as $hotel){
@@ -127,7 +127,7 @@ $hotels = $stmt->fetchAll();
                     <div class="mb-5">
                         <label for="Vervoer" class="form-label">Kies je vervoer</label>
                         <select class="form-select" name="vervoer" aria-label="Default select example" required>
-                            <option disabled selected hidden>Kies hier uw vervoer</option>
+                            <option value="" disabled selected hidden>Kies hier uw vervoer</option>
                             <option value="Auto">Auto</option>
                             <option value="Vliegtuig">Vliegtuig</option>
                             <option value="Boot">Boot</option>
