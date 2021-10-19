@@ -40,10 +40,25 @@ $score = $Bestemminginfo['Score'];
 //if form submitted
 if(isset($_POST['submit'])){
 
-    $boekingsdatum = Date("Y-m-d");
-    //Maak instance boeking met info van de pagina en andere classes
-    $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
-    $Boeking->Boeken($database); //Boekt de reis, stuurt naar database en return BoekingID om zo factuur te kunnen laten zien
+  $_SESSION['id'] = $id;
+  $_SESSION['KlantID'] = $Userinfo['KlantID'];
+  $_SESSION['Land'] = $Bestemminginfo['Land'];
+  $_SESSION['Plaats'] = $Bestemminginfo['Plaats'];
+  $_SESSION['Prijs'] = $prijs;
+  $_SESSION['personen'] = $_POST['personen'];
+  $_SESSION['vertrekdatum'] = $_POST['vertrekdatum'];
+  $_SESSION['boekingsdatum'] = $boekingsdatum;
+  $_SESSION['duur'] = $_POST['duur'];
+  $_SESSION['hotel'] = $_POST['hotel'];
+  $_SESSION['vervoer'] = $_POST['vervoer'];
+  
+  header("Location: betaling.php");
+
+    //
+    // $boekingsdatum = Date("Y-m-d");
+    // //Maak instance boeking met info van de pagina en andere classes
+    // $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
+    // $Boeking->Boeken($database); //Boekt de reis, stuurt naar database en return BoekingID om zo factuur te kunnen laten zien
 }
 ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
 
