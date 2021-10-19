@@ -1,5 +1,7 @@
 <?php
 
+
+
 //Include alle classes
 include_once('Classes/db.php');
 include_once('Classes/bestemmingClass.php');
@@ -21,6 +23,10 @@ if(isset($_SESSION['user'])){
     $User = $_SESSION['user'];
 }else{
     $User = new User();
+}
+
+if (!$_SESSION['User']->role == "admin") {
+    header("Location: home.php");
 }
 
 if(isset($_POST['logout'])){
@@ -76,6 +82,7 @@ if(isset($_POST['logout'])){
                         <a href="#" class="nav-link text-white">
                             <i class="far fa-question-circle" width="16" height="16" style="padding-right: 7px"></i>
                             Vragen
+                            <span class="badge bg-light text-dark rounded-pill align-text-bottom">3</span>
                         </a>
                     </li>
                     <li>
@@ -94,7 +101,7 @@ if(isset($_POST['logout'])){
                 <hr>
                 <div class="user">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none">
-                    <i class='fas fa-user' style="padding-right: 5px"></i>
+                    <i class='fas fa-user' style="padding-right: 10px"></i>
                     <strong> <?php echo $User->voornaam . " " .  $User->tussenvoegsel . " " . $User->achternaam; ?></strong>
                 </a>
                 </div>

@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
   // $query = $db->prepare("INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`)
   // VALUES ('$KlantID','$Soort','$Onderwerp','$Opmerking')");
   // $query->execute();
-}
+} 
 
 ?>
 <body>
@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
             <textarea  style="height: auto !important" class="form-control" name="opmerking" rows="5" required></textarea>
             <label id="label" for="onderwerp">Opmerking</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit">Verstuur</button>
+          <button class="w-100 btn btn-lg btn-primary" style="font-size: 1rem;" name="submit" type="submit">Verstuur</button>
           <hr class="my-4">
           <small class="text-muted">Kijk hier of je vraag er al bij staat. <a class="active" aria-current="page" href="FAQ.php">FAQ</a></small>
         </form>
