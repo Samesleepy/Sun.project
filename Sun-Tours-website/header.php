@@ -38,8 +38,8 @@ if(isset($_POST['logout'])){
       <script src="https://kit.fontawesome.com/e1d19818da.js" crossorigin="anonymous"></script>
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <div class="container" style="min-width: 100%;">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-md-center">
+         <div class="container">
 
             <a href="home.php"><img src="Pics\Sun-Tours-logo.png" class="sun" alt="Suntours"></a>
             <div class="collapse navbar-collapse" id="navbarNav">
