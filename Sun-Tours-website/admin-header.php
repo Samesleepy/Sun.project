@@ -25,7 +25,7 @@ if(isset($_SESSION['user'])){
     $User = new User();
 }
 
-if (!$_SESSION['User']->role == "Admin") {
+if (!$_SESSION['user']->role == "Admin") {
     header("Location: home.php");
 }
 

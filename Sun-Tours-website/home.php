@@ -1,5 +1,6 @@
 <?php include_once 'header.php';?>
 
+
 <body style="background-image: url('Pics/landscape-at-dawn.jpg'); background-size: cover;">
    <div class="card text-white bg-dark" style="margin-left:65%; margin-top: 6%; width:20%">
       <div class="card-body">
@@ -11,6 +12,7 @@
    </div>
 
    <?php
+   //dd($_SESSION['user']->role);
 
    if ($User->voornaam != ""){ //Als user ingelogd is
    echo '<a href="bestemmingen.php" class="btn btn-primary rounded" style="margin-left:65%; margin-top: 1%; width: 20%">Destinations</a>';
