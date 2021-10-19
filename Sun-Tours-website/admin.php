@@ -1,5 +1,8 @@
 <?php
 include_once('admin-header.php');
+
+
+
 ?>
 
 <div class="container py-4">
@@ -10,7 +13,7 @@ include_once('admin-header.php');
                 <div class="card-body">
                     Hier komt een kleine lijst met de meest recente boekingen.
                     <br><br>
-                    <a href="boekingen.php" class="btn btn-primary">Alle boekingen</a>
+                    <a href="admin-boekingen.php" class="btn btn-primary">Alle boekingen</a>
                 </div>
             </div>
         </div>
@@ -20,7 +23,7 @@ include_once('admin-header.php');
                 <div class="card-body">
                     Hier komt een kleine lijst met de meest nieuwe klanten.
                     <br><br>
-                    <a href="klanten.php" class="btn btn-primary">Alle klanten</a>
+                    <a href="admin-klanten.php" class="btn btn-primary">Alle klanten</a>
                 </div>
             </div>
         </div>
@@ -30,7 +33,7 @@ include_once('admin-header.php');
                 <div class="card-body">
                     Hier komt een kleine lijst met de meest nieuwe vragen of klachten.
                     <br><br>
-                    <a href="vragen.php" class="btn btn-primary">Alle vragen</a>
+                    <a href="admin-vragen.php" class="btn btn-primary">Alle vragen</a>
                 </div>
             </div>
         </div>
