@@ -157,5 +157,19 @@ class User
       $db = NULL; //verbreek verbinding met database
     //}
   }
+
+  public function CheckIfBooked($database, $BestemmingID){
+    $geboekt = False;
+    $db = $database->connection();
+    $stmt = $db->query("SELECT * FROM `Boeking` WHERE `BestemmingID` = '".$BestemmingID."' AND `KlantID` = '".$this->klantID."'");
+    $result = $stmt->fetch();
+    if($result){
+      $geboekt = True;
+    }else{
+      $geboekt = False;
+    }
+    return $geboekt;
+  }
+
 }
 ?>

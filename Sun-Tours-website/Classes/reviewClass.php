@@ -3,7 +3,7 @@
 class Review
 {
   public $bestemmingID; //ID van bestemming van waar het om gaat
-  private $voornaam; 
+  private $voornaam;
   private $achternaam;
   private $tussenvoegsel; //(mogelijk) Tussenvoegsel
   private $score; //Score die de klant geeft aan de review

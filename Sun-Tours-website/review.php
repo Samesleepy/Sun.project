@@ -8,7 +8,8 @@
    </head>
    <body>
       <div class="card bg-light">
-         <div class="card-body mx-auto" style="max-width: 800px;">
+         <div class="card-body mx-auto" style="max-width: 800px; width: 350px;">
+          <?php if($User->CheckIfBooked($database, $id)){ ?>
             <div class="jumbotron text-center">
                <h1>Schrijf een review!<h1>
             </div>
@@ -32,7 +33,7 @@
                </div>
             </form>
             <?php
-
+          }
             //print_r($Bestemminginfo);
             if(isset($_POST['submitr'])){
                $Reviewdate = date('Y/m/d');
