@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 19 okt 2021 om 09:43
+-- Gegenereerd op: 19 okt 2021 om 09:53
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.3.8
 
@@ -166,7 +166,13 @@ CREATE TABLE `hotel` (
 INSERT INTO `hotel` (`ID`, `BestemmingID`, `Naam`, `Prijs`) VALUES
 (1, 8, 'Jakarta hotel', '60.00'),
 (2, 8, 'Bombini hotel', '65.00'),
-(3, 8, 'Vivalavida hotel', '66.00');
+(3, 8, 'Vivalavida hotel', '66.00'),
+(4, 5, 'Gizeh palace', '77.00'),
+(5, 7, 'Gambino hotel', '50.00'),
+(6, 9, 'hotel de la Kos', '56.00'),
+(7, 10, 'Pelon hotel', '67.00'),
+(8, 11, 'Ching Chang hotel', '59.00'),
+(9, 12, 'York hotel', '79.00');
 
 -- --------------------------------------------------------
 
@@ -297,7 +303,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT voor een tabel `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT voor een tabel `klant`
