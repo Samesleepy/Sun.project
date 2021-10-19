@@ -3,23 +3,26 @@ include_once 'header.php';
 
 if(isset($_POST['submit'])){
 
-    $boekingsdatum = Date("Y-m-d");
     //Maak instance boeking met info van de pagina en andere classes
     $Boeking = new Boeking($_SESSION['id'], $_SESSION['KlantID'], $_SESSION['Land'], $_SESSION['Plaats'], $_SESSION['Prijs'], $_SESSION['personen'], $_SESSION['vertrekdatum'], $_SESSION['boekingsdatum'], $_SESSION['duur'], $_SESSION['hotel'], $_SESSION['vervoer']);
 
+    //dd($Boeking);
     $Boeking->Boeken($database); //Boekt de reis, stuurt naar database en return BoekingID om zo factuur te kunnen laten zien
     unset($_SESSION['id'], $_SESSION['KlantID'], $_SESSION['Land'], $_SESSION['Plaats'], $_SESSION['Prijs'], $_SESSION['personen'], $_SESSION['vertrekdatum'], $_SESSION['boekingsdatum'], $_SESSION['duur'], $_SESSION['hotel'], $_SESSION['vervoer']);
+
+    header("Location: home.php");
 }
- ?>
+?>
 
 <body>
+  <form method="post">
     <h1 class="text-center">Factuur</h1>
     <div class="row" style="width:50%;margin-left:25%;">
-        <div class="col">
-            <div class="mb-2">
-                <label for="woonplaats" class="form-label">Land</label>
-                <input name="woonplaats" class="form-control" value="<?php echo $_SESSION['Land']; ?>" type="text" disabled>
-            </div>
+      <div class="col">
+          <div class="mb-2">
+            <label for="woonplaats" class="form-label">Land</label>
+            <input name="woonplaats" class="form-control" value="<?php echo $_SESSION['Land']; ?>" type="text" disabled>
+          </div>
         </div>
         <div class="col">
             <div class="mb-2">
@@ -78,8 +81,8 @@ if(isset($_POST['submit'])){
             </div>
               <input type="submit" name="submit" style="float: right;" value="Betalen" class="btn btn-primary btn-block w-100"/>
         </div>
+  </form>
     </div>
-
 </body>
 
 <?php

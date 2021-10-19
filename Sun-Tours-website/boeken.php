@@ -40,6 +40,7 @@ $score = $Bestemminginfo['Score'];
 //if form submitted
 if(isset($_POST['submit'])){
 
+  $boekingsdatum = Date("Y-m-d");
   $_SESSION['id'] = $id;
   $_SESSION['KlantID'] = $Userinfo['KlantID'];
   $_SESSION['Land'] = $Bestemminginfo['Land'];
@@ -51,7 +52,7 @@ if(isset($_POST['submit'])){
   $_SESSION['duur'] = $_POST['duur'];
   $_SESSION['hotel'] = $_POST['hotel'];
   $_SESSION['vervoer'] = $_POST['vervoer'];
-  
+
   header("Location: betaling.php");
 
     //
@@ -60,7 +61,7 @@ if(isset($_POST['submit'])){
     // $Boeking = new Boeking($id, $Userinfo['KlantID'], $Bestemminginfo['Land'], $Bestemminginfo['Plaats'], $prijs, $_POST['personen'], $_POST['vertrekdatum'], $boekingsdatum, $_POST['duur'], $_POST['hotel'], $_POST['vervoer']);
     // $Boeking->Boeken($database); //Boekt de reis, stuurt naar database en return BoekingID om zo factuur te kunnen laten zien
 }
-?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");<?php //echo Boeken(); ?>;window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
+?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
 
 $db = $database->connection();
 $stmt = $db->prepare("SELECT `Naam` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
