@@ -11,10 +11,12 @@ if(isset($_POST['submit'])){
   $Contact = new Contact($User->GetUserInfo()['KlantID'], $_POST['soort'], $_POST['onderwerp'], $_POST['opmerking']);
   $Contact->CreateContact($database);
 
+  echo "<div class='alert alert-success' role='alert' style='margin-bottom: 0px;'>Succesvol verstuurd!</div>";
+
   // $query = $db->prepare("INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`)
   // VALUES ('$KlantID','$Soort','$Onderwerp','$Opmerking')");
   // $query->execute();
-} 
+}
 
 ?>
 <body>
