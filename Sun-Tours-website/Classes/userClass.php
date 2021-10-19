@@ -11,6 +11,7 @@ class User
   private $email;
   private $telefoonnummer;
   private $hashed_wachtwoord; //Wachtwoord nadat deze gehasht is
+  private $role;
   private $land;
   private $woonplaats;
   private $postcode;
@@ -61,6 +62,7 @@ class User
       $this->tussenvoegsel = $result['Tussenvoegsel'];
       $this->email = $result['Email'];
       $this->telefoonnummer = $result['Telefoonnummer'];
+      $this->role = $result['Role'];
       $this->land = $result['Land'];
       $this->woonplaats = $result['Woonplaats'];
       $this->postcode = $result['Postcode'];
