@@ -157,5 +157,11 @@ class User
       $db = NULL; //verbreek verbinding met database
     //}
   }
+  public function DeleteUser($database, $KlantID){//verwijderd een klant
+    $db = $database->connection();
+    $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$this->klantID."'");
+    $stmt->execute();
+    $db = NULL; //verbreek verbinding met database
+  }
 }
 ?>
