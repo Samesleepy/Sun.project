@@ -11,7 +11,7 @@ class User
   private $email;
   private $telefoonnummer;
   private $hashed_wachtwoord; //Wachtwoord nadat deze gehasht is
-  private $role;
+  public $role;
   private $land;
   private $woonplaats;
   private $postcode;

@@ -1,4 +1,6 @@
-<?php include_once 'header.php';?>
+<?php include_once 'header.php';
+
+?>
 
 <body style="background-image: url('Pics/landscape-at-dawn.jpg'); background-size: cover;">
    <div class="card text-white bg-dark" style="margin-left:65%; margin-top: 6%; width:20%">

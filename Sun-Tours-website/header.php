@@ -93,7 +93,7 @@ if(isset($_POST['logout'])){
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                            echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
-                           if(/*$User->role == 'Admin' ||*/ $User->voornaam == 'Joey' || $User->voornaam == 'Delon' || $User->voornaam == 'Sam' || $User->voornaam == 'Pim'){
+                           if($_SESSION['user']->role == 'Admin'){
                               echo     "<li><a class='dropdown-item' href='admin.php'>Dashboard</a></li>";
                            }
                            echo        "<li><a class='dropdown-item' href='boekingen.php'>Bookings</a></li>";
