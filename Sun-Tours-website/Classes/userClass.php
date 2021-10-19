@@ -140,24 +140,22 @@ class User
 
   public function ChangePass($database, $klantID, $newPass, $oldPass, $rePass){ //Verander wachtwoord van ingelogde account, repass is het herhaalde wachtwoord
     $db = $database->connection();
-    //if(isset($_POST['submit'])) {
-      $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$klantID."'");
-      $resultpass = $stmt->fetch(PDO::FETCH_ASSOC);
-      $passNew_hashed = password_hash($newPass, PASSWORD_DEFAULT);
+    $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$klantID."'");
+    $resultpass = $stmt->fetch(PDO::FETCH_ASSOC);
+    $passNew_hashed = password_hash($newPass, PASSWORD_DEFAULT);
 
-      if(password_verify($oldPass, $resultpass['Wachtwoord'])){
-          if($newPass === $rePass){
-              $stmt = $db->prepare("UPDATE `klant` SET `Wachtwoord` = '".$passNew_hashed."' WHERE `KlantID` = '".$klantID."'");
-              $stmt->execute();
-              header("Location: profiel.php");
-          }else{
-              echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Herhaal het nieuwe wachtwoord</div>";
-          }
-      }else{
-          echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Je oude wachtwoord is verkeerd</div>";
-      }
-      $db = NULL; //verbreek verbinding met database
-    //}
+    if(password_verify($oldPass, $resultpass['Wachtwoord'])){
+        if($newPass === $rePass){
+            $stmt = $db->prepare("UPDATE `klant` SET `Wachtwoord` = '".$passNew_hashed."' WHERE `KlantID` = '".$klantID."'");
+            $stmt->execute();
+            header("Location: profiel.php");
+        }else{
+            echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Herhaal het nieuwe wachtwoord</div>";
+        }
+    }else{
+        echo "<div class='alert alert-danger' role='alert' style='margin-bottom: 0px;'>Fout! Je oude wachtwoord is verkeerd</div>";
+    }
+    $db = NULL; //verbreek verbinding met database
   }
 
   public function CheckIfBooked($database, $BestemmingID){
@@ -173,7 +171,8 @@ class User
     return $geboekt;
   }
 
-  public function DeleteUser($database, $KlantID){//verwijderd een klant
+  public function DeleteUser($database){
+    //verwijderd een klant
     $db = $database->connection();
     $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$this->klantID."'");
     $stmt->execute();

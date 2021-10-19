@@ -1,7 +1,4 @@
 <?php
-
-
-
 //Include alle classes
 include_once('Classes/db.php');
 include_once('Classes/bestemmingClass.php');
@@ -13,8 +10,10 @@ include_once('Classes/contactClass.php');
 
 //for testing
 function dd($x){
+    echo "<pre>";
     print_r($x);
     die();
+    echo "</pre>";
 }
 
 session_start();
@@ -106,11 +105,9 @@ $db = NULL
                         </a>
                     </li>
                 </ul>
-                <hr>
-                <div class="user">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none">
+                <a href="../readme.txt" style="color: white;"><hr></a>
+                <div class="d-flex align-items-center text-white text-decoration-none">
                     <i class='fas fa-user' style="padding-right: 10px"></i>
                     <strong> <?php echo $User->voornaam . " " .  $User->tussenvoegsel . " " . $User->achternaam; ?></strong>
-                </a>
                 </div>
             </div>

@@ -11,8 +11,10 @@ include_once('Classes/contactClass.php');
 
 //for testing
 function dd($x){
+   echo "<pre>";
    print_r($x);
    die();
+   echo "</pre>";
 }
 
 session_start();
