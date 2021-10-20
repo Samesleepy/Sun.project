@@ -1,14 +1,19 @@
 <?php
 include_once('admin-header.php');
-//$KlantID;
-// if(isset($_GET['KlantID'])){
-//     $KlantID = $_GET['KlantID'];
-// }else{
-//     //header("Location: home.php");
-// }
+
 $UserToEdit = new User();
 $UserToEdit->SetUserInfo($database, $_GET['KlantID']);
 $Userinfo = $UserToEdit->GetUserInfo();
+
+if(isset($_POST['changeinfo'])){
+  $UserToEdit->AdminUpdateUser($database, $_POST['email'], $_POST['role']);
+  header("Refresh:0");
+}
+
+if(isset($_POST['changepass'])){
+  $UserToEdit->AdminUpdateUserPass($database, $_POST['passNieuw']);
+  header("Refresh:0");
+}
 ?>
 
 <body>
@@ -17,18 +22,25 @@ $Userinfo = $UserToEdit->GetUserInfo();
             <div class="jumbotron text-center">
                 <h1>Account wijzigen<h1>
             </div>
-            <form action="" method="post">
+            <form method="post">
                 <div class="row">
                 </div>
                 <div class="mb-2">
                     <label for="email" class="form-label">E-mail</label>
                     <input name="email" class="form-control" placeholder="E-mail" value="<?php echo $Userinfo['Email'] ?> "type="email" required>
                 </div>
+                <select class="form-select" name="role" aria-label="Default select example" required>
+                  <option value="Admin" <?php if($Userinfo['Role'] == 'Admin'){ echo "selected";}  ?>>Admin</option>
+                  <option value="User" <?php if($Userinfo['Role'] == 'User'){ echo "selected";}  ?>>User</option>
+                </select>
+                <button type="submit" name="changeinfo" class="btn btn-primary btn-block w-100 my-2">Account Wijzigen</button>
+              </form>
+              <form method="post">
                 <div class="mb-2">
-                    <label for="role" class="form-label">Role</label>
-                    <input name="role" class="form-control" placeholder="Role" value="<?php echo $Userinfo['Role'] ?>
-                    " type="text" required>
+                    <label for="NieuwWachtwoord" class="form-label">Nieuw wachtwoord</label>
+                    <input name="passNieuw" class="form-control" type="password" required>
                 </div>
+                <button type="submit" name="changepass" class="btn btn-primary btn-block w-100 my-2 ">Wachtwoord Wijzigen</button>
             </form>
         </div>
     </div>
