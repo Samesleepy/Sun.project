@@ -32,7 +32,7 @@ if(isset($_POST['delete'])){
             </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php
             foreach ($klanten as $key => $klant) {
                 echo "<tr>";
                     echo "<form method='post'>";
@@ -43,7 +43,7 @@ if(isset($_POST['delete'])){
                         echo "<td>". $klant['Achternaam'] ."</td>";
                         echo "<td>". $klant['Role'] ."</td>";
                         echo "<td>". $klant['Email'] ."</td>";
-                        echo "<td><a type='button' href='admin-klanten-edit.php?id=".$klant['KlantID']."' class='btn btn-primary'>Edit</a></td>";
+                        echo "<td><a type='button' href='admin-klanten-edit.php?KlantID=".$klant['KlantID']."' class='btn btn-primary'>Edit</a></td>";
                         echo "<td><button type='submit' name='delete' class='btn btn-danger'>Delete</button></td>";
                     echo "</form>";
                 echo "</tr>";

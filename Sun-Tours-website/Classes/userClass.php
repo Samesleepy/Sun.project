@@ -133,7 +133,7 @@ class User
   public function GetUserInfo(){ //Omdat userinfo private is moet je hem met een functie uit de instance halen
     $Userinfo = array();
     $Userinfo = ['KlantID'=>$this->klantID, 'Voornaam'=>$this->voornaam, 'Achternaam'=>$this->achternaam, 'Tussenvoegsel'=>$this->tussenvoegsel, 'Email'=>$this->email, 'Telefoonnummer'=>$this->telefoonnummer,
-    'Land'=>$this->land, 'Woonplaats'=>$this->woonplaats,'Postcode'=>$this->postcode,
+    'Role'=>$this->role, 'Land'=>$this->land, 'Woonplaats'=>$this->woonplaats,'Postcode'=>$this->postcode,
     'Straatnaam'=>$this->straatnaam, 'Huisnummer'=>$this->huisnummer];
     return $Userinfo;
   }
@@ -177,6 +177,16 @@ class User
     $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$this->klantID."'");
     $stmt->execute();
     $db = NULL; //verbreek verbinding met database
+  }
+
+  public function SetUserInfo($database, $KlantID){
+    $db = $database->connection();
+    $stmt = $db->prepare("SELECT * FROM `klant`WHERE `KlantID` = '".$KlantID."';");
+    $stmt->execute();
+    $klant = $stmt->fetch();
+    $db = NULL;
+    $this->email = $klant['Email'];
+    $this->role = $klant['Role'];
   }
 
 }
