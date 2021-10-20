@@ -39,21 +39,20 @@ $score = $Bestemminginfo['Score'];
 
 //if form submitted
 if(isset($_POST['submit'])){
+    $boekingsdatum = Date("Y-m-d");
+    $_SESSION['id'] = $id;
+    $_SESSION['KlantID'] = $Userinfo['KlantID'];
+    $_SESSION['Land'] = $Bestemminginfo['Land'];
+    $_SESSION['Plaats'] = $Bestemminginfo['Plaats'];
+    $_SESSION['Prijs'] = $prijs;
+    $_SESSION['personen'] = $_POST['personen'];
+    $_SESSION['vertrekdatum'] = $_POST['vertrekdatum'];
+    $_SESSION['boekingsdatum'] = $boekingsdatum;
+    $_SESSION['duur'] = $_POST['duur'];
+    $_SESSION['hotel'] = $_POST['hotel'];
+    $_SESSION['vervoer'] = $_POST['vervoer'];
 
-  $boekingsdatum = Date("Y-m-d");
-  $_SESSION['id'] = $id;
-  $_SESSION['KlantID'] = $Userinfo['KlantID'];
-  $_SESSION['Land'] = $Bestemminginfo['Land'];
-  $_SESSION['Plaats'] = $Bestemminginfo['Plaats'];
-  $_SESSION['Prijs'] = $prijs;
-  $_SESSION['personen'] = $_POST['personen'];
-  $_SESSION['vertrekdatum'] = $_POST['vertrekdatum'];
-  $_SESSION['boekingsdatum'] = $boekingsdatum;
-  $_SESSION['duur'] = $_POST['duur'];
-  $_SESSION['hotel'] = $_POST['hotel'];
-  $_SESSION['vervoer'] = $_POST['vervoer'];
-
-  header("Location: betaling.php");
+    header("Location: betaling.php");
 
     //
     // $boekingsdatum = Date("Y-m-d");
@@ -64,28 +63,12 @@ if(isset($_POST['submit'])){
 ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
 
 $db = $database->connection();
-$stmt = $db->prepare("SELECT `Naam` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
+$stmt = $db->prepare("SELECT `Naam`,`Prijs` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
 $stmt->execute(); //Haal naam van hotel uit database, hotels van de gekozen bestemming
 $hotels = $stmt->fetchAll();
 ?>
 
-<script>
-    //live update prijs
-    function updatePrijs(){
-        personen = document.getElementById('personenveld').value;
-        dagen = document.getElementById('dagenveld').value;
-        prijspp_str = document.getElementById('prijsPP').innerHTML;
 
-        prijspp = prijspp_str.substr(1,prijspp_str.length-5);
-        prijsint = parseInt(prijspp);
-        if(personen==""||dagen==""){
-            document.getElementById('totaal').innerHTML = "€0.00";
-        }else{
-            result = personen * dagen * prijsint;
-            document.getElementById('totaal').innerHTML = "€" + result + ".00";
-        }
-    }
-</script>
 
 <body>
     <div class="container col-xl-10 col-xxl-8 px-4 py-5">
@@ -131,7 +114,7 @@ $hotels = $stmt->fetchAll();
                             <?php
                             if(!$hotels == ""){ //Als hotels NIET leeg zijn
                                 foreach($hotels as $hotel){
-                                echo "<option value='".$hotel['Naam']."'>".$hotel['Naam']."</option>";
+                                echo "<option style='position: revative; top:20px;' value='".$hotel['Naam']."'>".$hotel['Naam'] . " (&euro;" . $hotel['Prijs']. ")</option>";
                                 }
                             }else{ //Wel leeg
                                 echo "<option value='Niks' disabled>Geen hotels</option>";
@@ -160,7 +143,7 @@ $hotels = $stmt->fetchAll();
                                         <h6 class="my-0">Prijs p.p.</h6>
                                         <small class="text-muted">Prijs per persoon</small>
                                     </div>
-                                    <span id="prijsPP" class="text-muted"><?php echo "&euro;" . $Bestemminginfo['Prijs'] . " "; ?></span>
+                                    <span id="prijsPP" class="text-muted"><?php echo "&euro;" . $hotel['Prijs'] . " "; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Totaal</span>
@@ -186,5 +169,22 @@ $hotels = $stmt->fetchAll();
         </div>
     </div>
 </body>
+<script>
+    //live update prijs
+    function updatePrijs(){
+        personen = document.getElementById('personenveld').value;
+        dagen = document.getElementById('dagenveld').value;
+        prijspp_str = document.getElementById('prijsPP').innerHTML;
+
+        prijspp = prijspp_str.substr(1,prijspp_str.length-5);
+        prijsint = parseInt(prijspp);
+        if(personen==""||dagen==""){
+            document.getElementById('totaal').innerHTML = "€0.00";
+        }else{
+            result = personen * dagen * prijsint;
+            document.getElementById('totaal').innerHTML = "€" + result + ".00";
+        }
+    }
+</script>
 
 <?php include 'footer.php';?>
