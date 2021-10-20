@@ -26,6 +26,7 @@ if(isset($_POST['delete'])){
                 <th>Voornaam</th>
                 <th>Tussenvoegsel</th>
                 <th>Achternaam</th>
+                <th>Role</th>
                 <th>E-mail</th>
                 <th colspan="2">Options</th>
             </tr>
@@ -40,6 +41,7 @@ if(isset($_POST['delete'])){
                         echo "<td>". $klant['Voornaam'] ."</td>";
                         echo "<td>". $klant['Tussenvoegsel'] ."</td>";
                         echo "<td>". $klant['Achternaam'] ."</td>";
+                        echo "<td>". $klant['Role'] ."</td>";
                         echo "<td>". $klant['Email'] ."</td>";
                         echo "<td><button type='button' href='#' class='btn btn-primary'>Edit</button></td>";
                         echo "<td><button type='submit' name='delete' class='btn btn-danger'>Delete</button></td>";
