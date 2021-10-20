@@ -21,7 +21,7 @@ $db = NULL;
 ?>
 
 <div class="container py-4">
-    <h1 class="text-center">Alle klanten</h1>
+    <h1 class="text-center">Dashboard</h1>
     <br>
     <div class="row">
         <div class="col-sm">
@@ -56,7 +56,7 @@ $db = NULL;
             <div class="card bg-dark" style="height: 250px">
                 <div class="card-header text-white text-center"><b>Recent klanten</b></div>
                 <div class="card-body text-white">
-                    <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between;" class="mt-3">
                         <p>Aantal geregistreerde klanten:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlanten ?></span></p>
                     </div>
@@ -73,8 +73,30 @@ $db = NULL;
             <div class="card bg-dark" style="height: 250px">
                 <div class="card-header text-white text-center"><b>Recente onafgehandelde Vragen</b></div>
                 <div class="card-body text-white">
-                    Hier komt een kleine lijst met de meest nieuwe vragen of klachten.
-                    <br><br>
+                    <?php if(!empty($Vragen)){ ?>
+                    <table class="table table-sm text-white">
+                        <thead>
+                            <tr>
+                                <th>Klant</th>
+                                <th>Vraag</th>
+                                <th>Beantwoord</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        foreach ($Vragen as $key => $vraag) {
+                            echo "<tr>";
+                                echo "<th>". $vraag['KlantID'] ."</th>";
+                                echo "<td>". $vraag['Onderwerp'] ."</td>";
+                                echo "<td>". $vraag['Afgehandeld'] ."ee</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                    <?php }else{ ?>
+                        <p>Alle vragen zijn afgehandeld :)<p>
+                    <?php } ?>
                     <a href="admin-vragen-index.php" class="btn btn-primary">Alle vragen</a>
                 </div>
             </div>
