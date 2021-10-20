@@ -4,7 +4,7 @@
 class User
 {
 //$wachtwoord = $_POST['wachtwoord'];
-  private $klantID; //ID van klant
+  public $klantID; //ID van klant
   public $voornaam;
   public $achternaam;
   public $tussenvoegsel; //(mogelijk) Tussenvoegsel
@@ -185,9 +185,28 @@ class User
     $stmt->execute();
     $klant = $stmt->fetch();
     $db = NULL;
+    $this->klantID = $KlantID;
     $this->email = $klant['Email'];
     $this->role = $klant['Role'];
   }
+
+  public function AdminUpdateUser($database, $email, $role){
+    $db = $database->connection();
+    $stmt = $db->prepare("UPDATE `klant` SET `Email` = '".$email."', `Role` = '".$role."'
+    WHERE `KlantID` = '".$this->klantID."';");
+    $stmt->execute();
+    $db = NULL;
+  }
+
+  public function AdminUpdateUserPass($database, $pass){
+    $db = $database->connection();
+    $pass_hashed = password_hash($pass, PASSWORD_DEFAULT);
+    $stmt = $db->prepare("UPDATE `klant` SET `Wachtwoord` = '".$pass_hashed."'WHERE `KlantID` = '".$this->klantID."';");
+    $stmt->execute();
+    $db = NULL;
+  }
+
+
 
 }
 ?>
