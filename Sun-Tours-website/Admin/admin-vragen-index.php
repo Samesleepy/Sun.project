@@ -7,6 +7,14 @@ $stmt->execute();
 $vragen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $db = NULL;
 
+if(isset($_POST['klaar'])){
+    $db = $database->connection();
+    $stmt = $db->prepare("UPDATE `contact` SET `Afgehandeld` = 'Y' WHERE `VraagID` = '".$_POST['VraagID']."'");
+    $stmt->execute();
+    $db = NULL;
+    header("Refresh:0");
+}
+
 //dd($vragen);
 ?>
 
@@ -29,21 +37,25 @@ $db = NULL;
             foreach ($vragen as $key => $vraag) {
                 echo "<tr>";
                     echo "<form method='post'>";
-                        echo "<input type='hidden' name='vraagid' value='".$vraag['VraagID']."'>";
+                        echo "<input type='hidden' name='VraagID' value='".$vraag['VraagID']."'>";
                         echo "<th>". $vraag['VraagID'] ."</th>";
                         echo "<td>". $vraag['KlantID'] ."</td>";
                         echo "<td>". $vraag['Type'] ."</td>";
                         echo "<td>". $vraag['Onderwerp'] ."</td>";
                         echo "<td>". $vraag['Opmerking'] ."</td>";
-                        echo "<td><input class='form-check-input' type='checkbox' style='margin-left: 40px;' value='' id='flexCheckDefault' ";
-                        if($vraag['Afgehandeld'] == "Y"){echo "checked";}
-                        echo "></td>";
+                        if($vraag['Afgehandeld'] == "Y"){
+                            echo "<td><i class='fas fa-check-circle text-success mt-2' style='font-size: 25px; margin-left: 38px; height: 30px;'></i></td>";
+                        }else{
+                            echo "<td><button class='btn btn-primary' type='submit' name='klaar' style='margin-left: 20px;' href=''>Klaar</button>";
+                        }
+                        echo "</td>";
                     echo "</form>";
                 echo "</tr>";
             }
             ?>
         </tbody>
     </table>
+    
 </div>
 
 <?php

@@ -9,7 +9,7 @@ $db = NULL;
 
 if(isset($_POST['delete'])){
     $db = $database->connection();
-    $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$_POST['userid']."'");
+    $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$_POST['UserID']."'");
     $stmt->execute();
     $db = NULL;
     header("Refresh:0");
@@ -36,7 +36,7 @@ if(isset($_POST['delete'])){
             foreach ($klanten as $key => $klant) {
                 echo "<tr>";
                     echo "<form method='post'>";
-                        echo "<input type='hidden' name='userid' value='".$klant['KlantID']."'>";
+                        echo "<input type='hidden' name='UserID' value='".$klant['KlantID']."'>";
                         echo "<th>". $klant['KlantID'] ."</th>";
                         echo "<td>". $klant['Voornaam'] ."</td>";
                         echo "<td>". $klant['Tussenvoegsel'] ."</td>";
