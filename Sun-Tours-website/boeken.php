@@ -109,12 +109,13 @@ $hotels = $stmt->fetchAll();
                     </div>
                     <div class="mb-2">
                         <label for="hotel" class="form-label">Kies je hotel</label>
-                        <select class="form-select" name="hotel" aria-label="Default select example" required>
+                        <select class="form-select" name="hotel" aria-label="Default select example" onchange='updatePrijsPP(this)' required id='hotel'>
                             <option value="" disabled selected hidden>Kies hier uw hotel</option>
                             <?php
                             if(!$hotels == ""){ //Als hotels NIET leeg zijn
                                 foreach($hotels as $hotel){
-                                echo "<option style='position: revative; top:20px;' value='".$hotel['Naam']."'>".$hotel['Naam'] . " (&euro;" . $hotel['Prijs']. ")</option>";
+                                echo "<option value=".$hotel['Naam']."'>".$hotel['Naam'] . " (&euro;" . $hotel['Prijs']. ")</option>";
+
                                 }
                             }else{ //Wel leeg
                                 echo "<option value='Niks' disabled>Geen hotels</option>";
@@ -143,7 +144,7 @@ $hotels = $stmt->fetchAll();
                                         <h6 class="my-0">Prijs p.p.</h6>
                                         <small class="text-muted">Prijs per persoon</small>
                                     </div>
-                                    <span id="prijsPP" class="text-muted"><?php echo "&euro;" . $hotel['Prijs'] . " "; ?></span>
+                                    <span id="prijsPP" class="text-muted"><?php echo "&euro;0.00 "; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Totaal</span>
@@ -184,6 +185,12 @@ $hotels = $stmt->fetchAll();
             result = personen * dagen * prijsint;
             document.getElementById('totaal').innerHTML = "€" + result + ".00";
         }
+        var e = document.getElementById("hotel");
+        var a = array(60,50,50); // alle options prijzenb
+        alert(a[e.selectedIndex]);
+    }
+    function updatePrijsPP(HotelPrijs){
+        document.getElementById('prijsPP').innerHTML = <?php echo $hotel['Prijs']; ?>;
     }
 </script>
 
