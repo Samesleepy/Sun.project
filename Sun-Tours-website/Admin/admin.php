@@ -77,7 +77,7 @@ $db = NULL;
                         <p>Aantal niet Nederlanders:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNotNL ?></span></p>
                     </div>
-                    <a href="admin-klanten-index.php" class="btn btn-primary align-bottom">Alle klanten</a>
+                    <a href="admin-klanten-index.php" class="btn btn-primary align-bottom" style="margin-top: 12px">Alle klanten</a>
                 </div>
             </div>
         </div>

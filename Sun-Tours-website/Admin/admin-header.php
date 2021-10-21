@@ -75,6 +75,12 @@ $db = NULL;
                         </a>
                     </li>
                     <li>
+                        <a href="admin-bestemmingen-index.php" class="nav-link text-white">
+                            <i class="fas fa-map-marker-alt" width="16" height="16" style="padding-right: 9px"></i>
+                            Bestemmingen
+                        </a>
+                    </li>
+                    <li>
                         <a href="admin-klanten-index.php" class="nav-link text-white">
                             <i class="fas fa-users" width="16" height="16" style="padding-right: 3px"></i>
                             Klanten
@@ -93,12 +99,6 @@ $db = NULL;
                         <a href="admin-faq-index.php" class="nav-link text-white">
                         <i class="far fa-comments" width="16" height="16" style="padding-right: 5px"></i>
                             FAQ's
-                        </a>
-                    </li>
-                    <li>
-                        <a href="admin-reviews-index.php" class="nav-link text-white">
-                            <i class="far fa-star" width="16" height="16" style="padding-right: 5px"></i>
-                            Reviews
                         </a>
                     </li>
                 </ul>
