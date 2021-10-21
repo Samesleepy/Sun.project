@@ -35,7 +35,9 @@ $db = NULL;
                         echo "<td>". $vraag['Type'] ."</td>";
                         echo "<td>". $vraag['Onderwerp'] ."</td>";
                         echo "<td>". $vraag['Opmerking'] ."</td>";
-                        echo "<td><input class='form-check-input' type='checkbox' style='margin-left: 40px;' value='' id='flexCheckDefault' ".if(true){echo "checked";}."></td>";
+                        echo "<td><input class='form-check-input' type='checkbox' style='margin-left: 40px;' value='' id='flexCheckDefault' ";
+                        if($vraag['Afgehandeld'] == "Y"){echo "checked";}
+                        echo "></td>";
                     echo "</form>";
                 echo "</tr>";
             }
