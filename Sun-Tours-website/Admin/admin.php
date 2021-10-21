@@ -60,9 +60,15 @@ $db = NULL;
                         <p>Aantal geregistreerde klanten:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlanten ?></span></p>
                     </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <p>Klanten met boekingen:</p>
-                        <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo 2 ?></span></p>
+                    <br>
+                    <div style="display: flex; justify-content: space-between;" class="mt-3">
+                        <p>Aantal klanten uit Nederland:</p>
+                        <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNL ?></span></p>
+                    </div>
+                    <br>
+                    <div style="display: flex; justify-content: space-between;" class="mt-3">
+                        <p>Aantal niet Nederlanders:</p>
+                        <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNotNL ?></span></p>
                     </div>
                     <br>
                     <a href="admin-klanten-index.php" class="btn btn-primary align-bottom">Alle klanten</a>

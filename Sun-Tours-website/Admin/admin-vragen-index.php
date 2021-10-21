@@ -2,7 +2,7 @@
 include_once("admin-header.php");
 
 $db = $database->connection();
-$stmt = $db->prepare("SELECT * FROM `contact` ORDER BY `VraagID` ASC;");
+$stmt = $db->prepare("SELECT * FROM `contact` ORDER BY `Afgehandeld` DESC;");
 $stmt->execute();
 $vragen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $db = NULL;
@@ -29,7 +29,7 @@ $db = NULL;
             foreach ($vragen as $key => $vraag) {
                 echo "<tr>";
                     echo "<form method='post'>";
-                        echo "<input type='hidden' name='userid' value='".$vraag['VraagID']."'>";
+                        echo "<input type='hidden' name='vraagid' value='".$vraag['VraagID']."'>";
                         echo "<th>". $vraag['VraagID'] ."</th>";
                         echo "<td>". $vraag['KlantID'] ."</td>";
                         echo "<td>". $vraag['Type'] ."</td>";
