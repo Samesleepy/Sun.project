@@ -6,7 +6,6 @@ $stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `boeking`.`BoekingID` DES
 $stmt->execute();
 $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
 $stmt = $db->prepare("SELECT COUNT(*) FROM `klant`;");
 $stmt->execute();
 $countKlanten = $stmt->fetch();
@@ -15,6 +14,16 @@ $aantalKlanten = $countKlanten[0];
 $stmt = $db->prepare("SELECT * FROM `contact` WHERE `Afgehandeld` = 'N' ORDER BY `contact`.`VraagID` ASC LIMIT 3;");
 $stmt->execute();
 $Vragen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $db->prepare("SELECT COUNT(*) FROM `klant` WHERE `Land` = 'Netherlands';");
+$stmt->execute();
+$countKlantenNL = $stmt->fetch();
+$aantalKlantenNL = $countKlantenNL[0];
+
+$stmt = $db->prepare("SELECT COUNT(*) FROM `klant` WHERE NOT `Land` = 'Netherlands';");
+$stmt->execute();
+$countKlantenNotNL = $stmt->fetch();
+$aantalKlantenNotNL = $countKlantenNotNL[0];
 
 $db = NULL;
 
@@ -37,7 +46,7 @@ $db = NULL;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php 
+                        <?php
                         foreach ($Boekingen as $key => $boeking) {
                             echo "<tr>";
                                 echo "<th>". $boeking['BoekingID'] ."</th>";
@@ -60,17 +69,14 @@ $db = NULL;
                         <p>Aantal geregistreerde klanten:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlanten ?></span></p>
                     </div>
-                    <br>
                     <div style="display: flex; justify-content: space-between;" class="mt-3">
                         <p>Aantal klanten uit Nederland:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNL ?></span></p>
                     </div>
-                    <br>
                     <div style="display: flex; justify-content: space-between;" class="mt-3">
                         <p>Aantal niet Nederlanders:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNotNL ?></span></p>
                     </div>
-                    <br>
                     <a href="admin-klanten-index.php" class="btn btn-primary align-bottom">Alle klanten</a>
                 </div>
             </div>
@@ -89,7 +95,7 @@ $db = NULL;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php 
+                        <?php
                         foreach ($Vragen as $key => $vraag) {
                             echo "<tr>";
                                 echo "<th>". $vraag['KlantID'] ."</th>";

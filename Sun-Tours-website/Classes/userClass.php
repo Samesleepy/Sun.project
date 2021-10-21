@@ -111,6 +111,7 @@ class User
         WHERE `KlantID` = '".$this->klantID."'";
         $stmt= $db->prepare($sql);
         $stmt->execute();
+        //dd($stmt);
 
         $stmt = $db->prepare("SELECT * FROM `Klant` WHERE `KlantID`='".$this->klantID."'");
         $stmt->execute();
