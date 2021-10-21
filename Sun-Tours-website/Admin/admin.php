@@ -65,15 +65,15 @@ $db = NULL;
             <div class="card bg-dark" style="height: 250px">
                 <div class="card-header text-white text-center"><b>Recent klanten</b></div>
                 <div class="card-body text-white">
-                    <div style="display: flex; justify-content: space-between;" class="mt-3">
+                    <div style="display: flex; justify-content: space-between;" class="mt-1">
                         <p>Aantal geregistreerde klanten:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlanten ?></span></p>
                     </div>
-                    <div style="display: flex; justify-content: space-between;" class="mt-3">
+                    <div style="display: flex; justify-content: space-between;" class="mt-1">
                         <p>Aantal klanten uit Nederland:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNL ?></span></p>
                     </div>
-                    <div style="display: flex; justify-content: space-between;" class="mt-3">
+                    <div style="display: flex; justify-content: space-between;" class="mt-1">
                         <p>Aantal niet Nederlanders:</p>
                         <p><span class="badge bg-light text-dark rounded-pill align-text-bottom"><?php echo $aantalKlantenNotNL ?></span></p>
                     </div>
