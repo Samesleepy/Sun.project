@@ -52,6 +52,14 @@ class Bestemming
 
     return $Bestemminginfo;
   }
+
+  public function AdminUpdateBestemming($database, $land, $plaats, $type, $prijs, $limiet, $beschrijving){
+    $db = $database->connection();
+    $stmt = $db->prepare("UPDATE `bestemming` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Type` = '".$type."', `Prijs` = '".$prijs."', `Limiet` = '".$limiet."', `Beschrijving` = '".$beschrijving."'
+    WHERE `KlantID` = '".$this->klantID."';");
+    $stmt->execute();
+    $db = NULL;
+  }
 }
 
 ?>
