@@ -7,11 +7,11 @@ $stmt->execute();
 $bestemming = $stmt->fetch();
 $db = NULL;
 
-$BestemmingToEdit = new Bestemming($bestemming[$_GET['BestemmingID']] ,$bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Beschrijving'], $bestemming['Limiet'], $bestemming['Plaatje'], 0, 0);
+$BestemmingToEdit = new Bestemming($_GET['BestemmingID'] ,$bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Beschrijving'], $bestemming['Limiet'], $bestemming['Plaatje'], 0, 0);
 $Bestemminginfo = $BestemmingToEdit->GetBestemmingInfo();
 
 if(isset($_POST['changeinfo'])){
-  $BestemmignToEdit->AdminUpdateBestemming($database, $_POST['land'], $_POST['plaats'], $_POST['type'], $_POST['prijs'], $_POST['limiet'], $_POST['beschrijving']);
+  $BestemmingToEdit->AdminUpdateBestemming($database, $_POST['land'], $_POST['plaats'], $_POST['type'], $_POST['prijs'], $_POST['limiet'], $_POST['beschrijving']);
   header("Refresh:0");
 }
 ?>

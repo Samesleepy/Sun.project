@@ -18,6 +18,7 @@ if(isset($_POST['delete'])){
 ?>
 <div class="container py-4">
     <h1 class="text-center">Alle bestemmingen</h1>
+    <a type="button" class="btn btn-primary mb-3" style="float: right; margin-top: -40px;" name="button" href="admin-bestemmingen-add.php">Bestemming toevoegen</a>
     <br>
     <table class="table table-dark table-hover">
         <thead>

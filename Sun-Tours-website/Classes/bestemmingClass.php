@@ -56,9 +56,15 @@ class Bestemming
   public function AdminUpdateBestemming($database, $land, $plaats, $type, $prijs, $limiet, $beschrijving){
     $db = $database->connection();
     $stmt = $db->prepare("UPDATE `bestemming` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Type` = '".$type."', `Prijs` = '".$prijs."', `Limiet` = '".$limiet."', `Beschrijving` = '".$beschrijving."'
-    WHERE `KlantID` = '".$this->klantID."';");
+    WHERE `ID` = '".$this->ID."';");
     $stmt->execute();
     $db = NULL;
+  }
+
+  public function AdminAddBestemming($database){
+    $db = $database->connection();
+    $stmt = $db->prepare("INSERT INTO `bestemming`(`Land`, `Plaats`, `Type`, `Beschrijving`, `Prijs`, `Limiet`, `Plaatje`) VALUES ('$this->land','$this->plaats','$this->type','$this->beschrijving','$this->prijs','$this->limiet','$this->plaatje')");
+    $stmt->execute();
   }
 }
 
