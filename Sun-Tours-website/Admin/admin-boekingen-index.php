@@ -2,10 +2,18 @@
 include_once('admin-header.php');
 
 $db = $database->connection();
-$stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `BoekingID` ASC;");
+$stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `BoekingID` ASC");
 $stmt->execute();
-$boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$db = NULL;
+
+$results_per_page = 12;
+$number_of_results = $stmt->rowCount();
+$number_of_pages = ceil($number_of_results/$results_per_page);
+if(!isset($_GET['page'])){
+    $page = 1;
+}else{
+    $page = $_GET['page'];
+}
+$this_page_first_result = ($page-1)*$results_per_page;
 
 if(isset($_POST['delete'])){
     $db = $database->connection();
@@ -14,7 +22,6 @@ if(isset($_POST['delete'])){
     $db = NULL;
     header("Refresh:0");
 }
-
 ?>
 <div class="container py-4">
     <h1 class="text-center">Alle boekingen</h1>
@@ -38,6 +45,10 @@ if(isset($_POST['delete'])){
         </thead>
         <tbody>
             <?php
+            //  LIMIT " . $this_page_first_result . "," . $results_per_page
+            $stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `BoekingID` ASC LIMIT " . $this_page_first_result . "," . $results_per_page);
+            $stmt->execute();
+            $boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($boekingen as $key => $boeking) {
                 echo "<tr>";
                     echo "<form method='post'>";
@@ -61,8 +72,22 @@ if(isset($_POST['delete'])){
             ?>
         </tbody>
     </table>
+    <div class="row">
+        <div class="col-md-8 offset-md-5">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?php
+                        for ($i=1;$i<=$number_of_pages;$i++) { 
+                            echo "<li class='page-item'><a class='btn btn-primary page-link ";
+                            if($page == $i){echo "active";}
+                            echo "' href='admin-boekingen-index.php?page=" . $i . "'>" . $i . " </a></li>";
+                        }
+                    ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>
-
 <?php
 include_once('admin-footer.php');
 ?>
