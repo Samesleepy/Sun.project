@@ -2,6 +2,7 @@
 //Include alle classes
 include_once('../Classes/db.php');
 include_once('../Classes/userClass.php');
+include_once('../Classes/bestemmingClass.php');
 
 //for testing
 function dd($x){
