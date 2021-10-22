@@ -41,7 +41,7 @@ if(isset($_POST['delete'])){
                         echo "<th>". $bestemming['ID'] ."</th>";
                         echo "<td>". $bestemming['Land'] ."</td>";
                         echo "<td>". $bestemming['Plaats'] ."</td>";
-                        echo "<td>". substr($bestemming['Beschrijving'],0,90) ."...</td>";
+                        echo "<td>". substr($bestemming['Beschrijving'],0,80) ."...</td>";
                         echo "<td>". $bestemming['Prijs'] ."</td>";
                         echo "<td>". $bestemming['Limiet'] ."</td>";
                         echo "<td><a type='button' href='admin-bestemmingen-edit.php?BestemmingID=".$bestemming['ID']."' class='btn btn-primary'>Edit</a></td>";

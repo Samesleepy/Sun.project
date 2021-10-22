@@ -83,19 +83,21 @@ INSERT INTO `boeking` (`BoekingID`, `BestemmingID`, `KlantID`, `Land`, `Plaats`,
 CREATE TABLE IF NOT EXISTS `contact` (
   `VraagID` int(11) NOT NULL AUTO_INCREMENT,
   `KlantID` int(11) NOT NULL,
+  `Email` varchar(70) NOT NULL,
   `Type` varchar(10) NOT NULL,
   `Onderwerp` varchar(100) NOT NULL,
   `Opmerking` text NOT NULL,
-  `Afgehandeld` enum('Y','N') DEFAULT 'Y',
+  `Afgehandeld` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`VraagID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table sunproject.contact: ~3 rows (approximately)
+-- Dumping data for table sunproject.contact: ~5 rows (approximately)
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` (`VraagID`, `KlantID`, `Type`, `Onderwerp`, `Opmerking`, `Afgehandeld`) VALUES
-	(1, 18, 'Vraag', 'Website', 'Hoe werkt deze website?', 'N'),
-	(2, 18, 'Vraag', 'Een vraag', 'Vraag van Delon', 'Y'),
-	(3, 19, 'Vraag', 'asd', 'asdasdad', 'N');
+INSERT INTO `contact` (`VraagID`, `KlantID`, `Email`, `Type`, `Onderwerp`, `Opmerking`, `Afgehandeld`) VALUES
+	(9, 19, 'Joey.Haerkens@Student.GildeOpleidingen.nl', 'Vraag', 'sadf', 'asdfasdf', 'N'),
+	(10, 19, 'Joey.Haerkens@Student.GildeOpleidingen.nl', 'Klacht', 'Geld terug', 'Ik wil graag mijn geld terug want toen ik een reis naar america boekten kwam ik in een raar nederlands dorp uit.', 'N'),
+	(11, 19, 'Joey.Haerkens@Student.GildeOpleidingen.nl', 'Vraag', 'Betalen', 'Het betaal formulier werkt voor geen meter.', 'Y'),
+	(12, 19, 'Joey.Haerkens@Student.GildeOpleidingen.nl', 'Feedback', 'Mooie website', 'Echt een mooie website. Vooral de admin kant.', 'Y');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 
 -- Dumping structure for table sunproject.faq
@@ -155,14 +157,15 @@ CREATE TABLE IF NOT EXISTS `klant` (
   `Huisnummer` int(5) NOT NULL,
   PRIMARY KEY (`KlantID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table sunproject.klant: ~3 rows (approximately)
 /*!40000 ALTER TABLE `klant` DISABLE KEYS */;
 INSERT INTO `klant` (`KlantID`, `Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Role`, `Telefoonnummer`, `Land`, `Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES
 	(17, 'Sam', 'Gijsen', '', 'Sam.Gijsen1@Student.GildeOpleidingen.nl', '$2y$10$ivLszsvmBCyQN5CPf09v1OHXUPEvUuxGvZvxJTNYi4QXr2i0f/Kh.', 'Admin', '0623231442', 'Atlantis', 'Atlantis', '2238AK', 'Zeeweg', 45),
-	(18, 'Delon', 'Poels', '', 'Delon.Poels@Student.GildeOpleidingen.nl', '$2y$10$z8GR2T60BsBQ8GjMaVwBI.2CZre67LI2UbyzXt6sWvRbfxwYhmE5.', 'User', '0612345678', 'Nederland', 'Woonboon', '1235 AC', 'Frietstraat', 7),
-	(19, 'Joey', 'Haerkens', '', 'Joey.Haerkens@Student.GildeOpleidingen.nl', '$2y$10$CZAw3VBtCAuvxenbDw0dFejInLgIhJPClHeaRhUNSP0ZkvzATQ0Ay', 'Admin', '2482534523', 'Mars', 'Olympus', '1', 'Marsmanweg', 5);
+	(18, 'Delon', 'Poels', '', 'Delon.Poels@Student.GildeOpleidingen.nl', '$2y$10$A4TAl9bNoUjaFT0kBJeT7uJo6aL7Bn4tXn55GoTulDfTCwbcnuDZa', 'Admin', '0612345678', 'Nederland', 'Woonboon', '1235 AC', 'Frietstraat', 7),
+	(19, 'Joey', 'Haerkens', '', 'Joey.Haerkens@Student.GildeOpleidingen.nl', '$2y$10$CZAw3VBtCAuvxenbDw0dFejInLgIhJPClHeaRhUNSP0ZkvzATQ0Ay', 'Admin', '2482534523', 'Mars', 'Olympus', '1', 'Marsmanweg', 5),
+	(21, '123', '123', '', 'test@123.nl', '$2y$10$USOnMjp8Y8N6PWWpZYmo6eB1XeWkgZ/SI8AExzLOr03wrE3EUhiLe', 'User', '123', '123', '123', '123', '123', 123);
 /*!40000 ALTER TABLE `klant` ENABLE KEYS */;
 
 -- Dumping structure for table sunproject.review

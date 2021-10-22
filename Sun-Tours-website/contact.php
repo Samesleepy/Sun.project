@@ -1,21 +1,11 @@
 <?php
 include_once 'header.php';
 
-//$db = $database->connection();
-
 if(isset($_POST['submit'])){
-  // $KlantID = $User->GetUserInfo()['KlantID'];
-  // $Soort = $_POST['soort'];
-  // $Onderwerp = $_POST['onderwerp'];
-  // $Opmerking = $_POST['opmerking'];
-  $Contact = new Contact($User->GetUserInfo()['KlantID'], $_POST['soort'], $_POST['onderwerp'], $_POST['opmerking']);
+  $Contact = new Contact($User->GetUserInfo()['KlantID'], $User->GetUserInfo()['Email'], $_POST['soort'], $_POST['onderwerp'], $_POST['opmerking']);
   $Contact->CreateContact($database);
 
   echo "<div class='alert alert-success' role='alert' style='margin-bottom: 0px;'>Succesvol verstuurd!</div>";
-
-  // $query = $db->prepare("INSERT INTO `contact` (`KlantID`, `Type`, `Onderwerp`, `Opmerking`)
-  // VALUES ('$KlantID','$Soort','$Onderwerp','$Opmerking')");
-  // $query->execute();
 }
 
 ?>

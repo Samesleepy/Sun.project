@@ -5,6 +5,7 @@ $db = $database->connection();
 $stmt = $db->prepare("SELECT * FROM `contact` ORDER BY `Afgehandeld` DESC;");
 $stmt->execute();
 $vragen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $db = NULL;
 
 if(isset($_POST['klaar'])){
@@ -26,6 +27,7 @@ if(isset($_POST['klaar'])){
             <tr>
                 <th>#</th>
                 <th>KlantID</th>
+                <th>E-mail</th>
                 <th>Type</th>
                 <th>Onderwerp</th>
                 <th>Opmerking</th>
@@ -40,11 +42,12 @@ if(isset($_POST['klaar'])){
                         echo "<input type='hidden' name='VraagID' value='".$vraag['VraagID']."'>";
                         echo "<th>". $vraag['VraagID'] ."</th>";
                         echo "<td>". $vraag['KlantID'] ."</td>";
+                        echo "<td><a href='mailto:". $vraag['Email'] ."'>". $vraag['Email'] ."</a></td>";
                         echo "<td>". $vraag['Type'] ."</td>";
                         echo "<td>". $vraag['Onderwerp'] ."</td>";
                         echo "<td>". $vraag['Opmerking'] ."</td>";
                         if($vraag['Afgehandeld'] == "Y"){
-                            echo "<td><i class='fas fa-check-circle text-success mt-2' style='font-size: 25px; margin-left: 38px; height: 30px;'></i></td>";
+                            echo "<td><i class='fas fa-check-circle mt-2' style='font-size: 25px; margin-left: 38px; height: 30px; color: #33dd33;'></i></td>";
                         }else{
                             echo "<td><button class='btn btn-primary' type='submit' name='klaar' style='margin-left: 20px;' href=''>Klaar</button>";
                         }
