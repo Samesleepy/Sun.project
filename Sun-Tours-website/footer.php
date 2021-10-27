@@ -1,5 +1,5 @@
 <body>
-  <div class="mt-5"></div>
+  <!-- <div class="my-5"> asd</div> -->
   <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="footer-img">
       <a class="navbar-brand" href="#">Sun-Tours</a>
