@@ -61,7 +61,6 @@ class Boeking
     $db = $database->connection();
     $stmt = $db->prepare("UPDATE `boeking` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Prijs` = '".$prijs."', `Hotel` = '".$hotel."', `Vervoer` = '".$vervoer."', `Personen` = '".$personen."',  `Vertrekdatum` = '".$vertrekdatum."', `Boekingsdatum` = '".$boekingsdatum."', `Duur` = '".$duur."'
     WHERE `BoekingID` = '".$BoekingID."';");
-    dd($stmt);
     $stmt->execute();
     $db = NULL;
   }
