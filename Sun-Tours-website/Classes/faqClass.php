@@ -33,6 +33,26 @@ class Faq
     </div>
   <?php }
 
+  public function GetFaqInfo(){ //Omdat variabelen private zijn moet je hiermee info ophalen
+    $Faqinfo = array(); //associative array
+    $Faqinfo = ['QID'=>$this->qID, 'Vraag-NL'=>$this->vraagNL, 'Antwoord-NL'=>$this->antwoordNL, 'Vraag-EN'=>$this->vraagEN, 'Antwoord-EN'=>$this->antwoordEN];
+
+    return $Faqinfo;
+  }
+
+  public function AdminUpdateFaq($database, $VraagNL, $AntwoordNL, $VraagEN, $AntwoordEN){
+    $db = $database->connection();
+    $stmt = $db->prepare("UPDATE `faq` SET `Vraag-NL` = '".$VraagNL."', `Antwoord-NL` = '".$AntwoordNL."', `Vraag-EN` = '".$VraagEN."', `Antwoord-EN` = '".$AntwoordEN."' WHERE `QID` = '".$this->qID."';");
+    $stmt->execute();
+    $db = NULL;
+  }
+
+  public function AdminAddFaq($database){
+    $db = $database->connection();
+    $stmt = $db->prepare("INSERT INTO `faq`(`Vraag-NL`, `Antwoord-NL`, `Vraag-EN`, `Antwoord-EN`) VALUES ('$this->vraagNL','$this->antwoordNL','$this->vraagEN','$this->antwoordEN')");
+    $stmt->execute();
+  }
+
 
 }
 
