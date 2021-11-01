@@ -47,6 +47,12 @@ class Faq
     $db = NULL;
   }
 
+  public function AdminAddFaq($database){
+    $db = $database->connection();
+    $stmt = $db->prepare("INSERT INTO `faq`(`Vraag-NL`, `Antwoord-NL`, `Vraag-EN`, `Antwoord-EN`) VALUES ('$this->vraagNL','$this->antwoordNL','$this->vraagEN','$this->antwoordEN')");
+    $stmt->execute();
+  }
+
 
 }
 
