@@ -49,6 +49,21 @@ class Boeking
 
     $db = NULL; //verbreek verbinding met database
   }
+
+  public function GetBoekingInfo(){ //Omdat variabelen private zijn moet je hiermee info ophalen
+    $Boekinginfo = array(); //associative array
+    $Boekinginfo = ['Land'=>$this->land, 'Plaats'=>$this->plaats, 'Hotel'=>$this->hotel, 'Prijs'=>$this->prijs, 'Vervoer'=>$this->vervoer, 'Personen'=>$this->personen, 'Vertrekdatum'=>$this->vertrekdatum, 'Boekingsdatum'=>$this->boekingsdatum, 'Duur'=>$this->duur];
+
+    return $Boekinginfo;
+  }
+
+  public function AdminUpdateBoeking($database, $land, $plaats, $hotel, $prijs, $vervoer, $personen, $vertrekdatum, $boekingsdatum, $duur){
+    $db = $database->connection();
+    $stmt = $db->prepare("UPDATE `bestemming` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Prijs` = '".$prijs."', `Hotel` = '".$hotel."', `Vervoer` = '".$vervoer."', `Personen` = '".$personen."',  `Vertrekdatum` = '".$vertrekdatum."', `Boekingsdatum` = '".$boekingsdatum."', `Duur` = '".$duur."'
+    WHERE `BoekingID` = '".$this->BoekingID."';");
+    $stmt->execute();
+    $db = NULL;
+  }
 }
 
 

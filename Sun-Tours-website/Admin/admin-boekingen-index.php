@@ -17,7 +17,7 @@ $this_page_first_result = ($page-1)*$results_per_page;
 
 if(isset($_POST['delete'])){
     $db = $database->connection();
-    $stmt = $db->prepare("DELETE FROM `boeking` WHERE `ID` = '".$_POST['BoekingID']."'");
+    $stmt = $db->prepare("DELETE FROM `boeking` WHERE `BoekingID` = '".$_POST['BoekingID']."'");
     $stmt->execute();
     $db = NULL;
     header("Refresh:0");
@@ -46,13 +46,16 @@ if(isset($_POST['delete'])){
         <tbody>
             <?php
             //  LIMIT " . $this_page_first_result . "," . $results_per_page
+            $db = $database->connection();
             $stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `BoekingID` ASC LIMIT " . $this_page_first_result . "," . $results_per_page);
             $stmt->execute();
             $boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $db = NULL;
+
             foreach ($boekingen as $key => $boeking) {
                 echo "<tr>";
                     echo "<form method='post'>";
-                        echo "<input type='hidden' name='BestemmingID' value='".$boeking['BoekingID']."'>";
+                        echo "<input type='hidden' name='BoekingID' value='".$boeking['BoekingID']."'>";
                         echo "<th>". $boeking['BoekingID'] ."</th>";
                         echo "<td>". $boeking['KlantID'] ."</td>";
                         echo "<td>". $boeking['Land'] ."</td>";
@@ -64,7 +67,7 @@ if(isset($_POST['delete'])){
                         echo "<td>". $boeking['Vertrekdatum'] ."</td>";
                         echo "<td>". $boeking['Boekingsdatum'] ."</td>";
                         echo "<td>". $boeking['Duur'] ."</td>";
-                        echo "<td><a type='button' href='admin-boekingen-edit.php?BestemmingID=".$boeking['BoekingID']."' class='btn btn-primary'>Edit</a></td>";
+                        echo "<td><a type='button' href='admin-boekingen-edit.php?BoekingID=".$boeking['BoekingID']."' class='btn btn-primary'>Edit</a></td>";
                         echo "<td><button type='submit' name='delete' class='btn btn-danger'>Delete</button></td>";
                     echo "</form>";
                 echo "</tr>";
@@ -77,7 +80,7 @@ if(isset($_POST['delete'])){
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <?php
-                        for ($i=1;$i<=$number_of_pages;$i++) { 
+                        for ($i=1;$i<=$number_of_pages;$i++) {
                             echo "<li class='page-item'><a class='btn btn-primary page-link ";
                             if($page == $i){echo "active";}
                             echo "' href='admin-boekingen-index.php?page=" . $i . "'>" . $i . " </a></li>";

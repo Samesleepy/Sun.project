@@ -3,6 +3,7 @@
 include_once('../Classes/db.php');
 include_once('../Classes/userClass.php');
 include_once('../Classes/bestemmingClass.php');
+include_once('../Classes/boekingClass.php');
 include_once('../Classes/faqClass.php');
 
 //for testing
