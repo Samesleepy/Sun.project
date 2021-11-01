@@ -11,8 +11,7 @@ $BoekingToEdit = new Boeking(0, 0, $boeking['Land'], $boeking['Plaats'], $boekin
 $Boekinginfo = $BoekingToEdit->GetBoekingInfo();
 
 if(isset($_POST['changeinfo'])){
-  $BoekingToEdit->BoekingID = $_GET['BoekingID'];
-  $BoekingToEdit->AdminUpdateBoeking($database, $_POST['land'], $_POST['plaats'], $_POST['prijs'], $_POST['personen'], $_POST['hotel'],$_POST['vervoer'],$_POST['vertrekdatum'],$_POST['boekingsdatum'],$_POST['duur']);
+  $BoekingToEdit->AdminUpdateBoeking($database, $_GET['BoekingID'], $_POST['land'], $_POST['plaats'], $_POST['prijs'], $_POST['personen'], $_POST['hotel'],$_POST['vervoer'],$_POST['vertrekdatum'],$_POST['boekingsdatum'],$_POST['duur']);
   header("Refresh:0");
 }
 ?>

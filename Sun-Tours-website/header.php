@@ -9,6 +9,7 @@ include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
 include_once('Classes/contactClass.php');
 
+
 //for testing
 function dd($x){
    echo "<pre>";
@@ -47,34 +48,34 @@ if(isset($_POST['logout'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="bestemmingen.php">Destinations</a>
+                     <a class="nav-link active" aria-current="page" href="bestemmingen.php">Bestemmingen</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Measures</a>
+                     <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Maatregelen</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
                   </li>
                   <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Language</a>
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Taal</a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#"><object data="Pics/flag-nl.svg" width="20" ></object> Dutch</a></li>
-                        <li><a class="dropdown-item" href="#"><object data="Pics/flag-uk.svg" width="20" ></object> English</a></li>
+                        <li><a class="dropdown-item" href="home.php"><object data="Pics/flag-nl.svg" width="20" ></object>Nederlands</a></li>
+                        <li><a class="dropdown-item" href="EN/home.php"><object data="Pics/flag-uk.svg" width="20" ></object>Engels</a></li>
                      </ul>
                   </li>
-                  <object data="Pics/flag-uk.svg" width="20" ></object>
+                  <object data="Pics/flag-nl.svg" width="20" ></object>
                </ul>
 
                <ul class="navbar-nav ms-auto">
                <?php if(isset($_SESSION['user'])){ ?>
                      <li class="nav-item" style="padding-right: 5px;">
                         <form method="post">
-                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log out <i class="fas fa-sign-out-alt"></i></button>
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log uit <i class="fas fa-sign-out-alt"></i></button>
                         </form>
                      </li>
                   <?php }else{ ?>
                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="signup.php">Register</a>
+                        <a class="nav-link active" aria-current="page" href="signup.php">Registreren</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="login.php">Log in</a>
