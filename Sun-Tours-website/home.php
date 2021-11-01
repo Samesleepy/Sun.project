@@ -1,6 +1,16 @@
-<?php include_once 'header.php';?>
+<?php include_once 'header.php';
+$db = $database->connection();
+$stmt = $db->prepare("SELECT bestemming.ID, bestemming.Land, bestemming.Plaats, bestemming.Type, bestemming.Prijs, bestemming.Beschrijving, bestemming.Limiet, bestemming.Plaatje, tableA.totalRes, tableB.avgRev from bestemming LEFT JOIN ( SELECT BestemmingID, SUM(personen) AS totalRes FROM boeking GROUP BY BestemmingID ) tableA ON bestemming.id = tableA.BestemmingID LEFT JOIN ( SELECT BestemmingID, AVG(score) AS avgRev FROM review GROUP BY BestemmingID ) tableB ON bestemming.id = tableB.BestemmingID;");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC); //Haal alle bestemmingen uit de database met hun info, haal daarbij ook de gemiddelde score van reviews op
+$Bestemmingresult = $result;
 
-<body>
+foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming die opgehaalt is
+  $Bestemmingen[] = new Bestemming($bestemming['ID'], $bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Beschrijving'], $bestemming['Limiet'], $bestemming['Plaatje'], $bestemming['avgRev'], $bestemming['totalRes']);
+}//Maak instance bestemming aan in array met bijbehorende info uit de database
+?>
+
+<body class="mb-5">
 
 <!-- <div class="container h-100">
    <div class="row align-items-center h-100">
@@ -32,13 +42,17 @@
       </div>
       <div class="carousel-inner">
          <div class="carousel-item active">
-            <img src="Pics/header1.webp" width="100%" height="450px" style="object-fit: cover;">
+            <img src="Pics/header1.jpg" width="100%" height="450px" style="object-fit: cover;">
 
             <div class="container">
                <div class="carousel-caption text-start">
-                  <h1>Example headline.</h1>
-                  <p>Some representative placeholder content for the first slide of the carousel.</p>
-                  <p><a class="btn btn-primary" href="#">Sign up today</a></p>
+                  <h1 class="mb-3">Wij geloven dat iedereen een geweldige vakantie verdient!</h1>
+                  <?php if (!$User->voornaam){
+                     echo '<p><a class="btn btn-primary" href="signup.php">Registreren</a></p>';
+                  }else{
+                     echo '<p><a class="btn btn-primary" href="bestemmingen.php">Alle bestemmingen</a></p>';
+                  } 
+                  ?>
                </div>
             </div>
          </div>
@@ -47,20 +61,20 @@
 
             <div class="container">
                <div class="carousel-caption">
-                  <h1>Another example headline.</h1>
-                  <p>Some representative placeholder content for the second slide of the carousel.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                  <h1>Wat u ook zoekt, wij bieden het!</h1>
+                  <p>Bekijk hier de huidige covid maatregelen.</p>
+                  <p><a class="btn btn-primary" href="covid.php">Covid maatregelen</a></p>
                </div>
             </div>
          </div>
          <div class="carousel-item">
-            <img src="Pics/landscape-at-dawn.jpg" width="100%" height="450px" style="object-fit: cover;">
+            <img src="Pics/header3.jpg" width="100%" height="450px" style="object-fit: cover;">
 
             <div class="container">
                <div class="carousel-caption text-end">
-                  <h1>One more for good measure.</h1>
-                  <p>Some representative placeholder content for the third slide of this carousel.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                  <h1>Neem contact op.</h1>
+                  <p>Heeft u een vraag of een klacht? Neem dan gerust een kijkje op onze contact pagina.</p>
+                  <p><a class="btn btn-primary" href="contact.php">Contact</a></p>
                </div>
             </div>
          </div>
@@ -75,40 +89,35 @@
       </button>
    </div>
 
-
-   <!-- Marketing messaging and featurettes
-   ================================================== -->
-   <!-- Wrap the rest of the page in another container to center all the content. -->
-
-   <div class="container marketing mt-5">
-
-      <!-- Three columns of text below the carousel -->
+   <div class="container marketing py-5">
+      <h1 class="display-8 text-center fw-bold lh-1 mb-3">Populaire bestemmingen</h1>
       <div class="row">
-         <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+         <!-- foreach -->
+         <?php 
+            $i = 0;
+            foreach ($Bestemmingen as $bestemming) {//haal individuele bestemmingen uit de array Bestemmingen, je hebt nu een bestemming
+               echo "<div class='col-lg-4'>";
+                  $bestemming->ShowBestemming(400);//laat bestemming zien in html-bootstrap card
+               echo "</div>";
 
-            <h2>Heading</h2>
-            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-         </div><!-- /.col-lg-4 -->
-         <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-            <h2>Heading</h2>
-            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-         </div><!-- /.col-lg-4 -->
-         <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-            <h2>Heading</h2>
-            <p>And lastly this, the third column of representative placeholder content.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-         </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
+               $i++;
+               if($i==3) break;
+            }
+         ?>
+      </div>
    </div>
 
+   <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+         <div class="col-10 col-sm-8 col-lg-6">
+            <img src="Pics/landscape-at-dawn.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+         </div>
+         <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">Top ervaringen met Suntours</h1>
+            <p class="lead">Wij hebben al meer als 100 klanten de mooiste ervaring van hun leven gegeven, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+         </div>
+      </div>
+   </div>
 </body>
 
 

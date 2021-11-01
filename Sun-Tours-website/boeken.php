@@ -32,7 +32,6 @@ if(isset($_POST['personen'])){
 }
 if($prijs){
     $prijs = intval($prijs) * intval($Bestemminginfo['Prijs']);
-    ?><?php
 }
 $prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];

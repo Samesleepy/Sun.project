@@ -18,7 +18,7 @@ foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming 
   <div class="text-center mb-5"><h1>Bestemmingen</h1></div>
   <?php
     foreach ($Bestemmingen as $bestemming) {//haal individuele bestemmingen uit de array Bestemmingen, je hebt nu een bestemming
-      $bestemming->ShowBestemming();//laat bestemming zien in html-bootstrap card
+      $bestemming->ShowBestemming(300);//laat bestemming zien in html-bootstrap card
     }
   ?>
   </div>

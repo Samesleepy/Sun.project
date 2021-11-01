@@ -28,21 +28,21 @@ class Bestemming
       $this->boekingen = $boekingen;
     }
 
-  public function ShowBestemming(){ //laat bestemming zien met een card, informatie uit de instance
+  public function ShowBestemming($width){ //laat bestemming zien met een card, informatie uit de instance
     echo '<a href="boeken.php?id='.$this->ID.'" style="text-decoration:none;color:black;">';
-      echo '<div class="card" id="bestemmingen">';
+      echo '<div class="card" id="bestemmingen" style="width: '.$width.';">';
         echo '<img src="data:image/png;base64,'.base64_encode($this->plaatje).'"/>';
           echo '<div class="card-body">';
-          echo '<h5 class="card-title">'.$this->plaats.", ".$this->land.'</h5>';
-          echo '<a class="card-link" style="text-decoration:none;color:black;">';
-          if($this->boekingen >= $this->limiet){echo "Volgeboekt";}else{ echo $this->prijs. " Euro p.p.";}
-          echo '</a>';
-          echo '<a class="card-link" style="text-decoration:none;color:black;">';
-          if(isset($this->score)){$this->score = substr($this->score, 0, -3);}
-        if(isset($this->score)){echo "Score: " . $this->score;}else{echo "Geen score";}
-      echo '</a>';
+            echo '<h5 class="card-title">'.$this->plaats.", ".$this->land.'</h5>';
+            echo '<a class="card-link" style="text-decoration:none;color:black;">';
+            if($this->boekingen >= $this->limiet){echo "Volgeboekt";}else{ echo $this->prijs. " Euro p.p.";}
+            echo '</a>';
+            echo '<a class="card-link" style="text-decoration:none;color:black;">';
+            if(isset($this->score)){$this->score = substr($this->score, 0, -3);}
+          if(isset($this->score)){echo "Score: " . $this->score;}else{echo "Geen score";}
+        echo '</a>';
+      echo '</div>';
     echo '</div>';
-  echo '</div>';
   echo '</a>';
   }
 

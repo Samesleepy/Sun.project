@@ -16,7 +16,7 @@ foreach ($bestemmingresult as $key => $bestemming) {
 <div class="row">
 <?php foreach ($Bestemmingen as $bestemming) { ?>
    <div class="col" style="max-width: 320px;">
-      <?php $bestemming->ShowBestemming(); ?>
+      <?php $bestemming->ShowBestemming(300); ?>
    </div>
 <?php } ?>
 </div>
