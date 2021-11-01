@@ -9,7 +9,7 @@ $db = NULL;
 
 if(isset($_POST['delete'])){
     $db = $database->connection();
-    $stmt = $db->prepare("DELETE FROM `FAQ` WHERE `ID` = '".$_POST['QID']."'");
+    $stmt = $db->prepare("DELETE FROM `FAQ` WHERE `QID` = '".$_POST['QID']."'");
     $stmt->execute();
     $db = NULL;
     header("Refresh:0");
