@@ -8,16 +8,7 @@ include_once('Classes/boekingClass.php');
 include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
 include_once('Classes/contactClass.php');
-include_once('Classes/language.php');
-
-if(isset($_GET['lang'])){
-   if($_GET['lang'] == 'NL'){
-      $_SESSION['Lang'] == 'NL';
-   }else if($_GET['lang'] == 'EN'){
-      $_SESSION['Lang'] == 'EN';
-   }
-}
-
+//include_once('Classes/language.php');
 
 //for testing
 function dd($x){
@@ -33,6 +24,14 @@ if(isset($_SESSION['user'])){
    $User = $_SESSION['user'];
 }else{
    $User = new User();
+}
+
+if(isset($_GET['lang'])){
+  $_SESSION['lang'] = $_GET['lang'];
+}else{
+  if(!isset($_SESSION['lang'])){
+    $_SESSION['lang'] = 'NL';
+  }
 }
 
 if(isset($_POST['logout'])){
