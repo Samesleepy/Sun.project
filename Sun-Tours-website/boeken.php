@@ -83,9 +83,6 @@ $hotels = $stmt->fetchAll();
                 echo "<div class='my-3'>";
                     if(isset($score)){echo "<h5> Review Score : " . round($score,2) . "</h5>";} 
 
-                    <p>
-
-                    </p>
                     ?>
                 </div>
             </div>
