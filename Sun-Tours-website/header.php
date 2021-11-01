@@ -8,6 +8,15 @@ include_once('Classes/boekingClass.php');
 include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
 include_once('Classes/contactClass.php');
+include_once('Classes/language.php');
+
+if(isset($_GET['lang'])){
+   if($_GET['lang'] == 'NL'){
+      $_SESSION['Lang'] == 'NL';
+   }else if($_GET['lang'] == 'EN'){
+      $_SESSION['Lang'] == 'EN';
+   }
+}
 
 
 //for testing
@@ -59,8 +68,13 @@ if(isset($_POST['logout'])){
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Taal</a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+<<<<<<< Updated upstream
                         <li><a class="dropdown-item" href="home.php"><object data="Pics/flag-nl.svg" width="20" ></object>Nederlands</a></li>
                         <li><a class="dropdown-item" href="EN/home.php"><object data="Pics/flag-uk.svg" width="20" ></object>Engels</a></li>
+=======
+                        <li><a class="dropdown-item" href="?lang=NL"><object data="Pics/flag-nl.svg" width="20" ></object> Dutch</a></li>
+                        <li><a class="dropdown-item" href="?lang=EN"><object data="Pics/flag-uk.svg" width="20" ></object> English</a></li>
+>>>>>>> Stashed changes
                      </ul>
                   </li>
                   <object data="Pics/flag-nl.svg" width="20" ></object>
