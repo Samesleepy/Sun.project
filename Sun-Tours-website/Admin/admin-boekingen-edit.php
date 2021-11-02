@@ -12,7 +12,7 @@ $Boekinginfo = $BoekingToEdit->GetBoekingInfo();
 
 
 if(isset($_POST['changeinfo'])){
-  $BoekingToEdit->AdminUpdateBoeking($database, $_GET['BoekingID'], $_POST['land'], $_POST['plaats'], $_POST['prijs'], $_POST['personen'], $_POST['hotel'],$_POST['vervoer'],$_POST['test'],$_POST['boekingsdatum'],$_POST['duur']);
+  $BoekingToEdit->AdminUpdateBoeking($database, $_GET['BoekingID'], $_POST['land'], $_POST['plaats'], $_POST['prijs'], $_POST['personen'], $_POST['hotel'],$_POST['vervoer'],$_POST['vertrekdatum'],$_POST['boekingsdatum'],$_POST['duur']);
   header("Refresh:0");
 }
 ?>
@@ -55,8 +55,8 @@ if(isset($_POST['changeinfo'])){
             <input name="vervoer" class="form-control" placeholder="vervoer" value="<?php echo $Boekinginfo['Vervoer'] ?> "type="text" required>
          </div>
          <div class="mb-2">
-            <label for="test" class="form-label">Vertrekdatum</label>
-            <input name="test" class="form-control" placeholder="test" value="<?php echo $Boekinginfo['Vertrekdatum'] ?> "type="text" required>
+            <label for="vertrekdatum" class="form-label">Vertrekdatum</label>
+            <input name="vertrekdatum" class="form-control" placeholder="vertrekdatum" value="<?php echo $Boekinginfo['Vertrekdatum'] ?> "type="text" required>
          </div>
          <div class="mb-2">
             <label for="boekeingsdatum" class="form-label">Boekingsdatum</label>
