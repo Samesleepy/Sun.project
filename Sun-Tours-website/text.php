@@ -146,6 +146,26 @@ $text = array(
           4 => "Terug naar contact",
         ),
 
+        "profiel" => array(
+          1 => "Mijn account",
+          2 => "Wachtwoord veranderen",
+          3 => "Naam",
+          4 => "Tussenvoegsel",
+          5 => "Achternaam",
+          6 => "E-mail",
+          7 => "Telefoonnummer",
+          8 => "Land",
+          9 => "Woonplaats",
+          10 => "Postcode",
+          11 => "Straatnaam",
+          12 => "Huisnummer",
+          13 => "Account verwijderen",
+          14 => "Opslaan",
+          15 => "Weet je zeker dat je je account wilt verwijderen? Je kunt je account niet meer terug krijgen nadat je het verwijderd.",
+          16 => "Sluiten",
+          17 => "Verwijder account",
+        ),
+
       ),
 
     "EN" => array(
@@ -291,6 +311,26 @@ $text = array(
           2 => "here you can find answers for frequently asked questions.",
           3 => "Is your question still unanswered?",
           4 => "Back to contact",
+        ),
+
+        "profiel" => array(
+          1 => "My account",
+          2 => "Change password",
+          3 => "First name",
+          4 => "Preposition",
+          5 => "Last name",
+          6 => "E-mail",
+          7 => "Phone number",
+          8 => "Country",
+          9 => "City",
+          10 => "Zip code",
+          11 => "Street name",
+          12 => "House No.",
+          13 => "Delete account",
+          14 => "Save",
+          15 => "Are you sure you want to delete your account? You can't get your account back after you delete it.",
+          16 => "Close",
+          17 => "Delete account",
         ),
     )
 );
