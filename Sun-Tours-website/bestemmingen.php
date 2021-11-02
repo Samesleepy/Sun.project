@@ -14,13 +14,13 @@ foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming 
 
 
 <body>
-<div class="container col-xl-10 col-xxl-8 px-4 py-5">
-  <div class="text-center mb-5"><h1>Bestemmingen</h1></div>
-  <?php
-    foreach ($Bestemmingen as $bestemming) {//haal individuele bestemmingen uit de array Bestemmingen, je hebt nu een bestemming
-      $bestemming->ShowBestemming(290);//laat bestemming zien in html-bootstrap card
-    }
-  ?>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5 mb-5">
+    <div class="text-center mb-5"><h1>Bestemmingen</h1></div>
+    <?php
+      foreach ($Bestemmingen as $bestemming) {//haal individuele bestemmingen uit de array Bestemmingen, je hebt nu een bestemming
+        $bestemming->ShowBestemming(290);//laat bestemming zien in html-bootstrap card
+      }
+    ?>
   </div>
 </body>
 
