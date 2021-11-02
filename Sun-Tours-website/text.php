@@ -34,7 +34,15 @@ $text = array(
         ),
 
 
-        "login" => array(
+        "covid" => array(
+          1 => "Alles wat je moet weten over je vakantie",
+          2 => "Van gezondheidsverklaringen en vervoersmaatregelen tot hygiënevoorschriften op de bestemming. Er bestaat heel veel informatie over Covid-19. Je ziet haast door de bomen het bos niet meer. Daarom hebben we alles voor je op een rij gezet. Waar moet je op letten tijdens het boeken? Met welke maatregelen moet je rekening houden tijdens je reis? En zijn er specifieke protocollen op je bestemming? Lees je goed in.",
+          3 => "CoronaCheck-app en Digitaal Corona Certificaat (DCC)",
+          4 => "Vanaf 1 juli 2021 is het Digitale Corona Certificaat (DCC) beschikbaar in de CoronaCheck-app. Dit maakt het makkelijker om binnen Europa te reizen. Vanaf 8 augustus 2021 is de CoronaCheck-app ook te gebruiken bij",
+          5 => "terugkeernaar Nederland van buiten",
+          6 => "de EU. Ben je gevaccineerd, heb je een negatieve testuitslag of een bewijs van herstel dan kun je in de app een QR-code aanmaken die vervolgens voor vertrek gescand wordt. Daarnaast kan het zijn dat jouw vakantiebestemming nog aanvullende eisen heeft om het land binnen te komen. Controleer voor vertrek goed welke maatregelen voor jouw bestemming gelden. Wij hebben per bestemming die we aanbieden alle eisen en maatregelen op een rijtje gezet:",
+          7 => "Landen kleurcode",
+          8 => "Reisadviezen",
 
         ),
         "PAGE" => array(
@@ -74,7 +82,15 @@ $text = array(
         ),
 
 
-        "login" => array(
+        "covid" => array(
+          1 => "Everything you need to know about your vacation",
+          2 => "From health declarations and transport measures to hygiene requirements at the destination. There is a lot of information about Covid-19. You can almost not see the forest for the trees. That's why we've put it all together for you. What should you pay attention to when booking? What measures should you take into account during your trip? Are there specific protocols at your destination? Read all about it.",
+          3 => "CoronaCheck-app and Digitaal Corona Certificaat (DCC)",
+          4 => "From July 1, 2021, the Digitale Corona Certificaat (DCC) will be available in the CoronaCheck app. This makes it easier to travel within Europe. As of August 8, 2021, the CoronaCheck app can also be used at",
+          5 => "return to the Netherlands from outside",
+          6 => "the EU. If you have been vaccinated, have a negative test result or proof of recovery, you can create a QR code in the app which is then scanned before departure. It is also possible that your vacation destination has additional requirements for entering the country. Before you leave, check carefully which measures apply to your destination. We have listed all requirements and measures for each destination that we offer:",
+          7 => "Countries colour code",
+          8 => "Travel advisories",
 
         ),
         "PAGE" => array(
