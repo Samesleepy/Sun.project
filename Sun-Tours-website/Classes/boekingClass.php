@@ -8,7 +8,7 @@ class Boeking
   private $plaats; //plaats van bestemming
   private $prijs; //totale prijs van boeking
   private $personen; //hoeveel personen mee gaan
-  private $vertrekdatum;
+  private $vertrekdatum; //wanneer de vlucht vertrekt
   private $boekingsdatum; //wanneer er geboekt is
   private $duur; //hoelang (in dagen) de reis is
   private $hotel;
@@ -52,24 +52,18 @@ class Boeking
 
   public function GetBoekingInfo(){ //Omdat variabelen private zijn moet je hiermee info ophalen
     $Boekinginfo = array(); //associative array
-    $Boekinginfo = ['Land'=>$this->land, 'Plaats'=>$this->plaats, 'Hotel'=>$this->hotel, 'Prijs'=>$this->prijs, 'Vervoer'=>$this->vervoer, 'Personen'=>$this->personen, 'Vertrekdatum'=>$this->vertrekdatum, 'Boekingsdatum'=>$this->boekingsdatum, 'Duur'=>$this->duur];
+    $Boekinginfo = ['Land'=>$this->land, 'Plaats'=>$this->plaats, 'Prijs'=>$this->prijs,'Personen'=>$this->personen,'Hotel'=>$this->hotel,  'Vervoer'=>$this->vervoer,  'Vertrekdatum'=>$this->vertrekdatum, 'Boekingsdatum'=>$this->boekingsdatum, 'Duur'=>$this->duur];
 
     return $Boekinginfo;
   }
 
-  public function AdminUpdateBoeking($database, $BoekingID, $land, $plaats, $hotel, $prijs, $vervoer, $personen, $vertrekdatum, $boekingsdatum, $duur){
+  public function AdminUpdateBoeking($database, $BoekingID, $land, $plaats, $prijs, $personen, $hotel, $vervoer, $vertrekdatum,  $boekingsdatum, $duur){
     $db = $database->connection();
     $stmt = $db->prepare("UPDATE `boeking` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Prijs` = '".$prijs."', `Hotel` = '".$hotel."', `Vervoer` = '".$vervoer."', `Personen` = '".$personen."',  `Vertrekdatum` = '".$vertrekdatum."', `Boekingsdatum` = '".$boekingsdatum."', `Duur` = '".$duur."'
     WHERE `BoekingID` = '".$BoekingID."';");
-    dd($stmt);
     $stmt->execute();
     $db = NULL;
   }
 }
-
-
-
-
-
 
 ?>
