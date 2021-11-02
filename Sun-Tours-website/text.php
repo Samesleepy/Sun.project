@@ -45,6 +45,7 @@ $text = array(
           8 => "Reisadviezen",
 
         ),
+
         "signup" => array(
           1 => "Registreer hier",
           2 => "Maak een gratis account",
@@ -62,7 +63,26 @@ $text = array(
           14 => "Heb je al een account?",
           15 => "Log in",
         ),
-    ),
+
+        "contact" => array(
+          1 => "Neem contact op",
+          2 => "Mocht je contact willen opnemen met ons dan kan dat hier. Vul het formulier hiernaast in en verstuur je vraag.",
+          3 => "Tel: 06 12345678",
+          4 => "Locatie: Roerstraat 11, Roermond",
+          5 => "Klacht",
+          6 => "Vraag",
+          7 => "Feedback",
+          8 => "Soort vraag",
+          9 => "Onderwerp",
+          10 => "Opmerking",
+          11 => "Verstuur",
+          12 => "Kijk hier of je vraag er al bij staat.",
+          13 => "FAQ",
+          14 => "log in first",
+        ),
+
+      ),
+
     "EN" => array(
 
         "header" => array(
@@ -123,6 +143,23 @@ $text = array(
           13 => "Create account",
           14 => "Do you already have an account?",
           15 => "Log in",
+        ),
+
+        "contact" => array(
+          1 => "Contact us",
+          2 => "If you would like to contact us you can do so here. Fill out the form on the right and send your question.",
+          3 => "Tel: 06 12345678",
+          4 => "Location: Roerstraat 11, Roermond",
+          5 => "Complaint",
+          6 => "Question",
+          7 => "Feedback",
+          8 => "Question type",
+          9 => "Subject",
+          10 => "Remark",
+          11 => "Send",
+          12 => "Check here if your question is already listed.",
+          13 => "FAQ",
+          14 => "Log in first",
         ),
     )
 );
