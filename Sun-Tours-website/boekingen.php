@@ -12,7 +12,7 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <body>
         <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-            <div class="text-center" style="margin-bottom: 20px;"><h1>Eerdere boekingen</h1></div>
+            <div class="text-center" style="margin-bottom: 20px;"><h1><?=  $text[$_SESSION['lang']]['boekingen'][1] ?></h1></div>
             <?php
             if(!$Boekingen == ""){
                 foreach ($Boekingen as $key => $Boeking) {
@@ -34,15 +34,15 @@ $Boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <p class="card-text"><?php echo $Bestemmingen[0]['Beschrijving']; ?></p>
                                 <div style="float: right;margin-bottom: 15px;">
                                     <p class="card-text"><small class="text-muted"><i class="fas fa-users"></i><?php echo " ".$Boeking['Personen']; ?></small></p>
-                                    <p class="card-text"><small class="text-muted"><i class="fas fa-clock"></i><?php echo " ".$Boeking['Duur']." Dagen"; ?></small></p>
+                                    <p class="card-text"><small class="text-muted"><i class="fas fa-clock"></i><?php echo " ".$Boeking['Duur']. " " .  $text[$_SESSION['lang']]['boekingen'][2]; ?></small></p>
                                 </div>
-                                <p class="card-text" style="margin-top: 6%;"><small class="text-muted">Vertrekdatum <i class="fas fa-calendar-alt"></i></i><?php echo " ".$Boeking['Vertrekdatum']; ?></small></p>
+                                <p class="card-text" style="margin-top: 6%;"><small class="text-muted"><?=  $text[$_SESSION['lang']]['boekingen'][3] ?> <i class="fas fa-calendar-alt"></i></i><?php echo " ".$Boeking['Vertrekdatum']; ?></small></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
-            <?php }}else{echo "<h3 class='text-center'>Er zijn geen boekingen</h3>";} ?>
+          <?php }}else{echo "<h3 class='text-center'>".  $text[$_SESSION['lang']]['boekingen'][4]."</h3>";} ?>
         </div>
     </body>
 </html>

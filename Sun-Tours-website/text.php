@@ -132,6 +132,13 @@ $text = array(
 
         ),
 
+        "boekingen" => array(
+          1 => "Eerdere boekingen",
+          2 => "Dagen",
+          3 => "Vertrekdatum",
+          4 => "Er zijn geen eerdere boekingen"
+        ),
+
       ),
 
     "EN" => array(
@@ -263,7 +270,13 @@ $text = array(
           9 => "Booking date",
           10 => "Price",
           11 => "Pay",
+        ),
 
+        "boekingen" => array(
+          1 => "Previous bookings",
+          2 => "Days",
+          3 => "Departure date",
+          4 => "There are no previous bookings",
         ),
     )
 );
