@@ -46,12 +46,12 @@ foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming 
 
             <div class="container">
                <div class="carousel-caption text-start">
-                  <h1 class="mb-3">Wij geloven dat iedereen een geweldige vakantie verdient!</h1>
+                  <h1 class="mb-3"><?=  $text[$_SESSION['lang']]['home'][1] ?></h1>
                   <?php if (!$User->voornaam){
-                     echo '<p><a class="btn btn-primary" href="signup.php">Registreren</a></p>';
+                     echo '<p><a class="btn btn-primary" href="signup.php">'.$text[$_SESSION['lang']]['home'][2].'</a></p>';
                   }else{
-                     echo '<p><a class="btn btn-primary" href="bestemmingen.php">Alle bestemmingen</a></p>';
-                  } 
+                     echo '<p><a class="btn btn-primary" href="bestemmingen.php">'.$text[$_SESSION['lang']]['home'][3].'</a></p>';
+                  }
                   ?>
                </div>
             </div>
@@ -61,9 +61,9 @@ foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming 
 
             <div class="container">
                <div class="carousel-caption">
-                  <h1>Wat u ook zoekt, wij bieden het!</h1>
-                  <p>Bekijk hier de huidige covid maatregelen.</p>
-                  <p><a class="btn btn-primary" href="covid.php">Covid maatregelen</a></p>
+                  <h1><?=  $text[$_SESSION['lang']]['home'][4] ?></h1>
+                  <p><?=  $text[$_SESSION['lang']]['home'][5] ?></p>
+                  <p><a class="btn btn-primary" href="covid.php"><?=  $text[$_SESSION['lang']]['home'][6] ?></a></p>
                </div>
             </div>
          </div>
@@ -72,28 +72,28 @@ foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming 
 
             <div class="container">
                <div class="carousel-caption text-end">
-                  <h1>Neem contact op.</h1>
-                  <p>Heeft u een vraag of een klacht? Neem dan gerust een kijkje op onze contact pagina.</p>
-                  <p><a class="btn btn-primary" href="contact.php">Contact</a></p>
+                  <h1><?=  $text[$_SESSION['lang']]['home'][7] ?></h1>
+                  <p><?=  $text[$_SESSION['lang']]['home'][8] ?></p>
+                  <p><a class="btn btn-primary" href="contact.php"><?=  $text[$_SESSION['lang']]['home'][9] ?></a></p>
                </div>
             </div>
          </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-         <span class="visually-hidden">Previous</span>
+         <span class="visually-hidden"><?=  $text[$_SESSION['lang']]['home'][10] ?></span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-         <span class="visually-hidden">Next</span>
+         <span class="visually-hidden"><?=  $text[$_SESSION['lang']]['home'][11] ?></span>
       </button>
    </div>
 
    <div class="container marketing py-5">
-      <h1 class="display-8 text-center fw-bold lh-1 mb-3">Populaire bestemmingen</h1>
+      <h1 class="display-8 text-center fw-bold lh-1 mb-3"><?=  $text[$_SESSION['lang']]['home'][12] ?></h1>
       <div class="row">
          <!-- foreach -->
-         <?php 
+         <?php
             $i = 0;
             foreach ($Bestemmingen as $bestemming) {//haal individuele bestemmingen uit de array Bestemmingen, je hebt nu een bestemming
                echo "<div class='col-lg-4'>";
@@ -113,8 +113,8 @@ foreach ($Bestemmingresult as $bestemming) { //Voor elke individuele bestemming 
             <img src="Pics/landscape-at-dawn.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
          </div>
          <div class="col-lg-6">
-            <h1 class="display-5 fw-bold lh-1 mb-3">Top ervaringen met Suntours</h1>
-            <p class="lead">Wij hebben al meer als 100 klanten de mooiste ervaring van hun leven gegeven, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+            <h1 class="display-5 fw-bold lh-1 mb-3"><?=  $text[$_SESSION['lang']]['home'][13] ?></h1>
+            <p class="lead"><?=  $text[$_SESSION['lang']]['home'][14] ?></p>
          </div>
       </div>
    </div>

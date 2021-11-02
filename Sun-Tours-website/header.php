@@ -8,6 +8,7 @@ include_once('Classes/boekingClass.php');
 include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
 include_once('Classes/contactClass.php');
+include_once('text.php');
 //include_once('Classes/language.php');
 
 //for testing
@@ -38,6 +39,7 @@ if(isset($_POST['logout'])){
    session_destroy();
    header("Location: home.php");
 }
+
 ?>
 
 <html lang="nl" dir="ltr">
@@ -56,37 +58,41 @@ if(isset($_POST['logout'])){
             <div class="collapse navbar-collapse" id="navbarNav">
                <ul class="navbar-nav">
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="bestemmingen.php">Bestemmingen</a>
+                     <a class="nav-link active" aria-current="page" href="bestemmingen.php"><?=  $text[$_SESSION['lang']]['header'][1] ?></a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="covid.php">Covid-19 Maatregelen</a>
+                     <a class="nav-link active" aria-current="page" href="covid.php"><?=  $text[$_SESSION['lang']]['header'][2] ?></a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
+                     <a class="nav-link active" aria-current="page" href="contact.php"><?=  $text[$_SESSION['lang']]['header'][3] ?></a>
                   </li>
                   <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Taal</a>
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?=  $text[$_SESSION['lang']]['header'][4] ?></a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="?lang=NL"><object data="Pics/flag-nl.svg" width="20" ></object> Dutch</a></li>
-                        <li><a class="dropdown-item" href="?lang=EN"><object data="Pics/flag-uk.svg" width="20" ></object> English</a></li>
+                        <li><a class="dropdown-item" href="?lang=NL"><object data="Pics/flag-nl.svg" width="20" ></object> <?=  $text[$_SESSION['lang']]['header'][5] ?></a></li>
+                        <li><a class="dropdown-item" href="?lang=EN"><object data="Pics/flag-uk.svg" width="20" ></object> <?=  $text[$_SESSION['lang']]['header'][6] ?></a></li>
                      </ul>
                   </li>
-                  <object data="Pics/flag-nl.svg" width="20" ></object>
+                  <?php if($_SESSION['lang'] == 'EN'){
+                    echo "<object data='Pics/flag-uk.svg' width='20' ></object>";
+                  }else{
+                    echo "<object data='Pics/flag-nl.svg' width='20' ></object>";
+                  } ?>
                </ul>
 
                <ul class="navbar-nav ms-auto">
                <?php if(isset($_SESSION['user'])){ ?>
                      <li class="nav-item" style="padding-right: 5px;">
                         <form method="post">
-                           <button type='submit' name='logout' class='btn btn-danger btn-block'>Log uit <i class="fas fa-sign-out-alt"></i></button>
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'><?=  $text[$_SESSION['lang']]['header'][7] ?> <i class="fas fa-sign-out-alt"></i></button>
                         </form>
                      </li>
                   <?php }else{ ?>
                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="signup.php">Registreren</a>
+                        <a class="nav-link active" aria-current="page" href="signup.php"><?=  $text[$_SESSION['lang']]['header'][8] ?></a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="login.php">Log in</a>
+                        <a class="nav-link active" aria-current="page" href="login.php"><?=  $text[$_SESSION['lang']]['header'][9] ?></a>
                      </li>
                   <?php } ?>
                   <li class="nav-item">
