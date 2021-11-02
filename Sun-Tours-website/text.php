@@ -81,6 +81,13 @@ $text = array(
           14 => "log in first",
         ),
 
+        "bestemmingen" => array(
+          1 => "Bestemmingen",
+          2 => "Volgeboekt",
+          3 => "Geen score"
+
+        ),
+
       ),
 
     "EN" => array(
@@ -160,6 +167,14 @@ $text = array(
           12 => "Check here if your question is already listed.",
           13 => "FAQ",
           14 => "Log in first",
+        ),
+
+        "bestemmingen" => array( //niet werkend
+          1 => "Destinations",
+          2 => "Fully booked",
+          3 => "Score: ",
+          4 => "No score",
+
         ),
     )
 );
