@@ -29,42 +29,42 @@ if($User->voornaam != ""){
       <div class="card bg-light">
          <div class="card-body mx-auto" style="max-width: 800px;">
             <div class="jumbotron text-center">
-               <h1>Registreer hier<h1>
+               <h1><?= $text[$_SESSION['lang']]['signup'][1] ?><h1>
             </div>
-            <p class="text-center">Maak een gratis account</p>
+            <p class="text-center"><?= $text[$_SESSION['lang']]['signup'][2] ?></p>
             <form method="post">
                <div class="row">
                   <div class="col">
                      <div class="form-group input-group">
-                        <input name="voornaam" class="form-control" placeholder="Voornaam" type="text" required>
+                        <input name="voornaam" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][3] ?>" type="text" required>
                      </div>
                   </div>
                   <div class="col">
                      <div class="form-group input-group">
-                        <input name="tussenvoegsel" class="form-control" placeholder="Tussenvoegsel" type="text">
+                        <input name="tussenvoegsel" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][4] ?>" type="text">
                      </div>
                   </div>
                   <div class="col">
                      <div class="form-group input-group">
-                        <input name="achternaam" class="form-control" placeholder="Achternaam" type="text" required>
+                        <input name="achternaam" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][5] ?>" type="text" required>
                      </div>
                   </div>
                </div>
                <div class="form-group input-group">
-                  <input name="email" class="form-control" placeholder="E-mail" type="email" required>
+                  <input name="email" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][6] ?>" type="email" required>
                </div>
                <div class="form-group input-group">
-                  <input name="telefoonnummer" class="form-control" placeholder="Telefoonnummer" type="text" required>
+                  <input name="telefoonnummer" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][7] ?>" type="text" required>
                </div>
                <div class="row">
                   <div class="col">
                      <div class="form-group input-group">
-                        <input id="wachtwoord" name="wachtwoord" class="form-control" placeholder="Wachtwoord" type="password" required onchange='checkpass();'>
+                        <input id="wachtwoord" name="wachtwoord" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][8] ?>" type="password" required onchange='checkpass();'>
                      </div>
                   </div>
                   <div class="col">
                      <div class="form-group input-group">
-                        <input id="wachtwoordh" name="wachtwoordh" class="form-control" placeholder="Herhaal wachtwoord" type="password" required onchange='checkpass();'>
+                        <input id="wachtwoordh" name="wachtwoordh" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][9] ?>" type="password" required onchange='checkpass();'>
                      </div>
                   </div>
                </div>
@@ -318,29 +318,29 @@ if($User->voornaam != ""){
             </select>
                </div>
                <div class="form-group input-group">
-                  <input name="postcode" class="form-control" placeholder="Postcode" type="text" required>
+                  <input name="postcode" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][9] ?>" type="text" required>
                </div>
                <div class="form-group input-group">
-                  <input name="woonplaats" class="form-control" placeholder="Woonplaats" type="text" required>
+                  <input name="woonplaats" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][10] ?>" type="text" required>
                </div>
                <div class="row">
                   <div class="col">
                      <div class="form-group input-group">
-                        <input name="straatnaam" class="form-control" placeholder="Straatnaam" type="text" required>
+                        <input name="straatnaam" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][11] ?>" type="text" required>
                      </div>
                   </div>
                   <div class="col">
                      <div class="form-group input-group">
-                        <input name="huisnummer" class="form-control" placeholder="Huisnummer" type="text" required>
+                        <input name="huisnummer" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][12] ?>" type="text" required>
                      </div>
                   </div>
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block">Maak Account</button>
+                     <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block"><?= $text[$_SESSION['lang']]['signup'][13] ?></button>
                   </div>
                </div>
-               <p class="text-center">Heb je al een account?<a href="">Log In</a> </p>
+               <p class="text-center"><?= $text[$_SESSION['lang']]['signup'][14] ?><a href=""><?= $text[$_SESSION['lang']]['signup'][15] ?></a> </p>
             </form>
          </div>
       </div>

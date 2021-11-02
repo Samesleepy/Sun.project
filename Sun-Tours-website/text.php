@@ -45,8 +45,22 @@ $text = array(
           8 => "Reisadviezen",
 
         ),
-        "PAGE" => array(
-
+        "signup" => array(
+          1 => "Registreer hier",
+          2 => "Maak een gratis account",
+          3 => "Voornaam",
+          4 => "Tussenvoegsel",
+          5 => "Achternaam",
+          6 => "E-mail",
+          7 => "Wachtwoord",
+          8 => "Herhaal wachtwoord",
+          9 => "Postcode",
+          10 => "Woonplaats",
+          11 => "Straatnaam",
+          12 => "Huisnummer",
+          13 => "Maak account",
+          14 => "Heb je al een account?",
+          15 => "Log in",
         ),
     ),
     "EN" => array(
@@ -93,9 +107,23 @@ $text = array(
           8 => "Travel advisories",
 
         ),
-        "PAGE" => array(
-
-        )
+        "signup" => array(
+          1 => "Register here",
+          2 => "Create a free account",
+          3 => "First name",
+          4 => "Preposition",
+          5 => "Last name",
+          6 => "E-mail",
+          7 => "Password",
+          8 => "Repeat password",
+          9 => "Zip code",
+          10 => "City",
+          11 => "Street name",
+          12 => "House No.",
+          13 => "Create account",
+          14 => "Do you already have an account?",
+          15 => "Log in",
+        ),
     )
 );
 
