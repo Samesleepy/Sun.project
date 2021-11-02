@@ -173,6 +173,14 @@ $text = array(
           4 => "Verstuur",
         ),
 
+        "wachtwoord" => array(
+          1 => "Verander je wachtwoord",
+          2 => "Oud wachtwoord",
+          3 => "Nieuw wachtwoord",
+          4 => "Herhaal nieuw wachtwoord",
+          5 => "Opslaan",
+        ),
+
       ),
 
     "EN" => array(
@@ -345,6 +353,14 @@ $text = array(
           2 => "Score: ",
           3 => "Your review: ",
           4 => "Send",
+        ),
+
+        "wachtwoord" => array(
+          1 => "Change your password",
+          2 => "Old password",
+          3 => "New password",
+          4 => "Repeat new password",
+          5 => "Save",
         ),
     )
 );
