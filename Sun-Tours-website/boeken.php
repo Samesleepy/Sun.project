@@ -81,9 +81,14 @@ $hotels = $stmt->fetchAll();
                 echo '<img height="250px" style="max-width: 380px;" src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';
                 //echo score if isset
                 echo "<div class='my-3'>";
-                    if(isset($score)){echo "<h5> Review Score : " . round($score,2) . "</h5>";} 
+                if(isset($score)){echo "<h5> Review Score</h5><p>" . round($score,2) . "</p>";} 
 
-                    ?>
+                echo '<h5>Beschrijving</h5><p>'.$Bestemminginfo['Beschrijving'].'</p>';
+
+                ?>
+                <h5>Covid maatregelen voor dit land</h5>
+                <a href="https://www.nederlandwereldwijd.nl/documenten/vragen-en-antwoorden/welke-landen-hebben-welke-kleurcode" target="_blank"><?= $Bestemminginfo['Land'] ?></a>
+
                 </div>
             </div>
             <div class="col-8">
