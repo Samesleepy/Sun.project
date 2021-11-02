@@ -117,6 +117,21 @@ $text = array(
           1 => "Alternatieven",
         ),
 
+        "betaling" => array(
+          1 => "Factuur",
+          2 => "Land",
+          3 => "Plaats",
+          4 => "Duur",
+          5 => "Personen",
+          6 => "Hotel",
+          7 => "Vervoer",
+          8 => "Vertrekdatum",
+          9 => "Boekingsdatum",
+          10 => "Prijs",
+          11 => "Betalen",
+
+        ),
+
       ),
 
     "EN" => array(
@@ -210,8 +225,8 @@ $text = array(
           9 => "Choose your hotel",
           10 => "Choose your hotel here",
           11 => "No hotels",
-          12 => "Choose your transportation",
-          13 => "Choose your transportation here",
+          12 => "Choose your transportation method",
+          13 => "Choose your transportation method here",
           14 => "Car",
           15 => "Plane",
           16 => "Boat",
@@ -234,6 +249,21 @@ $text = array(
 
         "alternatieven" => array(
           1 => "Alternatives",
+        ),
+
+        "betaling" => array(
+          1 => "Invoice",
+          2 => "Country",
+          3 => "Place",
+          4 => "Duration",
+          5 => "People",
+          6 => "Hotel",
+          7 => "Transportation method",
+          8 => "Departure date",
+          9 => "Booking date",
+          10 => "Price",
+          11 => "Pay",
+
         ),
     )
 );
