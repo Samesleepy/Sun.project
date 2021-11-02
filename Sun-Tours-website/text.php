@@ -113,6 +113,10 @@ $text = array(
           3 => ""
         ),
 
+        "alternatieven" => array(
+          1 => "Alternatieven",
+        ),
+
       ),
 
     "EN" => array(
@@ -226,6 +230,10 @@ $text = array(
           3 => "Score: ",
           4 => "No score",
 
+        ),
+
+        "alternatieven" => array(
+          1 => "Alternatives",
         ),
     )
 );
