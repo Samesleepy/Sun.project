@@ -66,8 +66,8 @@ $hotels = $stmt->fetchAll();
 <body>
     <div class="container col-xl-10 col-xxl-8 px-4 py-5">
         <div class="py-3 mb-5 text-center">
-            <h1>Boeken</h1>
-            <p class="lead">Hieronder kunt u uw reis boeken. Links ziet u meer info over de reis en rechts kunt u alle gegevens invullen die nodig zijn voor het boeken.</p>
+            <h1><?=  $text[$_SESSION['lang']]['boeken'][1] ?></h1>
+            <p class="lead"><?=  $text[$_SESSION['lang']]['boeken'][2] ?></p>
         </div>
         <div class="row">
             <div class="col-4">
@@ -81,35 +81,35 @@ $hotels = $stmt->fetchAll();
                 echo '<img height="250px" style="max-width: 380px;" src="data:image/png;base64,'.base64_encode($Bestemminginfo['Plaatje']).'"/>';
                 //echo score if isset
                 echo "<div class='my-3'>";
-                if(isset($score)){echo "<h5> Review Score</h5><p>" . round($score,2) . "</p>";} 
+                if(isset($score)){echo "<h5>". $text[$_SESSION['lang']]['boeken'][3]. "</h5><p>" . round($score,2) . "</p>";}
 
-                echo '<h5>Beschrijving</h5><p>'.$Bestemminginfo['Beschrijving'].'</p>';
+                echo '<h5>'. $text[$_SESSION['lang']]['boeken'][22]. '</h5><p>'.$Bestemminginfo['Beschrijving'].'</p>';
 
                 ?>
-                <h5>Covid maatregelen voor dit land</h5>
+                <h5><?=  $text[$_SESSION['lang']]['boeken'][4] ?></h5>
                 <a href="https://www.nederlandwereldwijd.nl/documenten/vragen-en-antwoorden/welke-landen-hebben-welke-kleurcode" target="_blank"><?= $Bestemminginfo['Land'] ?></a>
 
                 </div>
             </div>
             <div class="col-8">
-                <h2 class="text-primary">Booking info</h2>
+                <h2 class="text-primary"><?=  $text[$_SESSION['lang']]['boeken'][5] ?></h2>
                 <form id="boekform" action="boeken.php?id=<?php echo $id; ?>" method="post">
                     <div class="mb-2">
-                        <label for="personen" class="form-label">Aantal personen</label>
-                        <input id="personenveld" name="personen" class="form-control" placeholder="Personen" type="number" min="1" onkeyup="updatePrijs()"  required>
+                        <label for="personen" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][6] ?></label>
+                        <input id="personenveld" name="personen" class="form-control" placeholder="<?=  $text[$_SESSION['lang']]['boeken'][6] ?>" type="number" min="1" onkeyup="updatePrijs()"  required>
                     </div>
                     <div class="mb-2">
-                        <label for="datum" class="form-label">Vertrek datum</label>
+                        <label for="datum" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][7] ?></label>
                         <input name="vertrekdatum" class="form-control" min="<?php echo date("Y-m-d"); ?>" placeholder="MM/DD/YYYY" type="date" required>
                     </div>
                     <div class="mb-2">
-                        <label for="dagen" class="form-label">Aantal dagen</label>
+                        <label for="dagen" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][8] ?></label>
                         <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required>
                     </div>
                     <div class="mb-2">
-                        <label for="hotel" class="form-label">Kies je hotel</label>
+                        <label for="hotel" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][9] ?></label>
                         <select class="form-select" name="hotel" aria-label="Default select example" onchange='updatePrijsPP(this)' required id='hotel'>
-                            <option value="" disabled selected hidden>Kies hier uw hotel</option>
+                            <option value="" disabled selected hidden><?=  $text[$_SESSION['lang']]['boeken'][10] ?></option>
                             <?php
                             if(!$hotels == ""){ //Als hotels NIET leeg zijn
                                 foreach($hotels as $hotel){
@@ -117,19 +117,19 @@ $hotels = $stmt->fetchAll();
 
                                 }
                             }else{ //Wel leeg
-                                echo "<option value='Niks' disabled>Geen hotels</option>";
+                                echo "<option value='Niks' disabled>". $text[$_SESSION['lang']]['boeken'][11]."</option>";
                             }
 
                             ?>
                         </select>
                     </div>
                     <div class="mb-5">
-                        <label for="Vervoer" class="form-label">Kies je vervoer</label>
+                        <label for="Vervoer" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][12] ?></label>
                         <select class="form-select" name="vervoer" aria-label="Default select example" required>
-                            <option value="" disabled selected hidden>Kies hier uw vervoer</option>
-                            <option value="Auto">Auto</option>
-                            <option value="Vliegtuig">Vliegtuig</option>
-                            <option value="Boot">Boot</option>
+                            <option value="" disabled selected hidden><?=  $text[$_SESSION['lang']]['boeken'][13] ?></option>
+                            <option value="Auto"><?=  $text[$_SESSION['lang']]['boeken'][14] ?></option>
+                            <option value="Vliegtuig"><?=  $text[$_SESSION['lang']]['boeken'][15] ?></option>
+                            <option value="Boot"><?=  $text[$_SESSION['lang']]['boeken'][16] ?></option>
                         </select>
                     </div>
 
@@ -140,19 +140,19 @@ $hotels = $stmt->fetchAll();
                             <ul class="list-group mb-3">
                                 <li class="list-group-item d-flex justify-content-between lh-sm">
                                     <div>
-                                        <h6 class="my-0">Prijs p.p.</h6>
-                                        <small class="text-muted">Prijs per persoon</small>
+                                        <h6 class="my-0"><?=  $text[$_SESSION['lang']]['boeken'][17] ?></h6>
+                                        <small class="text-muted"><?=  $text[$_SESSION['lang']]['boeken'][18] ?></small>
                                     </div>
                                     <span id="prijsPP" class="text-muted"><?php echo "&euro;0.00 "; ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between">
-                                    <span>Totaal</span>
+                                    <span><?=  $text[$_SESSION['lang']]['boeken'][19] ?></span>
                                     <strong><div id="totaal" style="float:left;"><?php if($prijs){echo " &euro;" . $prijs;}else{echo " &euro;0.00";} ?></div></strong>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <input type="submit" name="submit" style="float: right;" value="Naar betalen" class="btn btn-primary btn-block w-100"/>
+                    <input type="submit" name="submit" style="float: right;" value="<?=  $text[$_SESSION['lang']]['boeken'][20] ?>" class="btn btn-primary btn-block w-100"/>
                 </form>
             </div>
 
@@ -163,7 +163,7 @@ $hotels = $stmt->fetchAll();
                 include_once 'review.php';
                 include_once 'alternatieven.php';
                 }else{
-                    echo "<p class='text-danger'>Log eerst in</p>";
+                    echo "<p class='text-danger'>". $text[$_SESSION['lang']]['boeken'][21] ."</p>";
                 }
             ?>
         </div>

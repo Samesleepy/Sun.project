@@ -81,11 +81,36 @@ $text = array(
           14 => "log in first",
         ),
 
-        "bestemmingen" => array(
-          1 => "Bestemmingen",
-          2 => "Volgeboekt",
-          3 => "Geen score"
+        "boeken" => array(
+          1 => "Boeken",
+          2 => "Hieronder kunt u uw reis boeken. Links ziet u meer info over de reis en rechts kunt u alle gegevens invullen die nodig zijn voor het boeken.",
+          3 => "Review score",
+          4 => "Covid maatregelen voor dit land",
+          5 => "Booking info",
+          6 => "Aantal personen",
+          7 => "Vertrek datum",
+          8 => "Aantal dagen",
+          9 => "Kies je hotel",
+          10 => "Kies hier uw hotel",
+          11 => "Geen hotels",
+          12 => "Kies je vervoer",
+          13 => "Kies hier uw vervoer",
+          14 => "Auto",
+          15 => "Vliegtuig",
+          16 => "Boot",
+          17 => "Prijs p.p.",
+          18 => "Prijs per persoon",
+          19 => "Totaal",
+          20 => "Naar betalen",
+          21 => "Log eerst in",
+          22 => "Beschrijving", //4
 
+        ),
+
+        "bestemmingen" => array(
+          1 => "Boeken",
+          2 => "Hieronder kunt u uw reis boeken. Links ziet u meer info over de reis en rechts kunt u alle gegevens invullen die nodig zijn voor het boeken.",
+          3 => ""
         ),
 
       ),
@@ -167,6 +192,32 @@ $text = array(
           12 => "Check here if your question is already listed.",
           13 => "FAQ",
           14 => "Log in first",
+        ),
+
+        "boeken" => array(
+          1 => "Destinations",
+          2 => "Below you can book your trip. On the left you will see more info about the trip and on the right you can fill in all the details needed for booking.",
+          3 => "Review score",
+          4 => "Covid measures for this country",
+          5 => "Booking info",
+          6 => "Number of people",
+          7 => "Departure date",
+          8 => "Number of days",
+          9 => "Choose your hotel",
+          10 => "Choose your hotel here",
+          11 => "No hotels",
+          12 => "Choose your transportation",
+          13 => "Choose your transportation here",
+          14 => "Car",
+          15 => "Plane",
+          16 => "Boat",
+          17 => "Price p.p.",
+          18 => "Price per person",
+          19 => "Total",
+          20 => "Go to payment",
+          21 => "Log in first",
+          22 => "Description", //4
+
         ),
 
         "bestemmingen" => array( //niet werkend
