@@ -11,11 +11,12 @@
          <div class="card-body mx-auto" style="max-width: 800px; width: 350px;">
           <?php if($User->CheckIfBooked($database, $id)){ ?>
             <div class="jumbotron text-center">
-               <h1>Schrijf een review!<h1>
+               <h1><?=  $text[$_SESSION['lang']]['review'][1] ?><h1>
             </div>
             <form method="post">
                <select class="form-select form-select-sm" id="inputGroupSelect01" name="score" required>
-                  <option value="">Score: </option>
+                  <option value="">
+                    <?=  $text[$_SESSION['lang']]['review'][2] ?></option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -23,12 +24,13 @@
                   <option value="5">5</option>
                </select>
                <div class="input-group mt-3">
-                  <span class="input-group-text">Uw review: </span>
+                  <span class="input-group-text">
+                    <?=  $text[$_SESSION['lang']]['review'][3] ?> </span>
                   <textarea class="form-control"  name="review"></textarea>
                </div>
                <div class="form-group">
                   <div class="text-center">
-                     <button type="submit" name="submitr" class="btn btn-primary mt-3 btn-block">Verstuur</button>
+                     <button type="submit" name="submitr" class="btn btn-primary mt-3 btn-block"><?=  $text[$_SESSION['lang']]['review'][4] ?></button>
                   </div>
                </div>
             </form>

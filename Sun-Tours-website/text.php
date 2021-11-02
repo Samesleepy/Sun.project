@@ -166,6 +166,13 @@ $text = array(
           17 => "Verwijder account",
         ),
 
+        "review" => array(
+          1 => "Schrijf een review!",
+          2 => "Score: ",
+          3 => "Uw review: ",
+          4 => "Verstuur",
+        ),
+
       ),
 
     "EN" => array(
@@ -331,6 +338,13 @@ $text = array(
           15 => "Are you sure you want to delete your account? You can't get your account back after you delete it.",
           16 => "Close",
           17 => "Delete account",
+        ),
+
+        "review" => array(
+          1 => "Write a review!",
+          2 => "Score: ",
+          3 => "Your review: ",
+          4 => "Send",
         ),
     )
 );
