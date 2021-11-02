@@ -139,6 +139,13 @@ $text = array(
           4 => "Er zijn geen eerdere boekingen"
         ),
 
+        "faq" => array(
+          1 => "Welkom op de FAQ!",
+          2 => "hier kun u antwoorden voor veelgestelde vragen vinden.",
+          3 => "Is uw vraag nog niet beantwoord?",
+          4 => "Terug naar contact",
+        ),
+
       ),
 
     "EN" => array(
@@ -277,6 +284,13 @@ $text = array(
           2 => "Days",
           3 => "Departure date",
           4 => "There are no previous bookings",
+        ),
+
+        "faq" => array(
+          1 => "Welcome to the FAQ!",
+          2 => "here you can find answers for frequently asked questions.",
+          3 => "Is your question still unanswered?",
+          4 => "Back to contact",
         ),
     )
 );
