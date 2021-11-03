@@ -113,13 +113,11 @@ $hotels = $stmt->fetchAll();
                             <?php
                             if(!$hotels == ""){ //Als hotels NIET leeg zijn
                                 foreach($hotels as $hotel){
-                                echo "<option value=".$hotel['Naam']."'>".$hotel['Naam'] . " (&euro;" . $hotel['Prijs']. ")</option>";
-
+                                    echo "<option value=".$hotel['Naam']."'>".$hotel['Naam'] . "</option>";
                                 }
                             }else{ //Wel leeg
                                 echo "<option value='Niks' disabled>". $text[$_SESSION['lang']]['boeken'][11]."</option>";
                             }
-
                             ?>
                         </select>
                     </div>
@@ -174,22 +172,19 @@ $hotels = $stmt->fetchAll();
     function updatePrijs(){
         personen = document.getElementById('personenveld').value;
         dagen = document.getElementById('dagenveld').value;
-        prijspp_str = document.getElementById('prijsPP').innerHTML;
 
-        prijspp = prijspp_str.substr(1,prijspp_str.length-5);
-        prijsint = parseInt(prijspp);
+        prijsPP = <?php echo $hotel['Prijs']; ?>;
+
+        $totaal = prijsPP * personen * dagen;
         if(personen==""||dagen==""){
             document.getElementById('totaal').innerHTML = "€0.00";
         }else{
-            result = personen * dagen * prijsint;
-            document.getElementById('totaal').innerHTML = "€" + result + ".00";
+            result = personen * dagen * prijsPP;
+            document.getElementById('totaal').innerHTML = "€" + $totaal + ".00";
         }
-        var e = document.getElementById("hotel");
-        var a = array(60,50,50); // alle options prijzenb
-        alert(a[e.selectedIndex]);
     }
     function updatePrijsPP(HotelPrijs){
-        document.getElementById('prijsPP').innerHTML = <?php echo $hotel['Prijs']; ?>;
+        document.getElementById('prijsPP').innerHTML = "€" + <?php echo $hotel['Prijs']; ?> + ".00";
     }
 </script>
 

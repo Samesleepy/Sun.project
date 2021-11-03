@@ -3,7 +3,7 @@
       <div class="row" style="width: 1300px;">
         <div class="col-4">
           <a href="home.php" style="float: left;">
-              <img src="Pics/Sun-Tours-logo.png" class="sun-logo" alt="Suntours" style="filter: brightness(0) invert(1); width: 150px;">
+              <img src="Pics/Sun-Tours-logo.png" class="sun-logo" alt="Suntours" style="filter: brightness(0) invert(1); width: 120px;">
           </a>
         </div>
         <div class="col-8">
