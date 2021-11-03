@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['delete'])) {
     $_SESSION['user']->DeleteUser($database);
     $_SESSION['user'] = null;
-    header("Refresh:0");
+    header("Location: home.php");
 }
 ?>
 
@@ -359,7 +359,9 @@ if (isset($_POST['delete'])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?=  $text[$_SESSION['lang']]['profiel'][16] ?></button>
-                    <button id="test" type="submit" name="delete" class="btn btn-danger btn-block "><?=  $text[$_SESSION['lang']]['profiel'][17] ?></button>
+                    <form method="post">
+                        <button type="submit" name="delete" class="btn btn-danger btn-block "><?=  $text[$_SESSION['lang']]['profiel'][17] ?></button>
+                    </form>
                 </div>
             </div>
         </div>

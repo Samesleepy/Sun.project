@@ -62,6 +62,7 @@ $text = array(
           13 => "Maak account",
           14 => "Heb je al een account?",
           15 => "Log in",
+          16 => "Telefoonnummer",
         ),
 
         "contact" => array(
@@ -108,9 +109,10 @@ $text = array(
         ),
 
         "bestemmingen" => array(
-          1 => "Boeken",
-          2 => "Hieronder kunt u uw reis boeken. Links ziet u meer info over de reis en rechts kunt u alle gegevens invullen die nodig zijn voor het boeken.",
-          3 => ""
+          1 => "Bestemmingen",
+          2 => "Fully booked",
+          3 => "Score: ",
+          4 => "No score",
         ),
 
         "alternatieven" => array(
@@ -218,7 +220,7 @@ $text = array(
 
         "covid" => array(
           1 => "Everything you need to know about your vacation",
-          2 => "From health declarations and transport measures to hygiene requirements at the destination. There is a lot of information about Covid-19. You can almost not see the forest for the trees. That's why we've put it all together for you. What should you pay attention to when booking? What measures should you take into account during your trip? Are there specific protocols at your destination? Read all about it.",
+          2 => "From health declarations and transport measures to hygiene requirements at the destination. There is a lot of information about Covid-19. You can almost not see the forest through the trees. That's why we've put it all together for you. What should you pay attention to when booking? What measures should you take into account during your trip? Are there specific protocols at your destination? Read all about it.",
           3 => "CoronaCheck-app and Digitaal Corona Certificaat (DCC)",
           4 => "From July 1, 2021, the Digitale Corona Certificaat (DCC) will be available in the CoronaCheck app. This makes it easier to travel within Europe. As of August 8, 2021, the CoronaCheck app can also be used at",
           5 => "return to the Netherlands from outside",
@@ -243,6 +245,7 @@ $text = array(
           13 => "Create account",
           14 => "Do you already have an account?",
           15 => "Log in",
+          16 => "Phone number",
         ),
 
         "contact" => array(

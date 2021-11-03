@@ -54,17 +54,17 @@ if($User->voornaam != ""){
                   <input name="email" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][6] ?>" type="email" required>
                </div>
                <div class="form-group input-group">
-                  <input name="telefoonnummer" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][7] ?>" type="text" required>
+                  <input name="telefoonnummer" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][16] ?>" type="text" required>
                </div>
                <div class="row">
                   <div class="col">
                      <div class="form-group input-group">
-                        <input id="wachtwoord" name="wachtwoord" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][8] ?>" type="password" required onchange='checkpass();'>
+                        <input id="wachtwoord" name="wachtwoord" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][7] ?>" type="password" required onchange='checkpass();'>
                      </div>
                   </div>
                   <div class="col">
                      <div class="form-group input-group">
-                        <input id="wachtwoordh" name="wachtwoordh" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][9] ?>" type="password" required onchange='checkpass();'>
+                        <input id="wachtwoordh" name="wachtwoordh" class="form-control" placeholder="<?= $text[$_SESSION['lang']]['signup'][8] ?>" type="password" required onchange='checkpass();'>
                      </div>
                   </div>
                </div>
