@@ -42,7 +42,7 @@ if(isset($_POST['submit'])) {
          </div>
          <div class="form-group mb-2">
             <div class="text-center">
-               <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block">Voeg bestemming toe</button>
+               <button id="submit" type="submit" name="submit" class="btn btn-primary btn-block">Voeg FAQ toe</button>
             </div>
          </div>
       </form>
