@@ -109,11 +109,11 @@ if(isset($_POST['logout'])){
                            echo " <i class='fas fa-user'></i> ";
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
-                           echo        "<li><a class='dropdown-item' href='profiel.php'>My Account</a></li>";
+                           echo        "<li><a class='dropdown-item' href='profiel.php'>". $text[$_SESSION['lang']]['profiel'][18]."</a></li>";
                            if($_SESSION['user']->role == 'Admin'){
-                              echo     "<li><a class='dropdown-item' href='admin/admin.php'>Dashboard</a></li>";
+                              echo     "<li><a class='dropdown-item' href='admin/admin.php'>". $text[$_SESSION['lang']]['profiel'][19]."</a></li>";
                            }
-                           echo        "<li><a class='dropdown-item' href='boekingen.php'>Bookings</a></li>";
+                           echo        "<li><a class='dropdown-item' href='boekingen.php'>". $text[$_SESSION['lang']]['profiel'][20]."</a></li>";
                            echo    "</ul>";
                            echo "</div>";
                         }
