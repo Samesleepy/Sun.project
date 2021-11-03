@@ -33,7 +33,6 @@ if(isset($_POST['personen'])){
 if($prijs){
     $prijs = intval($prijs) * intval($Bestemminginfo['Prijs']);
 }
-$prijspp = $Bestemminginfo['Prijs'];
 $score = $Bestemminginfo['Score'];
 
 //if form submitted
@@ -104,7 +103,7 @@ $hotels = $stmt->fetchAll();
                     </div>
                     <div class="mb-2">
                         <label for="dagen" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][8] ?></label>
-                        <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onkeyup="updatePrijs()" required>
+                        <input id="dagenveld" name="duur" class="form-control" placeholder="Duur" type="number" min="1" onchange="updatePrijs()" required>
                     </div>
                     <div class="mb-2">
                         <label for="hotel" class="form-label"><?=  $text[$_SESSION['lang']]['boeken'][9] ?></label>
