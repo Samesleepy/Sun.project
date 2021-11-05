@@ -11,15 +11,18 @@ $stmt->execute();
 $countKlanten = $stmt->fetch();
 $aantalKlanten = $countKlanten[0];
 
+//Vragen die nog niet afgehandeld zijn
 $stmt = $db->prepare("SELECT * FROM `contact` WHERE `Afgehandeld` = 'N' ORDER BY `contact`.`VraagID` ASC LIMIT 3;");
 $stmt->execute();
 $Vragen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+ //Tel hoeveel klanten uit Nederland komen
 $stmt = $db->prepare("SELECT COUNT(*) FROM `klant` WHERE `Land` = 'Netherlands';");
 $stmt->execute();
 $countKlantenNL = $stmt->fetch();
 $aantalKlantenNL = $countKlantenNL[0];
 
+//Tel hoeveel klanten niet uit Nederland komen
 $stmt = $db->prepare("SELECT COUNT(*) FROM `klant` WHERE NOT `Land` = 'Netherlands';");
 $stmt->execute();
 $countKlantenNotNL = $stmt->fetch();
@@ -47,6 +50,7 @@ $db = NULL;
                         </thead>
                         <tbody>
                         <?php
+                        //Echo data uit boekingen
                         foreach ($Boekingen as $key => $boeking) {
                             echo "<tr>";
                                 echo "<th>". $boeking['BoekingID'] ."</th>";
@@ -85,7 +89,9 @@ $db = NULL;
             <div class="card bg-dark" style="height: 250px">
                 <div class="card-header text-white text-center"><b>Recente onafgehandelde Vragen</b></div>
                 <div class="card-body text-white">
-                    <?php if(!empty($Vragen)){ ?>
+                    <?php
+                    //Als vragen niet leeg zijn
+                    if(!empty($Vragen)){ ?>
                     <table class="table table-sm text-white">
                         <thead>
                             <tr>
@@ -96,6 +102,7 @@ $db = NULL;
                         </thead>
                         <tbody>
                         <?php
+                        //Echo data uit vragen
                         foreach ($Vragen as $key => $vraag) {
                             echo "<tr>";
                                 echo "<th>". $vraag['KlantID'] ."</th>";

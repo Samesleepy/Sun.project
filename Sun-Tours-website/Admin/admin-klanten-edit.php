@@ -1,16 +1,17 @@
 <?php
 include_once('admin-header.php');
 
-$UserToEdit = new User();
-$UserToEdit->SetUserInfo($database, $_GET['KlantID']);
-$Userinfo = $UserToEdit->GetUserInfo();
 
-if(isset($_POST['changeinfo'])){
-  $UserToEdit->AdminUpdateUser($database, $_POST['email'], $_POST['role']);
+$UserToEdit = new User(); //Maak nieuwe user
+$UserToEdit->SetUserInfo($database, $_GET['KlantID']); //Haal informatie uit database met meegegeven ID
+$Userinfo = $UserToEdit->GetUserInfo(); //Zet klantinfo in array
+
+if(isset($_POST['changeinfo'])){ //Als account wijzigen knop geklilkt is
+  $UserToEdit->AdminUpdateUser($database, $_POST['email'], $_POST['role']); //Stuur geupdate data naar database
   header("Refresh:0");
 }
 
-if(isset($_POST['changepass'])){
+if(isset($_POST['changepass'])){ //Als wachtwoord wijzigen geklikt is
   $UserToEdit->AdminUpdateUserPass($database, $_POST['passNieuw']);
   header("Refresh:0");
 }

@@ -2,14 +2,15 @@
 include_once('admin-header.php');
 
 $db = $database->connection();
-$stmt = $db->prepare("SELECT * FROM `klant` ORDER BY `KlantID` ASC;");
+$stmt = $db->prepare("SELECT * FROM `klant` ORDER BY `KlantID` ASC;"); //Haal klanten uit database geordend ascending, begint bij 1
 $stmt->execute();
 $klanten = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $db = NULL;
 
+//Als delete knop geklikt is
 if(isset($_POST['delete'])){
     $db = $database->connection();
-    $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$_POST['UserID']."'");
+    $stmt = $db->prepare("DELETE FROM `klant` WHERE `KlantID` = '".$_POST['UserID']."'"); //Verander klant uit database met ingevoerde ID
     $stmt->execute();
     $db = NULL;
     header("Refresh:0");
@@ -33,6 +34,7 @@ if(isset($_POST['delete'])){
         </thead>
         <tbody>
             <?php
+            //Echo data gehaald uit de database van klanten
             foreach ($klanten as $key => $klant) {
                 echo "<tr>";
                     echo "<form method='post'>";
