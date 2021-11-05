@@ -57,7 +57,7 @@ class Boeking
     return $Boekinginfo;
   }
 
-  public function AdminUpdateBoeking($database, $BoekingID, $land, $plaats, $prijs, $personen, $hotel, $vervoer, $vertrekdatum,  $boekingsdatum, $duur){
+  public function AdminUpdateBoeking($database, $BoekingID, $land, $plaats, $prijs, $personen, $hotel, $vervoer, $vertrekdatum,  $boekingsdatum, $duur){ //Update boeking met ingevoerde data van admin
     $db = $database->connection();
     $stmt = $db->prepare("UPDATE `boeking` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Prijs` = '".$prijs."', `Hotel` = '".$hotel."', `Vervoer` = '".$vervoer."', `Personen` = '".$personen."',  `Vertrekdatum` = '".$vertrekdatum."', `Boekingsdatum` = '".$boekingsdatum."', `Duur` = '".$duur."'
     WHERE `BoekingID` = '".$BoekingID."';");

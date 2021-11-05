@@ -40,14 +40,14 @@ class Faq
     return $Faqinfo;
   }
 
-  public function AdminUpdateFaq($database, $VraagNL, $AntwoordNL, $VraagEN, $AntwoordEN){
+  public function AdminUpdateFaq($database, $VraagNL, $AntwoordNL, $VraagEN, $AntwoordEN){//Update faq in database met ingegvoerde data
     $db = $database->connection();
     $stmt = $db->prepare("UPDATE `faq` SET `Vraag-NL` = '".$VraagNL."', `Antwoord-NL` = '".$AntwoordNL."', `Vraag-EN` = '".$VraagEN."', `Antwoord-EN` = '".$AntwoordEN."' WHERE `QID` = '".$this->qID."';");
     $stmt->execute();
     $db = NULL;
   }
 
-  public function AdminAddFaq($database){
+  public function AdminAddFaq($database){//Voeg een faq toe aan de database met ingevoerde data van admin
     $db = $database->connection();
     $stmt = $db->prepare("INSERT INTO `faq`(`Vraag-NL`, `Antwoord-NL`, `Vraag-EN`, `Antwoord-EN`) VALUES ('$this->vraagNL','$this->antwoordNL','$this->vraagEN','$this->antwoordEN')");
     $stmt->execute();

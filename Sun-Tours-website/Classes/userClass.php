@@ -34,11 +34,11 @@ class User
 
   private function CheckCredentials($database,$email,$wachtwoord){ //Controleer of email bestaat, controleer daarna of wachtwoord overeenkomt met wachtwoord van email's account
     $db = $database->connection();
-    $stmt = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'");
+    $stmt = $db->prepare("SELECT * FROM `Klant` WHERE `Email`='".$email."'"); //Haal uit database waar email hetzelfde is als ingevoerde email
     $stmt->execute();
     $result = $stmt->fetch();
     if($result){
-      if(password_verify($wachtwoord, $result['Wachtwoord'])){
+      if(password_verify($wachtwoord, $result['Wachtwoord'])){ //Controleer of wachtwoord hetzelfde is als ingevoerde
         $db = NULL; //verbreek verbinding met database
         return $result;
       }else{
@@ -55,7 +55,7 @@ class User
 
   public function Login($database,$email,$wachtwoord){ //log de user in, update de default waardes van de instance
     $result = $this->CheckCredentials($database,$email,$wachtwoord);
-    if($result != "Fout"){
+    if($result != "Fout"){ //Als CheckCredentials goed is zet waardes in de instance
       $this->klantID = $result['KlantID'];
       $this->voornaam = $result['Voornaam'];
       $this->achternaam = $result['Achternaam'];
@@ -75,13 +75,13 @@ class User
     }
   }
 
-  public function Signup($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){
+  public function Signup($database, $voornaam, $achternaam, $tussenvoegsel, $email, $telefoonnummer, $hashed_wachtwoord, $land, $woonplaats, $postcode, $straatnaam, $huisnummer){ //Registreer met ingevoerde data
     try {
       $db = $database->connection();
-      $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO `klant` (`Voornaam`, `Achternaam`, `Tussenvoegsel`, `Email`, `Wachtwoord`, `Telefoonnummer`,`Land`,`Woonplaats`, `Postcode`, `Straatnaam`, `Huisnummer`) VALUES (?,?,?,?,?,?,?,?,?,?,?)"; //Vraagtekens voor sql injection bescherming
       $stmt= $db->prepare($sql);
       $success = $stmt->execute([$voornaam, $achternaam, $tussenvoegsel, $email,
-      $hashed_wachtwoord, $telefoonnummer, $land , $woonplaats, $postcode, $straatnaam, $huisnummer]);
+      $hashed_wachtwoord, $telefoonnummer, $land , $woonplaats, $postcode, $straatnaam, $huisnummer]); //Hier worden de vraagtekens gevult
     } catch (PDOException $e) {
       if($e->errorInfo[1] == 1062){ // 1062 is duplicate entry
         echo "Email al in gebruik";
@@ -143,10 +143,10 @@ class User
     $db = $database->connection();
     $stmt = $db->query("SELECT `Wachtwoord` FROM `klant` WHERE `KlantID`='".$klantID."'");
     $resultpass = $stmt->fetch(PDO::FETCH_ASSOC);
-    $passNew_hashed = password_hash($newPass, PASSWORD_DEFAULT);
+    $passNew_hashed = password_hash($newPass, PASSWORD_DEFAULT); //Hash wachtwoord zodat hij niet te lezen is uit de database
 
     if(password_verify($oldPass, $resultpass['Wachtwoord'])){
-        if($newPass === $rePass){
+        if($newPass === $rePass){ //Als wachtwoord en herhaal wachtwoord exact hetzelfde zijn
             $stmt = $db->prepare("UPDATE `klant` SET `Wachtwoord` = '".$passNew_hashed."' WHERE `KlantID` = '".$klantID."'");
             $stmt->execute();
             header("Location: profiel.php");

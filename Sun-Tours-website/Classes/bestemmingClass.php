@@ -53,7 +53,7 @@ class Bestemming
     return $Bestemminginfo;
   }
 
-  public function AdminUpdateBestemming($database, $land, $plaats, $type, $prijs, $limiet, $beschrijving){
+  public function AdminUpdateBestemming($database, $land, $plaats, $type, $prijs, $limiet, $beschrijving){ //Update bestemming met ingevoerde data
     $db = $database->connection();
     $stmt = $db->prepare("UPDATE `bestemming` SET `Land` = '".$land."', `Plaats` = '".$plaats."', `Type` = '".$type."', `Prijs` = '".$prijs."', `Limiet` = '".$limiet."', `Beschrijving` = '".$beschrijving."'
     WHERE `ID` = '".$this->ID."';");
@@ -61,7 +61,7 @@ class Bestemming
     $db = NULL;
   }
 
-  public function AdminAddBestemming($database){
+  public function AdminAddBestemming($database){//Voeg bestemming toe aan database met ingevoerde data en foto
     $db = $database->connection();
     $stmt = $db->prepare("INSERT INTO `bestemming`(`Land`, `Plaats`, `Type`, `Beschrijving`, `Prijs`, `Limiet`, `Plaatje`) VALUES ('$this->land','$this->plaats','$this->type','$this->beschrijving','$this->prijs','$this->limiet','$this->plaatje')");
     $stmt->execute();

@@ -1,6 +1,6 @@
 <?php
 class Database
-{   
+{
     private $host = "localhost";
     private $dbname = "sunproject";
     private $username = "root";
@@ -18,7 +18,7 @@ class Database
         }catch(PDOException $e){
             echo "Connection error:".$e->getMessage();
         }
-        
+
         return $this->conn;
     }
 
@@ -30,7 +30,7 @@ class Database
         return $result;
     }
 
-    public function Decrypt($txet,$key){
+    public function Decrypt($text,$key){
         $encryption_key = base64_decode($key);
         list($encrypted_data, $iv) = explode('::', base64_decode($txet), 2);
         $result = openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
