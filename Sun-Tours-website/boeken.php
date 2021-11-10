@@ -1,27 +1,30 @@
 <?php
-//header
+//voegt de header file toe
 include_once 'header.php';
-
-//no id error fix
+//kijkt of gebruiker een id heeft
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 }else{
+    //anders stuur de gebruiker naar de homepagina
     header("Location: home.php");
 }
 
+//maakt database connection aan
 $db = $database->connection();
+//Haal bestemminginfo, gemiddelde score van reviews en het totaal aantal reserveringen uit de database, doormiddel van een query met subqueries
 $stmt = $db->prepare("SELECT bestemming.ID, bestemming.Land, bestemming.Plaats, bestemming.Type, bestemming.Prijs, bestemming.Beschrijving, bestemming.Limiet, bestemming.Plaatje, tableA.totalRes, tableB.avgRev from bestemming LEFT JOIN ( SELECT BestemmingID, SUM(personen) AS totalRes FROM boeking GROUP BY BestemmingID ) tableA ON bestemming.id = tableA.BestemmingID LEFT JOIN ( SELECT BestemmingID, AVG(score) AS avgRev FROM review GROUP BY BestemmingID ) tableB ON bestemming.id = tableB.BestemmingID WHERE bestemming.ID = '".$id."';");
-$stmt->execute(); //Haal bestemminginfo, gemiddelde score van reviews en het totaal aantal reserveringen uit de database, doormiddel van een query met subqueries
+//voert de query uit
+$stmt->execute();
+//haalt alles op
 $result = $stmt->fetch();
-//dd($result);
 
-$db = null; //verbreek de verbinding met de database
+//verbreek de verbinding met de database
+$db = null;
 
 //zet de result in class
 $Bestemming = new Bestemming($id, $result['Land'], $result['Plaats'],$result['Type'], $result['Prijs'], $result['Beschrijving'], $result['Limiet'], $result['Plaatje'], $result['avgRev'], $result['totalRes']);
 $Bestemminginfo = $Bestemming->GetBestemmingInfo();
 $Userinfo = $User->GetUserInfo();
-//dd($Bestemminginfo);
 
 //bereken prijs
 $prijs = false;
@@ -35,7 +38,7 @@ if($prijs){
 }
 $score = $Bestemminginfo['Score'];
 
-//if form submitted
+//kijkt of de form verstuurd is
 if(isset($_POST['submit'])){
     $boekingsdatum = Date("Y-m-d");
     $_SESSION['id'] = $id;
@@ -50,18 +53,20 @@ if(isset($_POST['submit'])){
     $_SESSION['hotel'] = $_POST['hotel'];
     $_SESSION['vervoer'] = $_POST['vervoer'];
 
+    //stuurt de gebruiker naar de betaling
     header("Location: betaling.php");
 }
 ?><script>if(confirm("Druk op OK om te kopen voor <?php echo "€" . $prijs . ".00"; ?>")){alert("Betaald!");window.location.href = "factuur.php?id=<?php echo $Boeking->BoekingID ?>"}</script><?php
 
+//maakt database connection aan
 $db = $database->connection();
+//haalt alle hotels op
 $stmt = $db->prepare("SELECT `Naam`,`Prijs` from hotel WHERE `BestemmingID` = '".$_GET['id']."';");
-$stmt->execute(); //Haal naam van hotel uit database, hotels van de gekozen bestemming
+//Haal naam van hotel uit database, hotels van de gekozen bestemming
+$stmt->execute();
+//haalt alles op
 $hotels = $stmt->fetchAll();
 ?>
-
-
-
 <body>
     <div class="container col-xl-10 col-xxl-8 px-4 py-5">
         <div class="py-3 mb-5 text-center">
