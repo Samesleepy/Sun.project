@@ -5,7 +5,7 @@ if(isset($_POST['submit'])) {
 
   $afbeelding = addslashes(file_get_contents($_FILES['plaatje']['tmp_name']));
 
-  $BestemmingToAdd = new Bestemming(0, $_POST['land'], $_POST['plaats'], $_POST['type'], $_POST['beschrijving'], $_POST['prijs'], $_POST['limiet'], $afbeelding, 0, 0);
+  $BestemmingToAdd = new Bestemming(0, $_POST['land'], $_POST['plaats'], $_POST['type'],$_POST['prijs'], $_POST['beschrijving'], $_POST['limiet'], $afbeelding, 0, 0);
   $BestemmingToAdd->AdminAddBestemming($database);
 }
 
