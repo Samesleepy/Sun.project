@@ -1,26 +1,29 @@
 <?php
+//header
 include_once('admin-header.php');
 
+//haalt de geselecteerde boeking op
 $db = $database->connection();
 $stmt = $db->prepare("SELECT * FROM `boeking` WHERE `BoekingID` = '".$_GET['BoekingID']."'");
 $stmt->execute();
 $boeking = $stmt->fetch();
 $db = NULL;
 
+//maakt een nieuwe class aan voor de boeking
 $BoekingToEdit = new Boeking(0, 0, $boeking['Land'], $boeking['Plaats'], $boeking['Prijs'], $boeking['Personen'], $boeking['Vertrekdatum'], $boeking['Boekingsdatum'], $boeking['Duur'],$boeking['Hotel'],$boeking['Vervoer']);
 $Boekinginfo = $BoekingToEdit->GetBoekingInfo();
 
-
 if(isset($_POST['changeinfo'])){
-  $BoekingToEdit->AdminUpdateBoeking($database, $_GET['BoekingID'], $_POST['land'], $_POST['plaats'], $_POST['prijs'], $_POST['personen'], $_POST['hotel'],$_POST['vervoer'],$_POST['vertrekdatum'],$_POST['boekingsdatum'],$_POST['duur']);
-  header("Refresh:0");
+   // het formulier wordt verstuurd dan update de database
+   $BoekingToEdit->AdminUpdateBoeking($database, $_GET['BoekingID'], $_POST['land'], $_POST['plaats'], $_POST['prijs'], $_POST['personen'], $_POST['hotel'],$_POST['vervoer'],$_POST['vertrekdatum'],$_POST['boekingsdatum'],$_POST['duur']);
+   header("Refresh:0");
 }
 ?>
 <body>
    <div class="container py-4 w-50">
       <div class="jumbotron text-center">
          <h1>
-         Boeking wijzigen
+            Boeking wijzigen
          <h1>
       </div>
       <form method="post" class="mb-5">

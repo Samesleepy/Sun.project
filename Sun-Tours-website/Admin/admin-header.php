@@ -14,25 +14,26 @@ function dd($x){
     echo "</pre>";
 }
 
+//start de sessie 
 session_start();
+//maakt de connectie met de database via de class
 $database = new Database();
+//maakt een nieuwe user aan als die nog niet bestond
 if(isset($_SESSION['user'])){
     $User = $_SESSION['user'];
 }else{
     $User = new User();
 }
 
+//zodra je geen admin bent wordt je terug gestuurd
 if ($_SESSION['user']->role == "Admin") {
 }else{
     header("Location: ../home.php");
 }
 
-if(isset($_POST['logout'])){
-    session_destroy();
-    header("Location: ../home.php");
-}
-
+//maakt database connectie aan
 $db = $database->connection();
+//kijkt hoeveel vragen er zijn en zet deze in een variable
 $stmt = $db->prepare("SELECT COUNT(*) FROM `contact`;");
 $stmt->execute();
 $countVragen = $stmt->fetch();
@@ -93,7 +94,7 @@ $db = NULL;
                         <a href="admin-vragen-index.php" class="nav-link text-white">
                             <i class="far fa-question-circle" width="16" height="16" style="padding-right: 7px"></i>
                             Vragen
-                            <?php if(!$count == 0){
+                            <?php if(!$count == 0){ //checkt of er vragen zijn en zet deze achter de vragen neer
                                 echo "<span class='badge bg-light text-dark rounded-pill align-text-bottom'>".$count." </span>";
                             } ?>
                         </a>

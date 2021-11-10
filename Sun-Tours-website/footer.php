@@ -17,6 +17,7 @@
   </nav>
 </body>
 <script>
+  //voorkomt dat je een form 2 keer kan versturen als je de pagina refreshed
   if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
   }

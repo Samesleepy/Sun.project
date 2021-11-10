@@ -1,18 +1,23 @@
 <?php
+//header
 include_once('admin-header.php');
 
+//connect de database
 $db = $database->connection();
+//haalt de bestemming op met de id waar op geklikt is
 $stmt = $db->prepare("SELECT * FROM `bestemming` WHERE `ID` = '".$_GET['BestemmingID']."'");
 $stmt->execute();
 $bestemming = $stmt->fetch();
 $db = NULL;
 
+//pakt alle data die is ingevuld en zet deze in een class
 $BestemmingToEdit = new Bestemming($_GET['BestemmingID'] ,$bestemming['Land'], $bestemming['Plaats'], $bestemming['Type'], $bestemming['Prijs'], $bestemming['Beschrijving'], $bestemming['Limiet'], $bestemming['Plaatje'], 0, 0);
 $Bestemminginfo = $BestemmingToEdit->GetBestemmingInfo();
 
 if(isset($_POST['changeinfo'])){
-  $BestemmingToEdit->AdminUpdateBestemming($database, $_POST['land'], $_POST['plaats'], $_POST['type'], $_POST['prijs'], $_POST['limiet'], $_POST['beschrijving']);
-  header("Refresh:0");
+   //als het formulier wordt verstuurd dan update die alle velden die zijn ingevuld
+   $BestemmingToEdit->AdminUpdateBestemming($database, $_POST['land'], $_POST['plaats'], $_POST['type'], $_POST['prijs'], $_POST['limiet'], $_POST['beschrijving']);
+   header("Refresh:0");
 }
 ?>
 

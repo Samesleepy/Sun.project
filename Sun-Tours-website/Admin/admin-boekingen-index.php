@@ -1,21 +1,30 @@
 <?php
+//header
 include_once('admin-header.php');
 
+//database connectie
 $db = $database->connection();
+//haalt alle boekingen op 
 $stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `BoekingID` ASC");
 $stmt->execute();
 
+//variabel voor hoeveel entrys er op een pagina kunnen
 $results_per_page = 12;
+//telt het aantal entrys van de statement
 $number_of_results = $stmt->rowCount();
+//berekent hoeveel paginas er moeten komen
 $number_of_pages = ceil($number_of_results/$results_per_page);
+//zet de $page op de huidige pagina om de goede info te laten zien
 if(!isset($_GET['page'])){
     $page = 1;
 }else{
     $page = $_GET['page'];
 }
+//rekent uit wat het nummer is van de eerste entry op een pagina
 $this_page_first_result = ($page-1)*$results_per_page;
 
 if(isset($_POST['delete'])){
+    //als er op delete wordt geklikt dan verwijderd die de entry van het geselecteerde id
     $db = $database->connection();
     $stmt = $db->prepare("DELETE FROM `boeking` WHERE `BoekingID` = '".$_POST['BoekingID']."'");
     $stmt->execute();
@@ -45,14 +54,16 @@ if(isset($_POST['delete'])){
         </thead>
         <tbody>
             <?php
-            //  LIMIT " . $this_page_first_result . "," . $results_per_page
+            //database connectie
             $db = $database->connection();
+            //haalt alle boekingen op die op de geselecteerde pagina moeten komen
             $stmt = $db->prepare("SELECT * FROM `boeking` ORDER BY `BoekingID` ASC LIMIT " . $this_page_first_result . "," . $results_per_page);
             $stmt->execute();
             $boekingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $db = NULL;
 
             foreach ($boekingen as $key => $boeking) {
+                //loopt door alle boekingen heen op de pagina en zet ze in een tabel
                 echo "<tr>";
                     echo "<form method='post'>";
                         echo "<input type='hidden' name='BoekingID' value='".$boeking['BoekingID']."'>";
@@ -81,6 +92,7 @@ if(isset($_POST['delete'])){
                 <ul class="pagination">
                     <?php
                         for ($i=1;$i<=$number_of_pages;$i++) {
+                            //laat knopjes zien voor het aantal paginas die er zijn
                             echo "<li class='page-item'><a class='btn btn-primary page-link ";
                             if($page == $i){echo "active";}
                             echo "' href='admin-boekingen-index.php?page=" . $i . "'>" . $i . " </a></li>";

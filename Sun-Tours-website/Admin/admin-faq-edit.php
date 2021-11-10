@@ -11,8 +11,8 @@ $FaqToEdit = new Faq($_GET['QID'], $faq['Vraag-NL'], $faq['Antwoord-NL'], $faq['
 $Faqinfo = $FaqToEdit->GetFaqInfo();
 
 if(isset($_POST['changeinfo'])){
-  $FaqToEdit->AdminUpdateFaq($database, $_POST['Vraag-NL'], $_POST['Antwoord-NL'], $_POST['Vraag-EN'], $_POST['Antwoord-EN']);
-  header("Refresh:0");
+   $FaqToEdit->AdminUpdateFaq($database, $_POST['Vraag-NL'], $_POST['Antwoord-NL'], $_POST['Vraag-EN'], $_POST['Antwoord-EN']);
+   header("Refresh:0");
 }
 ?>
 

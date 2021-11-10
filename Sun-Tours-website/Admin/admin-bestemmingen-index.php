@@ -1,13 +1,17 @@
 <?php
+//header
 include_once('admin-header.php');
 
+//maakt database connectie aan
 $db = $database->connection();
+//haalt alle bestemmingen op en zet ze in een array
 $stmt = $db->prepare("SELECT * FROM `bestemming` ORDER BY `ID` ASC;");
 $stmt->execute();
 $bestemmingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $db = NULL;
 
 if(isset($_POST['delete'])){
+    //als er op delete wordt geklikt verwijderd die de bestemming met het geklikte ID
     $db = $database->connection();
     $stmt = $db->prepare("DELETE FROM `bestemming` WHERE `ID` = '".$_POST['BestemmingID']."'");
     $stmt->execute();
@@ -34,6 +38,7 @@ if(isset($_POST['delete'])){
         </thead>
         <tbody>
             <?php
+            //loopt door alle bestemmingen heen en zet deze in een tabel
             foreach ($bestemmingen as $key => $bestemming) {
                 echo "<tr>";
                     echo "<form method='post'>";

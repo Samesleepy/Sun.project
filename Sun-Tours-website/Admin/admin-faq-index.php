@@ -1,7 +1,10 @@
 <?php
+//header
 include_once('admin-header.php');
 
+//database connectie
 $db = $database->connection();
+//haalt alle faqs' op
 $stmt = $db->prepare("SELECT * FROM `faq` ORDER BY `QID` ASC;");
 $stmt->execute();
 $FAQs = $stmt->fetchAll(PDO::FETCH_ASSOC);

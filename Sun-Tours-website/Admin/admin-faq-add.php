@@ -2,9 +2,8 @@
 include_once('admin-header.php');
 
 if(isset($_POST['submit'])) {
-
-  $FaqToAdd = new Faq(0, $_POST['Vraag-NL'], $_POST['Antwoord-NL'], $_POST['Vraag-EN'], $_POST['Antwoord-EN']);
-  $FaqToAdd->AdminAddFaq($database);
+   $FaqToAdd = new Faq(0, $_POST['Vraag-NL'], $_POST['Antwoord-NL'], $_POST['Vraag-EN'], $_POST['Antwoord-EN']);
+   $FaqToAdd->AdminAddFaq($database);
 }
 
 ?>

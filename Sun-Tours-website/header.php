@@ -9,7 +9,6 @@ include_once('Classes/faqClass.php');
 include_once('Classes/reviewClass.php');
 include_once('Classes/contactClass.php');
 include_once('text.php');
-//include_once('Classes/language.php');
 
 //for testing
 function dd($x){
@@ -19,22 +18,29 @@ function dd($x){
    echo "</pre>";
 }
 
+//start de sessie 
 session_start();
+//maakt de connectie met de database via de class
 $database = new Database();
+//maakt een nieuwe user aan als die nog niet bestond
 if(isset($_SESSION['user'])){
    $User = $_SESSION['user'];
 }else{
    $User = new User();
 }
 
+//kijkt of language al geselecteerd is
 if(isset($_GET['lang'])){
-  $_SESSION['lang'] = $_GET['lang'];
+   //zo ja dan zet die deze op de geselecteerde taal
+   $_SESSION['lang'] = $_GET['lang'];
 }else{
-  if(!isset($_SESSION['lang'])){
-    $_SESSION['lang'] = 'NL';
-  }
+   //zo niet zet die hem op NL (default)
+   if(!isset($_SESSION['lang'])){
+      $_SESSION['lang'] = 'NL';
+   }
 }
 
+//als er op logout wordt dan destroyed die de sessie
 if(isset($_POST['logout'])){
    session_destroy();
    header("Location: home.php");
@@ -73,32 +79,36 @@ if(isset($_POST['logout'])){
                         <li><a class="dropdown-item" href="?lang=EN"><object data="Pics/flag-uk.svg" width="20" ></object> <?=  $text[$_SESSION['lang']]['header'][6] ?></a></li>
                      </ul>
                   </li>
-                  <?php if($_SESSION['lang'] == 'EN'){
-                    echo "<object data='Pics/flag-uk.svg' width='20' ></object>";
+                  
+                  <?php 
+                  //laat het vlagetje zien achter de language switcher
+                  if($_SESSION['lang'] == 'EN'){
+                     echo "<object data='Pics/flag-uk.svg' width='20' ></object>";
                   }else{
-                    echo "<object data='Pics/flag-nl.svg' width='20' ></object>";
+                     echo "<object data='Pics/flag-nl.svg' width='20' ></object>";
                   } ?>
                </ul>
 
                <ul class="navbar-nav ms-auto">
-               <?php if(isset($_SESSION['user'])){ ?>
+               <?php if(isset($_SESSION['user'])){ //laat de menu items zien van een ingelogd persoon?>
                      <li class="nav-item" style="padding-right: 5px;">
                         <form method="post">
-                           <button type='submit' name='logout' class='btn btn-danger btn-block'><?=  $text[$_SESSION['lang']]['header'][7] ?> <i class="fas fa-sign-out-alt"></i></button>
+                           <button type='submit' name='logout' class='btn btn-danger btn-block'><?= $text[$_SESSION['lang']]['header'][7] ?> <i class="fas fa-sign-out-alt"></i></button>
                         </form>
                      </li>
-                  <?php }else{ ?>
+                  <?php }else{ //laat de menu items zien van een niet iemand persoon?>
                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="signup.php"><?=  $text[$_SESSION['lang']]['header'][8] ?></a>
+                        <a class="nav-link active" aria-current="page" href="signup.php"><?= $text[$_SESSION['lang']]['header'][8] ?></a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="login.php"><?=  $text[$_SESSION['lang']]['header'][9] ?></a>
+                        <a class="nav-link active" aria-current="page" href="login.php"><?= $text[$_SESSION['lang']]['header'][9] ?></a>
                      </li>
                   <?php } ?>
                   <li class="nav-item">
                      <a class="navbar-text" aria-current="page">
                         <?php
-                        if(isset($_SESSION['user'])){ //echo naam, en mogelijk tussenvoegsel
+                        //laat de dropdown zien als iemand is ingelogd
+                        if(isset($_SESSION['user'])){
                            echo "<div class='dropdown'>";
                            echo    "<a class='btn btn-primary dropdown-toggle' style='' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'>";
                            echo $User->voornaam . " " ;
@@ -110,6 +120,7 @@ if(isset($_POST['logout'])){
                            echo    "</a>";
                            echo    "<ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'>";
                            echo        "<li><a class='dropdown-item' href='profiel.php'>". $text[$_SESSION['lang']]['profiel'][18]."</a></li>";
+                           //als je een admin bent zie je de optie om naar het admin dashboard te gaan
                            if($_SESSION['user']->role == 'Admin'){
                               echo     "<li><a class='dropdown-item' href='admin/admin.php'>". $text[$_SESSION['lang']]['profiel'][19]."</a></li>";
                            }
@@ -124,6 +135,7 @@ if(isset($_POST['logout'])){
             </div>
          </div>
       </nav>
+      <!-- bootstrap & jquery includes -->
       <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
    </body>
